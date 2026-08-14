@@ -1,0 +1,6 @@
+numpy>=1.26
+numdifftools>=0.9.41
+scipy>=1.11
+matplotlib>=3.8
+numba>=0.59
+pywin32>=306; platform_system == "Windows"
