@@ -128,17 +128,17 @@ A quick introduction to some of the many features of wafo can be found in the Tu
 
 * Chapter 5 - `Extreme value analysis`_
 
-.. _tutorial scripts folder: https://nbviewer.org/github/wafo-project/py3wafo/tree/main/src/wafo/doc/tutorial_scripts/
+.. _tutorial scripts folder: https://nbviewer.org/github/wengangmao/py3wafo/tree/main/src/wafo/doc/tutorial_scripts/
 
-.. _Some applications of WAFO: https://nbviewer.org/github/wafo-project/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%201.ipynb
+.. _Some applications of WAFO: https://nbviewer.org/github/wengangmao/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%201.ipynb
 
-.. _Modelling random loads and stochastic waves: https://nbviewer.org/github/wafo-project/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%202.ipynb
+.. _Modelling random loads and stochastic waves: https://nbviewer.org/github/wengangmao/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%202.ipynb
 
-.. _Demonstrates distributions of wave characteristics: https://nbviewer.org/github/wafo-project/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%203.ipynb
+.. _Demonstrates distributions of wave characteristics: https://nbviewer.org/github/wengangmao/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%203.ipynb
 
-.. _Fatigue load analysis and rain-flow cycles: https://nbviewer.org/github/wafo-project/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%204.ipynb
+.. _Fatigue load analysis and rain-flow cycles: https://nbviewer.org/github/wengangmao/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%204.ipynb
 
-.. _Extreme value analysis: https://nbviewer.org/github/wafo-project/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%205.ipynb
+.. _Extreme value analysis: https://nbviewer.org/github/wengangmao/py3wafo/blob/main/src/wafo/doc/tutorial_scripts/WAFO%20Chapter%205.ipynb
 
 
 Unit tests
@@ -149,22 +149,22 @@ Run the maintained test suite with::
     python -m pytest src/wafo
 
 
-.. |wafo_logo| image:: https://github.com/wafo-project/py3wafo/blob/main/src/wafo/data/wafoLogoNewWithoutBorder.png
-    :target: https://github.com/wafo-project/py3wafo
+.. |wafo_logo| image:: https://github.com/wengangmao/py3wafo/blob/main/src/wafo/data/wafoLogoNewWithoutBorder.png
+    :target: https://github.com/wengangmao/py3wafo
 
 
 .. |docs_img| image:: https://readthedocs.org/projects/pip/badge/?version=latest
     :target: http://pywafo.readthedocs.org/en/latest/
 
-.. |health_img| image:: https://codeclimate.com/github/wafo-project/py3wafo/badges/gpa.svg
-   :target: https://codeclimate.com/github/wafo-project/py3wafo
+.. |health_img| image:: https://codeclimate.com/github/wengangmao/py3wafo/badges/gpa.svg
+   :target: https://codeclimate.com/github/wengangmao/py3wafo
    :alt: Code Climate
 
-.. |coverage_img| image:: https://coveralls.io/repos/wafo-project/py3wafo/badge.svg?branch=main
-   :target: https://coveralls.io/github/wafo-project/py3wafo?branch=main
+.. |coverage_img| image:: https://coveralls.io/repos/wengangmao/py3wafo/badge.svg?branch=main
+   :target: https://coveralls.io/github/wengangmao/py3wafo?branch=main
 
 .. |versions_img| image:: https://img.shields.io/pypi/pyversions/py3wafo.svg
-   :target: https://github.com/wafo-project/py3wafo
+   :target: https://github.com/wengangmao/py3wafo
 
 
 .. |downloads_img| image:: https://img.shields.io/pypi/dm/py3wafo.svg
