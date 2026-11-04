@@ -1,8 +1,8 @@
 # py3wafo — WAFO for Python 3
 
-[![CI](https://github.com/YOUR-GITHUB-USER/py3wafo/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR-GITHUB-USER/py3wafo/actions/workflows/ci.yml)
+[![CI](https://github.com/wengangmao/py3wafo/actions/workflows/ci.yml/badge.svg)](https://github.com/wengangmao/py3wafo/actions/workflows/ci.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
-![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+![Python](<https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue>)
 
 **py3wafo** is a Python 3 port of **WAFO** (*Wave Analysis for Fatigue and
 Oceanography*), the MATLAB toolbox from Lund University for the statistical
@@ -36,7 +36,7 @@ environments, conda and offline installs, are in
 From a clone of this repository:
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USER/py3wafo.git
+git clone https://github.com/wengangmao/py3wafo.git
 cd py3wafo
 python -m pip install ".[all]"
 ```
@@ -44,16 +44,16 @@ python -m pip install ".[all]"
 Or install straight from GitHub without cloning:
 
 ```bash
-python -m pip install "py3wafo[all] @ git+https://github.com/YOUR-GITHUB-USER/py3wafo.git"
+python -m pip install "py3wafo[all] @ git+https://github.com/wengangmao/py3wafo.git"
 ```
 
-| Extra | Adds | Needed for |
-|---|---|---|
-| *(none)* | NumPy, SciPy | all numerical functions |
-| `[plot]` | Matplotlib | plotting functions, demos and paper figures |
-| `[map]` | Matplotlib, pyproj | `wafo.m_map` ellipsoidal projections |
-| `[all]` | both of the above | everything |
-| `[test]` | pytest, Matplotlib, pyproj | running the test suite |
+| Extra      | Adds                       | Needed for                                  |
+| ---------- | -------------------------- | ------------------------------------------- |
+| *(none)* | NumPy, SciPy               | all numerical functions                     |
+| `[plot]` | Matplotlib                 | plotting functions, demos and paper figures |
+| `[map]`  | Matplotlib, pyproj         | `wafo.m_map` ellipsoidal projections      |
+| `[all]`  | both of the above          | everything                                  |
+| `[test]` | pytest, Matplotlib, pyproj | running the test suite                      |
 
 Check the installation:
 
@@ -98,36 +98,36 @@ damage = cc2dam(rfc, [3, 4, 5])                     # Woehler exponents 3, 4, 5
 
 ## Documentation
 
-| Guide | For |
-|---|---|
-| [docs/INSTALLATION.md](docs/INSTALLATION.md) | installing, verifying and troubleshooting |
-| [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | conventions and a tour of every module |
-| [docs/migration](docs/migration) | how the MATLAB toolbox was ported and validated |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | development setup and guidelines |
-| [docs/PUBLISHING_TO_GITHUB.md](docs/PUBLISHING_TO_GITHUB.md) | maintainers: pushing, CI and releases |
-| [CHANGELOG.md](CHANGELOG.md) | release history |
+| Guide                                                       | For                                             |
+| ----------------------------------------------------------- | ----------------------------------------------- |
+| [docs/INSTALLATION.md](docs/INSTALLATION.md)                 | installing, verifying and troubleshooting       |
+| [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)           | conventions and a tour of every module          |
+| [docs/migration](docs/migration)                             | how the MATLAB toolbox was ported and validated |
+| [CONTRIBUTING.md](CONTRIBUTING.md)                           | development setup and guidelines                |
+| [docs/PUBLISHING_TO_GITHUB.md](docs/PUBLISHING_TO_GITHUB.md) | maintainers: pushing, CI and releases           |
+| [CHANGELOG.md](CHANGELOG.md)                                 | release history                                 |
 
 ## Package layout
 
-| Module | Contents |
-|---|---|
-| `wafo.spec` | wave spectra (JONSWAP, Torsethaugen, Ochi–Hubble, …), moments, directional spectra |
-| `wafo.wsim` | simulation of Gaussian, transformed and second-order seas, Markov loads |
-| `wafo.onedim` | time-series tools: turning points, crossings, wave parameters, spectral estimation, reconstruction |
-| `wafo.cycles` | rainflow and other cycle counts, cycle matrices, level-crossing spectra |
-| `wafo.damage` | Palmgren–Miner damage, S–N curves, damage intensity |
-| `wafo.markov` | Markov chains of turning points and switching Markov loads |
-| `wafo.trgauss` | transformed Gaussian models, Rice wave distributions, multivariate normal integrals, quadratic seas |
-| `wafo.wstats` | distributions, fitting, extreme values, 2-D wave models |
-| `wafo.kdetools` | kernel density estimation and bandwidth selection |
-| `wafo.wavemodels` | parametric distributions of wave characteristics |
-| `wafo.multidim` | directional spreading estimation and sensor transfer functions |
-| `wafo.m_map` | M_Map map projections and coastlines |
-| `wafo.misc` | numerical utilities and physical constants |
-| `wafo.data` | the original WAFO measurement data sets (`load('sea.dat')`, …) |
-| `wafo.papers`, `wafo.wdemos` | reproductions of the WAFO papers and course demos |
-| `wafo.source`, `wafo.exec` | the reimplemented native routines and a command-line driver |
-| `wafo.docs` | offline help (`wafohelp`) built from the original documentation |
+| Module                           | Contents                                                                                            |
+| -------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `wafo.spec`                    | wave spectra (JONSWAP, Torsethaugen, Ochi–Hubble, …), moments, directional spectra                |
+| `wafo.wsim`                    | simulation of Gaussian, transformed and second-order seas, Markov loads                             |
+| `wafo.onedim`                  | time-series tools: turning points, crossings, wave parameters, spectral estimation, reconstruction  |
+| `wafo.cycles`                  | rainflow and other cycle counts, cycle matrices, level-crossing spectra                             |
+| `wafo.damage`                  | Palmgren–Miner damage, S–N curves, damage intensity                                               |
+| `wafo.markov`                  | Markov chains of turning points and switching Markov loads                                          |
+| `wafo.trgauss`                 | transformed Gaussian models, Rice wave distributions, multivariate normal integrals, quadratic seas |
+| `wafo.wstats`                  | distributions, fitting, extreme values, 2-D wave models                                             |
+| `wafo.kdetools`                | kernel density estimation and bandwidth selection                                                   |
+| `wafo.wavemodels`              | parametric distributions of wave characteristics                                                    |
+| `wafo.multidim`                | directional spreading estimation and sensor transfer functions                                      |
+| `wafo.m_map`                   | M_Map map projections and coastlines                                                                |
+| `wafo.misc`                    | numerical utilities and physical constants                                                          |
+| `wafo.data`                    | the original WAFO measurement data sets (`load('sea.dat')`, …)                                   |
+| `wafo.papers`, `wafo.wdemos` | reproductions of the WAFO papers and course demos                                                   |
+| `wafo.source`, `wafo.exec`   | the reimplemented native routines and a command-line driver                                         |
+| `wafo.docs`                    | offline help (`wafohelp`) built from the original documentation                                   |
 
 ## Running the tests
 

@@ -33,10 +33,10 @@ test = ["pytest>=7", "matplotlib>=3.7", "pyproj>=3.6"]
 all = ["matplotlib>=3.7", "pyproj>=3.6"]
 
 [project.urls]
-Homepage = "https://github.com/YOUR-GITHUB-USER/py3wafo"
-Documentation = "https://github.com/YOUR-GITHUB-USER/py3wafo/tree/main/docs"
-Issues = "https://github.com/YOUR-GITHUB-USER/py3wafo/issues"
-Changelog = "https://github.com/YOUR-GITHUB-USER/py3wafo/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/wengangmao/py3wafo"
+Documentation = "https://github.com/wengangmao/py3wafo/tree/main/docs"
+Issues = "https://github.com/wengangmao/py3wafo/issues"
+Changelog = "https://github.com/wengangmao/py3wafo/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

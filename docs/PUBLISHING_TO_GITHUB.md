@@ -2,32 +2,38 @@
 
 Steps for the first upload of py3wafo, and for later releases.
 
-## 1. Replace the placeholder repository path
+## 1. Repository path
 
-The documentation uses `YOUR-GITHUB-USER/py3wafo` wherever the repository URL
-appears. Replace it with your own `owner/repository` in:
+The documentation points to `wengangmao/py3wafo`. If you publish under another
+account or name, for example in a fork, replace that path in:
 
 - `README.md` (badges and install commands)
 - `pyproject.toml` (`[project.urls]`)
 - `docs/INSTALLATION.md`
 - `CONTRIBUTING.md`
+- this file
 
-To find every occurrence:
-
-```bash
-git grep -n "YOUR-GITHUB-USER"          # after step 2; or: grep -rn YOUR-GITHUB-USER .
-```
+To find every occurrence, run `git grep -n "wengangmao/py3wafo"`.
 
 ## 2. Create the local Git repository
 
-From the `py3wafo` folder:
+GitHub rejects pushes whose commits carry an email address that your account
+keeps private (error `GH007`). Commit with your GitHub no-reply address, which
+is shown at <https://github.com/settings/emails> and has the form
+`ID+username@users.noreply.github.com`. From the `py3wafo` folder:
 
 ```bash
 git init -b main
+git config user.name "Your Name"
+git config user.email "ID+username@users.noreply.github.com"
 git add .
 git status                               # check that no build output or .venv is listed
 git commit -m "py3wafo 0.4.0: Python 3 port of WAFO"
 ```
+
+If a push was already rejected with `GH007`, set the address as above, then
+correct the unpushed commits. For a single commit:
+`git commit --amend --reset-author --no-edit`.
 
 ## 3. Create the GitHub repository and push
 
@@ -35,7 +41,7 @@ On GitHub, create a new **empty** repository named `py3wafo`, without a
 README, licence or .gitignore, since this folder already has them. Then:
 
 ```bash
-git remote add origin https://github.com/YOUR-GITHUB-USER/py3wafo.git
+git remote add origin https://github.com/wengangmao/py3wafo.git
 git push -u origin main
 ```
 
@@ -78,7 +84,7 @@ first successful run.
    ```
 
 Users can then install a fixed version with
-`pip install "py3wafo @ git+https://github.com/YOUR-GITHUB-USER/py3wafo.git@v0.4.0"`.
+`pip install "py3wafo @ git+https://github.com/wengangmao/py3wafo.git@v0.4.0"`.
 
 ## 6. Optional: publish on PyPI
 

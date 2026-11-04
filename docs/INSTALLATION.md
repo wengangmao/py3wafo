@@ -5,13 +5,13 @@ executable. These instructions cover Windows, macOS and Linux.
 
 ## 1. Requirements
 
-| Component | Version | Notes |
-|---|---|---|
-| Python | 3.10 – 3.13 | 64-bit recommended |
-| NumPy | ≥ 1.26 | installed automatically |
-| SciPy | ≥ 1.15 | installed automatically |
-| Matplotlib | ≥ 3.7 | optional, `[plot]` extra: plotting, demos, paper figures |
-| pyproj | ≥ 3.6 | optional, `[map]` extra: ellipsoidal map projections in `wafo.m_map` |
+| Component  | Version      | Notes                                                                    |
+| ---------- | ------------ | ------------------------------------------------------------------------ |
+| Python     | 3.10 – 3.13 | 64-bit recommended                                                       |
+| NumPy      | ≥ 1.26      | installed automatically                                                  |
+| SciPy      | ≥ 1.15      | installed automatically                                                  |
+| Matplotlib | ≥ 3.7       | optional, `[plot]` extra: plotting, demos, paper figures               |
+| pyproj     | ≥ 3.6       | optional, `[map]` extra: ellipsoidal map projections in `wafo.m_map` |
 
 Check your Python version:
 
@@ -62,7 +62,7 @@ Choose one of the following.
 ### a) From GitHub, without cloning
 
 ```bash
-python -m pip install "py3wafo[all] @ git+https://github.com/YOUR-GITHUB-USER/py3wafo.git"
+python -m pip install "py3wafo[all] @ git+https://github.com/wengangmao/py3wafo.git"
 ```
 
 Pin a release by appending a tag, for example `...py3wafo.git@v0.4.0`.
@@ -70,7 +70,7 @@ Pin a release by appending a tag, for example `...py3wafo.git@v0.4.0`.
 ### b) From a local clone
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USER/py3wafo.git
+git clone https://github.com/wengangmao/py3wafo.git
 cd py3wafo
 python -m pip install ".[all]"
 ```
@@ -135,14 +135,14 @@ automatically when it is absent.
 
 ## 5. Troubleshooting
 
-| Symptom | Cause and fix |
-|---|---|
-| `ModuleNotFoundError: No module named 'wafo'` | The environment where py3wafo was installed is not active. Activate it, or run `python -m pip show py3wafo` to see where it is installed. |
-| `ImportError` mentioning `matplotlib` | Install the plotting extra: `python -m pip install "py3wafo[plot]"`. |
-| `ImportError` mentioning `pyproj` | Only `wafo.m_map` ellipsoidal projections need it: install `py3wafo[map]`. |
-| Plot windows do not appear | Scripts run without a display. Call `matplotlib.pyplot.show()`, or save figures with `fig.savefig(...)`. |
-| `ImportError` loading NumPy's C extensions | NumPy was built for a different Python version, for example from a shared folder. Reinstall NumPy and SciPy inside the active environment. |
-| pip reports `Can not combine '--user' and '--target'` | Your pip configuration forces user installs. Use a virtual environment, or add `--no-user`. |
+| Symptom                                                 | Cause and fix                                                                                                                               |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ModuleNotFoundError: No module named 'wafo'`         | The environment where py3wafo was installed is not active. Activate it, or run `python -m pip show py3wafo` to see where it is installed. |
+| `ImportError` mentioning `matplotlib`               | Install the plotting extra: `python -m pip install "py3wafo[plot]"`.                                                                      |
+| `ImportError` mentioning `pyproj`                   | Only `wafo.m_map` ellipsoidal projections need it: install `py3wafo[map]`.                                                              |
+| Plot windows do not appear                              | Scripts run without a display. Call `matplotlib.pyplot.show()`, or save figures with `fig.savefig(...)`.                                |
+| `ImportError` loading NumPy's C extensions            | NumPy was built for a different Python version, for example from a shared folder. Reinstall NumPy and SciPy inside the active environment.  |
+| pip reports `Can not combine '--user' and '--target'` | Your pip configuration forces user installs. Use a virtual environment, or add `--no-user`.                                               |
 
 ## 6. Uninstall
 

@@ -16,7 +16,7 @@ Open an issue with:
 ## Development setup
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USER/py3wafo.git
+git clone https://github.com/wengangmao/py3wafo.git
 cd py3wafo
 python -m venv .venv
 source .venv/bin/activate          # Windows: .\.venv\Scripts\Activate.ps1
