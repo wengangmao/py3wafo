@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+*.whl
+
+# Environments
+.venv/
+venv/
+env/
+.test-deps*/
+
+# Test, coverage and tool output
+.pytest_cache/
+.coverage
+htmlcov/
+.tmp/
+.build-tmp/
+.mplconfig/
+docs/migration/test_results.xml
+docs/migration/validation_history.json
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated images from running examples in the repository root
+/*.png

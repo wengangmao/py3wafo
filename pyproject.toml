@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py3wafo"
+version = "0.4.0"
+description = "Python 3 port of WAFO, the MATLAB toolbox for Wave Analysis for Fatigue and Oceanography"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "NOTICE.md"]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "scipy>=1.15"]
+keywords = ["ocean waves", "fatigue", "rainflow", "spectral analysis", "random loads",
+            "extreme values", "kernel density", "WAFO", "oceanography"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.7"]
+map = ["matplotlib>=3.7", "pyproj>=3.6"]
+test = ["pytest>=7", "matplotlib>=3.7", "pyproj>=3.6"]
+all = ["matplotlib>=3.7", "pyproj>=3.6"]
+
+[project.urls]
+Homepage = "https://github.com/YOUR-GITHUB-USER/py3wafo"
+Documentation = "https://github.com/YOUR-GITHUB-USER/py3wafo/tree/main/docs"
+Issues = "https://github.com/YOUR-GITHUB-USER/py3wafo/issues"
+Changelog = "https://github.com/YOUR-GITHUB-USER/py3wafo/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+wafo = ["data/*", "conversion_manifest.json", "native_manifest.json"]
+"wafo.wavemodels" = ["data/*.npz", "data/*.json"]
+"wafo.m_map" = ["data/*.npz", "data/*.json"]
+"wafo.docs" = ["data/*.html", "data/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

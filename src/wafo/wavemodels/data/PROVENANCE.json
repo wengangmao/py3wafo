@@ -1,0 +1,93 @@
+[
+  {
+    "source": "wavemodels/thwnlpar20-Jul-2004.mat",
+    "sha256": "154eb799b0d53e1661d6277d8f18976dadb3f139b9499a771629fc944f29b991",
+    "variables": [
+      "Tp",
+      "Hm0",
+      "A00s",
+      "B00s",
+      "C00s"
+    ]
+  },
+  {
+    "source": "wavemodels/thsspar27-Jul-2004.mat",
+    "sha256": "6a4b003b6828068db3215c209cf97416f2aaadfab3901927a2b62ce26ecebaab",
+    "variables": [
+      "Tp",
+      "Hm0",
+      "A00s",
+      "B00s",
+      "C00s"
+    ]
+  },
+  {
+    "source": "wavemodels/thgpar.mat",
+    "sha256": "dc050388a483f3561251a3c01f40f3890dc5c7cc9445322139dd1ca3d4dc4661",
+    "variables": [
+      "Tp",
+      "Hm0",
+      "A00s",
+      "B00s",
+      "C00s"
+    ]
+  },
+  {
+    "source": "wavemodels/thsspar.mat",
+    "sha256": "b4283c52ff6708134f42821c22c833cf2185d9d97264236845268d373c4ede3a",
+    "variables": [
+      "Tp",
+      "Hm0",
+      "A00s",
+      "B00s",
+      "C00s"
+    ]
+  },
+  {
+    "source": "wavemodels/ohhgparfun.m",
+    "sha256": "c9341ddd3320eb8a95749f0fbe38802b138d0b808815d1691d5f27928656e3cb",
+    "variables": [
+      "da1",
+      "da2",
+      "db1",
+      "db2",
+      "dc1",
+      "dc2"
+    ],
+    "branch_order": [
+      "space",
+      "time"
+    ]
+  },
+  {
+    "source": "wavemodels/jhspar13-Jul-2004.mat",
+    "sha256": "49f999b61e4835932e86721b9d03889887a9e63e86363dbf22b0693d9fea49b7",
+    "variables": [
+      "gam",
+      "h2",
+      "A11s",
+      "B11s"
+    ]
+  },
+  {
+    "source": "wavemodels/jhsnlpar21-Jul-2004.mat",
+    "sha256": "157c4cb2c2c23aa55d90dfd0add3d830112bf9a7f7a17dcdff275d78d8a233a3",
+    "variables": [
+      "Hm0",
+      "Tp",
+      "h2",
+      "A11s",
+      "B11s"
+    ]
+  },
+  {
+    "source": "wavemodels/jhvpar.mat",
+    "sha256": "abde64e874cadc9722a9e1ef797d1c89836be91714e9bd85d638e24fbac9bbcb",
+    "variables": [
+      "gam",
+      "A11s",
+      "B11s",
+      "h2"
+    ]
+  }
+]

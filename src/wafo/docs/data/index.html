@@ -1,0 +1,1552 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>WAFO Python conversion help</title><style>body{font:16px system-ui;max-width:1400px;margin:2rem auto;padding:1rem}td,th{border-bottom:1px solid #ccc;padding:.4rem;text-align:left}table{border-collapse:collapse}pre{white-space:pre-wrap}summary{cursor:pointer;padding:.5rem}</style><h1>WAFO Python conversion help</h1><p>This is an in-progress conversion of the supplied MATLAB toolbox. Implemented/adapted entries identify Python APIs; their docstrings describe Python arguments and limits. Passing Python tests do not certify MATLAB parity. Original MATLAB topic notes follow the catalog.</p><table><thead><tr><th>Source</th><th>Purpose</th><th>Status</th><th>Python API</th></tr></thead><tbody><tr><td>Contents.m</td><td>WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>cycles/cc2amp.m</td><td>CC2AMP Calculates the amplitudes from a cycle count.</td><td>implemented</td><td>wafo.cycles.cc2amp</td></tr><tr><td>cycles/cc2cmat.m</td><td>CC2CMAT Calculates the cycle count matrix from a cycle count.</td><td>adapted</td><td>wafo.cycles.cc2cmat</td></tr><tr><td>cycles/cc2dcc.m</td><td>CC2DCC Discretize a cycle count.</td><td>implemented</td><td>wafo.cycles.cc2dcc</td></tr><tr><td>cycles/cc2lc.m</td><td>CC2LC Calculates the number of upcrossings from a cycle count</td><td>implemented</td><td>wafo.cycles.cc2lc</td></tr><tr><td>cycles/ccplot.m</td><td>CCPLOT Plots a cycle count as a point process in the plane.</td><td>adapted</td><td>wafo.cycles.ccplot</td></tr><tr><td>cycles/cmat2amp.m</td><td>CMAT2AMP Calculates a histogram of amplitudes from a cycle matrix.</td><td>implemented</td><td>wafo.cycles.cmat2amp</td></tr><tr><td>cycles/cmat2extralc.m</td><td>CMAT2EXTRALC  Extrapolate level crossing spectrum</td><td>adapted</td><td>wafo.cycles.cmat2extralc</td></tr><tr><td>cycles/cmat2lc.m</td><td>CMAT2LC Calculates the level crossings from a cycle matrix.</td><td>implemented</td><td>wafo.cycles.cmat2lc</td></tr><tr><td>cycles/cmat2nt.m</td><td>CMAT2NT Calculates a counting distribution from a cycle matrix.</td><td>implemented</td><td>wafo.cycles.cmat2nt</td></tr><tr><td>cycles/cmat2rmcmat.m</td><td>CMAT2RMCMAT  Converts a cycle matrix from Range-Mean format to min-max format.</td><td>implemented</td><td>wafo.cycles.cmat2rmcmat</td></tr><tr><td>cycles/cmatcombine.m</td><td>CMATCOMBINE Combines two cycle matrices.</td><td>implemented</td><td>wafo.cycles.cmatcombine</td></tr><tr><td>cycles/cmatplot.m</td><td>CMATPLOT Plots a cycle matrix, e.g. a rainflow matrix.</td><td>adapted</td><td>wafo.cycles.cmatplot</td></tr><tr><td>cycles/cmatresamp.m</td><td>CMATRESAMP Resamples a cycle matrix.</td><td>implemented</td><td>wafo.cycles.cmatresamp</td></tr><tr><td>cycles/cocc.m</td><td>COCC Plots cycles as points together with isolines of a cycle matrix.</td><td>adapted</td><td>wafo.cycles.cocc</td></tr><tr><td>cycles/Contents.m</td><td>Module CYCLES in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>cycles/dat2dtp.m</td><td>DAT2DTP The sequence of discretized turning points from a signal.</td><td>implemented</td><td>wafo.cycles.dat2dtp</td></tr><tr><td>cycles/dat2rfm.m</td><td>DAT2RFM  Calculates the rainflow matrix from a time signal.</td><td>implemented</td><td>wafo.cycles.dat2rfm</td></tr><tr><td>cycles/dcc2cmat.m</td><td>DCC2CMAT  Calculates the cycle matrix for a discrete cycle count.</td><td>implemented</td><td>wafo.cycles.dcc2cmat</td></tr><tr><td>cycles/dtp2arfm.m</td><td>DTP2ARFM Calculates asymmetric RFM from discrete turning points.</td><td>implemented</td><td>wafo.cycles.dtp2arfm</td></tr><tr><td>cycles/dtp2arfm4p.m</td><td>DTP2ARFM4P Calculates asymmetric RFM from discrete turning points (4-point).</td><td>implemented</td><td>wafo.cycles.dtp2arfm4p</td></tr><tr><td>cycles/dtp2arfm_sid.m</td><td>DTP2ARFM_SID  Asymmetric RFM from discrete TP with side information.</td><td>adapted</td><td>wafo.cycles.dtp2arfm_sid</td></tr><tr><td>cycles/dtp2rfm.m</td><td>DTP2RFM Calculates rainflow matrix from discrete turning points.</td><td>implemented</td><td>wafo.cycles.dtp2rfm</td></tr><tr><td>cycles/dtp2rfm_sid.m</td><td>DTP2RFM_SID  Rainflow matrix from discrete turning points with side information.</td><td>adapted</td><td>wafo.cycles.dtp2rfm_sid</td></tr><tr><td>cycles/extralc.m</td><td>EXTRALC  Extrapolate level crossing spectrum</td><td>adapted</td><td>wafo.cycles.extralc</td></tr><tr><td>cycles/lc2rfmextreme.m</td><td>LC2RFMEXTREME Compute extreme RFM from level crossings.</td><td>adapted</td><td>wafo.cycles.lc2rfmextreme</td></tr><tr><td>cycles/lsplot.m</td><td>LSPLOT  Plot load spectra.</td><td>adapted</td><td>wafo.cycles.lsplot</td></tr><tr><td>cycles/nt2cmat.m</td><td>NT2CMAT  Calculates a cycle matrix from a counting distribution.</td><td>implemented</td><td>wafo.cycles.nt2cmat</td></tr><tr><td>cycles/nt2lc.m</td><td>NT2LC Calculates the level crossings from a cycle matrix.</td><td>implemented</td><td>wafo.cycles.nt2lc</td></tr><tr><td>cycles/Readme.m</td><td>README Readme file for module CYCLES in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>cycles/res2arfc.m</td><td>RES2ARFC Calculates asymmetric rainflow cycles for a residual.</td><td>adapted</td><td>wafo.cycles.res2arfc</td></tr><tr><td>cycles/rfcfilter.m</td><td>RFCFILTER Rainflow filter a signal.</td><td>implemented</td><td>wafo.cycles.rfcfilter</td></tr><tr><td>cycles/rfmextrapolate.m</td><td>RFMEXTRAPOLATE Extrapolates a rainflow matrix.</td><td>adapted</td><td>wafo.cycles.rfmextrapolate</td></tr><tr><td>cycles/rmcmat2cmat.m</td><td>RMCMAT2CMAT Converts a cycle matrix from Range-Mean format to min-max format.</td><td>implemented</td><td>wafo.cycles.rmcmat2cmat</td></tr><tr><td>cycles/smoothcmat.m</td><td>SMOOTHCMAT Smooth a cycle matrix using (adaptive) kernel smoothing</td><td>adapted</td><td>wafo.cycles.smoothcmat</td></tr><tr><td>cycles/smoothcmat_hnorm.m</td><td>SMOOTHCMAT_HNORM  Bandwidth selection for kernel smoothing of a cycle matrix.</td><td>adapted</td><td>wafo.cycles.smoothcmat_hnorm</td></tr><tr><td>cycles/test/test_cycles.m</td><td>TEST_CYCLES Quick test of the routines in module &#x27;cycles&#x27;</td><td>documentation-or-script</td><td></td></tr><tr><td>cycles/tp2arfc.m</td><td>TP2ARFC Calculates asymmetric rainflow cycles from turning points.</td><td>implemented</td><td>wafo.cycles.tp2arfc</td></tr><tr><td>cycles/tp2arfc4p.m</td><td>TP2ARFC4P Calculates asymmetric rainflow cycles from turning points (4-point).</td><td>implemented</td><td>wafo.cycles.tp2arfc4p</td></tr><tr><td>cycles/tp2lc.m</td><td>TP2LC  Calculates the number of upcrossings from the turning points.</td><td>implemented</td><td>wafo.cycles.tp2lc</td></tr><tr><td>cycles/tp2mm.m</td><td>TP2MM Calculates min2Max and Max2min cycles from a sequence of turning points</td><td>implemented</td><td>wafo.cycles.tp2mm</td></tr><tr><td>cycles/tp2rfc.m</td><td>TP2RFC Finds the rainflow cycles from the sequence of turning points.</td><td>implemented</td><td>wafo.cycles.tp2rfc</td></tr><tr><td>cycles/tpextrapolate.m</td><td>TPEXTRAPOLATE Extrapolates a sequence of turning points.</td><td>adapted</td><td>wafo.cycles.tpextrapolate</td></tr><tr><td>cycles/wgpdfit_mld.m</td><td>WGPDFIT_MLD Parameter estimates for GPD data</td><td>adapted</td><td>wafo.cycles.wgpdfit_mld</td></tr><tr><td>damage/cc2dam.m</td><td>CC2DAM   Calculates the total Palmgren-Miner damage of a cycle count.</td><td>implemented</td><td>wafo.damage.cc2dam</td></tr><tr><td>damage/cmat2dam.m</td><td>CMAT2DAM Calculates the total Palmgren-Miner damage of a cycle matrix.</td><td>implemented</td><td>wafo.damage.cmat2dam</td></tr><tr><td>damage/cmat2dmat.m</td><td>CMAT2DMAT Computes the (Palmgren-Miner) damage matrix from a cycle matrix.</td><td>implemented</td><td>wafo.damage.cmat2dmat</td></tr><tr><td>damage/Contents.m</td><td>Module DAMAGE in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>damage/damint.m</td><td>DAMINT Calculates damage intensity from counting distribution.</td><td>adapted</td><td>wafo.damage.damint</td></tr><tr><td>damage/down2cc.m</td><td>DOWN2CC Calculates the cycle count which has the highest damage</td><td>adapted</td><td>wafo.damage.down2cc</td></tr><tr><td>damage/ftf.m</td><td>FTF  Calculates the fatigue failure time distribution.</td><td>implemented</td><td>wafo.damage.ftf</td></tr><tr><td>damage/lc2dplus.m</td><td>LC2DPLUS Upper bound for total damage from level crossings.</td><td>adapted</td><td>wafo.damage.lc2dplus</td></tr><tr><td>damage/roadspec.m</td><td>ROADSPEC Spectral density (frequency) for a road</td><td>implemented</td><td>wafo.damage.roadspec</td></tr><tr><td>damage/snplot.m</td><td>SNPLOT Plots SN-data and estimates parameters</td><td>adapted</td><td>wafo.damage.snplot</td></tr><tr><td>damage/spec2dplus.m</td><td>SPEC2DPLUS Calculates an upper bound of the damage intensity explicitly</td><td>implemented</td><td>wafo.damage.spec2dplus</td></tr><tr><td>damage/sphdam.m</td><td>SPHDAM Calculates spherical damage for a 3-D load.</td><td>implemented</td><td>wafo.damage.sphdam</td></tr><tr><td>data/atlantic.m</td><td>ATLANTIC Significant wave-height data recorded in the Atlantic Ocean</td><td>documentation-or-script</td><td></td></tr><tr><td>data/Contents.m</td><td>Module DATA in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>data/gfaks89.m</td><td>GFAKS89  Surface elevation measured at Gullfaks C 24.12.1989</td><td>documentation-or-script</td><td></td></tr><tr><td>data/gfaksr89.m</td><td>GFAKSR89  Reconstructed surface elevation measured at Gullfaks C 24.12.1989.</td><td>documentation-or-script</td><td></td></tr><tr><td>data/japansea.m</td><td>JAPANSEA  coastline map of The Japan Sea</td><td>documentation-or-script</td><td></td></tr><tr><td>data/northsea.m</td><td>NORTHSEA  coastline map of The Nortsea</td><td>documentation-or-script</td><td></td></tr><tr><td>data/readme.m</td><td>README Readme file for module DATA in  WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>data/sea.m</td><td>SEA Surface elevation dataset used in WAT version 1.1.</td><td>documentation-or-script</td><td></td></tr><tr><td>data/sfa89.m</td><td>SFA89 Wind measurements at Statfjord A 24.12.1989</td><td>documentation-or-script</td><td></td></tr><tr><td>data/sn.m</td><td>SN Fatigue experiment, constant-amplitude loading.</td><td>documentation-or-script</td><td></td></tr><tr><td>data/yura87.m</td><td>YURA87  Surface elevation measured off the coast of Yura.</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/aboutwafo.m</td><td>ABOUTWAFO  WAFO is a Matlab toolbox for analysis of random waves</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/addfeatr.m</td><td>ADDFEATR  How To Add New Features to WAFO</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/ampdef.m</td><td>AMPDEF wave heights and amplitude definitions and nomenclature</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/bugreport.m</td><td>BUGREPORT Bug Report Form for WAFO</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/Contents.m</td><td>DOCS MODULE in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/crossdef.m</td><td>CROSSDEF level v crossing definitions and nomenclature</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/datastructures.m</td><td>DATASTRUCTURES of spectrum, covariance function and density (pdf) in WAFO</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/getstart.m</td><td>GETSTART  ideas for getting started with WAFO</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/install.m</td><td>Installation description of WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/limitations.m</td><td>LIMITATIONS (+)  WAFO known limitations</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/perioddef.m</td><td>PERIODDEF wave periods (lengths) definitions and nomenclature</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/startup.m</td><td>STARTUP example startup file to put in your matlab path</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/tpdef.m</td><td>TPDEF turning points definitions and numenclature</td><td>documentation-or-script</td><td></td></tr><tr><td>docs/wafohelp.m</td><td>WAFOHELP  Launch HTML help for the WAFO Toolbox.</td><td>adapted</td><td>wafo.docs.wafohelp</td></tr><tr><td>docs/wafomenu.m</td><td>WAFOMENU displays a user interface to the documentation files of WAFO</td><td>adapted</td><td>wafo.docs.wafomenu</td></tr><tr><td>docs/wafoweb.m</td><td>WAFOWEB  World Wide Web site of the WAFO Toolbox.</td><td>adapted</td><td>wafo.docs.wafoweb</td></tr><tr><td>docs/wavedef.m</td><td>WAVEDEF Wave definitions and nomenclature</td><td>documentation-or-script</td><td></td></tr><tr><td>exec/Contents.m</td><td>WAFO  Toolbox /exec</td><td>documentation-or-script</td><td></td></tr><tr><td>fatigue.m</td><td>Fatigue in WAFO (Wave Analysis for Fatigue and Oceanography).</td><td>documentation-or-script</td><td></td></tr><tr><td>initwafo.m</td><td>INITWAFO   Initiation of WAFO Toolbox.</td><td>adapted</td><td>wafo.root.initwafo</td></tr><tr><td>kdetools/bincount.m</td><td>BINCOUNT 1-dimensional Bin Count</td><td>adapted</td><td>wafo.kdetools.bincount</td></tr><tr><td>kdetools/chi2gof.m</td><td>CHI2GOF CHI Squared Goodness Of Fit test.</td><td>adapted</td><td>wafo.kdetools.chi2gof</td></tr><tr><td>kdetools/chi2gof2.m</td><td>CHI2GOF2 CHI Squared Goodness Of Fit test.</td><td>adapted</td><td>wafo.kdetools.chi2gof2</td></tr><tr><td>kdetools/Contents.m</td><td>Module KDETOOLS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>kdetools/deriv.m</td><td>DERIV  4th, 6th, 8th and 10th derivatives of the kernel function.</td><td>implemented</td><td>wafo.kdetools.deriv</td></tr><tr><td>kdetools/deriv2.m</td><td>DERIV2  High order partial derivatives of the Gaussian kernel.</td><td>implemented</td><td>wafo.kdetools.deriv2</td></tr><tr><td>kdetools/evalpdf.m</td><td>EVALPDF evaluates a PDF struct by interpolation</td><td>adapted</td><td>wafo.kdetools.evalpdf</td></tr><tr><td>kdetools/ffndgrid.m</td><td>FFNDGRID  Fast &#x27;n&#x27; Furious N-D data gridding.</td><td>adapted</td><td>wafo.kdetools.ffndgrid</td></tr><tr><td>kdetools/fftce.m</td><td>FFTCE  Circulant Embedding of a vector or matrix</td><td>adapted</td><td>wafo.kdetools.fftce</td></tr><tr><td>kdetools/gridcount.m</td><td>GRIDCOUNT D-dimensional histogram using linear binning.</td><td>adapted</td><td>wafo.kdetools.gridcount</td></tr><tr><td>kdetools/hbcv.m</td><td>HBCV  Biased Cross-Validation estimate of smoothing parameter.</td><td>adapted</td><td>wafo.kdetools.hbcv</td></tr><tr><td>kdetools/hbcv2.m</td><td>HBCV2 Biased Cross-Validation smoothing parameter for 2D data.</td><td>adapted</td><td>wafo.kdetools.hbcv2</td></tr><tr><td>kdetools/hboot.m</td><td>HBOOT  Bootstrap cross-validation estimate of smoothing parameter.</td><td>adapted</td><td>wafo.kdetools.hboot</td></tr><tr><td>kdetools/hldpi.m</td><td>HLDPI L-stage Direct Plug-In estimate of smoothing parameter.</td><td>adapted</td><td>wafo.kdetools.hldpi</td></tr><tr><td>kdetools/hldpi2.m</td><td>HLDPI2  L-stage DPI estimate of smoothing parameter for 2D data</td><td>adapted</td><td>wafo.kdetools.hldpi2</td></tr><tr><td>kdetools/hldpi2fft.m</td><td>HLDPI2FFT L-stage DPI estimate of smoothing parameter for 2D data</td><td>adapted</td><td>wafo.kdetools.hldpi2fft</td></tr><tr><td>kdetools/hlscv.m</td><td>HLSCV  Least Squares Cross-Validation estimate of smoothing parameter</td><td>adapted</td><td>wafo.kdetools.hlscv</td></tr><tr><td>kdetools/hmns.m</td><td>HMNS Multivariate Normal Scale Estimate of Smoothing Parameter.</td><td>implemented</td><td>wafo.kdetools.hmns</td></tr><tr><td>kdetools/hns.m</td><td>HNS Normal Scale Estimate of Smoothing Parameter.</td><td>adapted</td><td>wafo.kdetools.hns</td></tr><tr><td>kdetools/hos.m</td><td>HOS Oversmoothing Parameter.</td><td>implemented</td><td>wafo.kdetools.hos</td></tr><tr><td>kdetools/hscv.m</td><td>HSCV Smoothed cross-validation estimate of smoothing parameter.</td><td>adapted</td><td>wafo.kdetools.hscv</td></tr><tr><td>kdetools/hste.m</td><td>HSTE 2-Stage Solve the Equation estimate of smoothing parameter.</td><td>adapted</td><td>wafo.kdetools.hste</td></tr><tr><td>kdetools/hstt.m</td><td>HSTT Scott-Tapia-Thompson estimate of smoothing parameter.</td><td>adapted</td><td>wafo.kdetools.hstt</td></tr><tr><td>kdetools/kde.m</td><td>KDE Kernel Density Estimator.</td><td>adapted</td><td>wafo.kdetools.kde</td></tr><tr><td>kdetools/kde1dgui.m</td><td>KDE1DGUI GUI to Kernel Density Estimator.</td><td>adapted</td><td>wafo.kdetools.kde1dgui</td></tr><tr><td>kdetools/kde2dgui.m</td><td>KDE2DGUI GUI to Kernel Density Estimator in two dimensions.</td><td>adapted</td><td>wafo.kdetools.kde2dgui</td></tr><tr><td>kdetools/kdebin.m</td><td>KDEBIN Binned Kernel Density Estimator.</td><td>adapted</td><td>wafo.kdetools.kdebin</td></tr><tr><td>kdetools/kdedemo1.m</td><td>KDEDEMO1 Demonstrate the smoothing parameter impact on KDE</td><td>adapted</td><td>wafo.kdetools.kdedemo1</td></tr><tr><td>kdetools/kdedemo2.m</td><td>KDEDEMO2 Demonstrate the difference between transformation- and ordinary-KDE</td><td>adapted</td><td>wafo.kdetools.kdedemo2</td></tr><tr><td>kdetools/kdefun.m</td><td>KDEFUN  Kernel Density Estimator.</td><td>adapted</td><td>wafo.kdetools.kdefun</td></tr><tr><td>kdetools/kdeoptset.m</td><td>KDEOPTSET Create or alter KDE OPTIONS structure.</td><td>adapted</td><td>wafo.kdetools.kdeoptset</td></tr><tr><td>kdetools/kernelstats.m</td><td>KERNELSTATS Return 2&#x27;nd order moment of kernel pdf</td><td>implemented</td><td>wafo.kdetools.kernelstats</td></tr><tr><td>kdetools/mkernel.m</td><td>MKERNEL Multivariate Kernel Function.</td><td>adapted</td><td>wafo.kdetools.mkernel</td></tr><tr><td>kdetools/mkernel2.m</td><td>MKERNEL2 Multivariate Kernel Function, alternative version.</td><td>adapted</td><td>wafo.kdetools.mkernel2</td></tr><tr><td>kdetools/mkernelrnd.m</td><td>MKERNELRND Random numbers from the Multivariate Kernel Function.</td><td>adapted</td><td>wafo.kdetools.mkernelrnd</td></tr><tr><td>kdetools/qlevels.m</td><td>QLEVELS Calculates quantile levels which encloses P% of PDF</td><td>adapted</td><td>wafo.kdetools.qlevels</td></tr><tr><td>kdetools/qlevels2.m</td><td>QLEVELS2 Calculates quantile levels which encloses P% of data</td><td>adapted</td><td>wafo.kdetools.qlevels2</td></tr><tr><td>kdetools/Readme.m</td><td>README Readme file for module KDETOOLS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>kdetools/sample.m</td><td>SAMPLE  Random sampling of points from a data-set</td><td>adapted</td><td>wafo.kdetools.sample</td></tr><tr><td>kdetools/ssample.m</td><td>SSAMPLE  Random sampling from a smoothed empirical distribution</td><td>adapted</td><td>wafo.kdetools.ssample</td></tr><tr><td>kdetools/vsph.m</td><td>VSPH calculates volume of  d-dimensional sphere with radius r0</td><td>adapted</td><td>wafo.kdetools.vsph</td></tr><tr><td>m_map/Contents.m</td><td>M_Map - mapping toolbox (Author: rich@eos.ubc.ca)</td><td>documentation-or-script</td><td></td></tr><tr><td>m_map/m_coast.m</td><td>M_COAST Add a coastline to a given map.</td><td>adapted</td><td>wafo.m_map.m_coast</td></tr><tr><td>m_map/m_contour.m</td><td>M_CONTOUR Draws contour lines on a map</td><td>adapted</td><td>wafo.m_map.m_contour</td></tr><tr><td>m_map/m_contourf.m</td><td>M_CONTOURF Adds filled contours to a map</td><td>adapted</td><td>wafo.m_map.m_contourf</td></tr><tr><td>m_map/m_coord.m</td><td>M_COORD Initializes the coordinate system for varous conversions.</td><td>adapted</td><td>wafo.m_map.m_coord</td></tr><tr><td>m_map/m_demo.m</td><td>M_DEMO  Demonstration program showing various maps in M_Map package</td><td>implemented</td><td>wafo.m_map.m_demo</td></tr><tr><td>m_map/m_elev.m</td><td>M_ELEV Contour elevation onto a map using a 1-degree database</td><td>adapted</td><td>wafo.m_map.m_elev</td></tr><tr><td>m_map/m_etopo2.m</td><td>M_ETOPO2 Contour elevation onto a map using the 2-minute ETOPO2 database</td><td>adapted</td><td>wafo.m_map.m_etopo2</td></tr><tr><td>m_map/m_fdist.m</td><td>M_FDIST - On an ellipsoidal earth, compute location of</td><td>adapted</td><td>wafo.m_map.m_fdist</td></tr><tr><td>m_map/m_geo2mag.m</td><td>M_GEO2MAG  Converts geographic to geomagnetic coordinates.</td><td>adapted</td><td>wafo.m_map.m_geo2mag</td></tr><tr><td>m_map/m_geodesic.m</td><td>M_GEODESIC - Compute points along geodesics of an ellipsoidal earth.</td><td>adapted</td><td>wafo.m_map.m_geodesic</td></tr><tr><td>m_map/m_grid.m</td><td>M_GRID make a grid on a map.</td><td>adapted</td><td>wafo.m_map.m_grid</td></tr><tr><td>m_map/m_gshhs.m</td><td>M_GSHHS Add a coastline to a given map using</td><td>adapted</td><td>wafo.m_map.m_gshhs</td></tr><tr><td>m_map/m_gshhs_c.m</td><td>M_GSHHS_C Add a coastline to a given map using the &#x27;crude&#x27; resolution of</td><td>adapted</td><td>wafo.m_map.m_gshhs_c</td></tr><tr><td>m_map/m_gshhs_f.m</td><td>M_GSHHS_F Add a coastline to a given map using the &#x27;full&#x27; resolution of</td><td>adapted</td><td>wafo.m_map.m_gshhs_f</td></tr><tr><td>m_map/m_gshhs_h.m</td><td>M_GSHHS_H Add a coastline to a given map using the &#x27;high&#x27; resolution of</td><td>adapted</td><td>wafo.m_map.m_gshhs_h</td></tr><tr><td>m_map/m_gshhs_i.m</td><td>M_GSHHS_I Add a coastline to a given map using the &#x27;intermediate&#x27; resolution of</td><td>adapted</td><td>wafo.m_map.m_gshhs_i</td></tr><tr><td>m_map/m_gshhs_l.m</td><td>M_GSHHS_L Add a coastline to a given map using the &#x27;low&#x27; resolution of</td><td>adapted</td><td>wafo.m_map.m_gshhs_l</td></tr><tr><td>m_map/m_hatch.m</td><td>M_HATCH Draws hatched or speckled interiors to a patch</td><td>adapted</td><td>wafo.m_map.m_hatch</td></tr><tr><td>m_map/m_idist.m</td><td>M_IDIST - On an ellipsoidal earth, compute the distance between</td><td>adapted</td><td>wafo.m_map.m_idist</td></tr><tr><td>m_map/m_legend.m</td><td>M_LEGEND Add a legend to a map. This function does not have the</td><td>adapted</td><td>wafo.m_map.m_legend</td></tr><tr><td>m_map/m_line.m</td><td>M_LINE Create a line on a map</td><td>adapted</td><td>wafo.m_map.m_line</td></tr><tr><td>m_map/m_ll2xy.m</td><td>M_LL2XY Converts long,lat to X,Y coordinates using the current projection</td><td>adapted</td><td>wafo.m_map.m_ll2xy</td></tr><tr><td>m_map/m_lldist.m</td><td>M_LLDIST Spherical earth distance between points in long/lat coordinates.</td><td>adapted</td><td>wafo.m_map.m_lldist</td></tr><tr><td>m_map/m_mag2geo.m</td><td>M_MAG2GEO  Converts magnetic to geographic coordinates.</td><td>adapted</td><td>wafo.m_map.m_mag2geo</td></tr><tr><td>m_map/m_patch.m</td><td>M_PATCH Create patches on a map</td><td>adapted</td><td>wafo.m_map.m_patch</td></tr><tr><td>m_map/m_pcolor.m</td><td>M_PCOLOR Makes a pcolor image on a map.</td><td>adapted</td><td>wafo.m_map.m_pcolor</td></tr><tr><td>m_map/m_plot.m</td><td>M_PLOT Plot objects on an M_MAP plot.   All of the normal</td><td>adapted</td><td>wafo.m_map.m_plot</td></tr><tr><td>m_map/m_plotbndry.m</td><td>M_PLOTBNDRY plots text files of Lat,Lon for political boundaries.</td><td>adapted</td><td>wafo.m_map.m_plotbndry</td></tr><tr><td>m_map/m_proj.m</td><td>M_PROJ  Initializes map projections info, putting the result into a structure</td><td>adapted</td><td>wafo.m_map.m_proj</td></tr><tr><td>m_map/m_quiver.m</td><td>M_QUIVER Makes a quiverplot on a map (QUIVER-style)</td><td>adapted</td><td>wafo.m_map.m_quiver</td></tr><tr><td>m_map/m_range_ring.m</td><td>M_RANGE_RING Creates range rings on a map</td><td>adapted</td><td>wafo.m_map.m_range_ring</td></tr><tr><td>m_map/m_ruler.m</td><td>M_RULER Draws a distance scalebar for a map</td><td>adapted</td><td>wafo.m_map.m_ruler</td></tr><tr><td>m_map/m_scale.m</td><td>M_SCALE Draws the map at a specified scale</td><td>adapted</td><td>wafo.m_map.m_scale</td></tr><tr><td>m_map/m_tba2b.m</td><td>M_TBA2B Converts the ASCII TerrainBase 5-minute bathymetry database</td><td>adapted</td><td>wafo.m_map.m_tba2b</td></tr><tr><td>m_map/m_tbase.m</td><td>M_TBASE Contour elevation onto a map using the 5-minute TerrainBase database</td><td>adapted</td><td>wafo.m_map.m_tbase</td></tr><tr><td>m_map/m_text.m</td><td>M_TEXT Text Annotation</td><td>adapted</td><td>wafo.m_map.m_text</td></tr><tr><td>m_map/m_track.m</td><td>M_TRACK Draw a trackline on a map</td><td>adapted</td><td>wafo.m_map.m_track</td></tr><tr><td>m_map/m_ungrid.m</td><td>M_UNGRID Removes a grid;</td><td>adapted</td><td>wafo.m_map.m_ungrid</td></tr><tr><td>m_map/m_usercoast.m</td><td>M_USERCOAST Add a coastline using a user-specified coastline file.</td><td>adapted</td><td>wafo.m_map.m_usercoast</td></tr><tr><td>m_map/m_vec.m</td><td>M_VEC Draws fancy arrows/quiverplots on a map.</td><td>adapted</td><td>wafo.m_map.m_vec</td></tr><tr><td>m_map/m_xy2ll.m</td><td>M_XY2LL Converts X,Y to long,lat coordinates using the current projection</td><td>adapted</td><td>wafo.m_map.m_xy2ll</td></tr><tr><td>m_map/m_xydist.m</td><td>M_XYDIST Spherical earth distance between points in map projection coordinates.</td><td>adapted</td><td>wafo.m_map.m_xydist</td></tr><tr><td>m_map/private/clabel.m</td><td>CLABEL Contour plot elevation labels.</td><td>adapted</td><td>wafo.m_map.clabel</td></tr><tr><td>m_map/private/mc_coords.m</td><td>MP_COORD Converts between coordinate systems based on different</td><td>adapted</td><td>wafo.m_map.mc_coords</td></tr><tr><td>m_map/private/mc_ellips.m</td><td>Definitions of different ellipsoids</td><td>adapted</td><td>wafo.m_map.mc_ellips</td></tr><tr><td>m_map/private/mp_azim.m</td><td>MP_AZIM Azimuthal projections</td><td>adapted</td><td>wafo.m_map.mp_azim</td></tr><tr><td>m_map/private/mp_conic.m</td><td>MP_CONIC  Conic projections</td><td>adapted</td><td>wafo.m_map.mp_conic</td></tr><tr><td>m_map/private/mp_cyl.m</td><td>MP_CYL   Cylindrical projections</td><td>adapted</td><td>wafo.m_map.mp_cyl</td></tr><tr><td>m_map/private/mp_omerc.m</td><td>MP_TMERC   Oblique Mercator projection</td><td>adapted</td><td>wafo.m_map.mp_omerc</td></tr><tr><td>m_map/private/mp_tmerc.m</td><td>MP_TMERC   Transverse Mercator projection</td><td>adapted</td><td>wafo.m_map.mp_tmerc</td></tr><tr><td>m_map/private/mp_utm.m</td><td>MP_UTM   Universal Transverse Mercator projection</td><td>adapted</td><td>wafo.m_map.mp_utm</td></tr><tr><td>m_map/private/mu_coast.m</td><td>MU_COAST Add a coastline to a given map.</td><td>adapted</td><td>wafo.m_map.mu_coast</td></tr><tr><td>m_map/private/mu_util.m</td><td>MU_UTIL Various utility routines</td><td>adapted</td><td>wafo.m_map.mu_util</td></tr><tr><td>markov/arfm2mctp.m</td><td>ARFM2MCTP  Calculates the markov matrix given an asymmetric rainflow matrix.</td><td>adapted</td><td>wafo.markov.arfm2mctp</td></tr><tr><td>markov/chi2cmat.m</td><td>CHI2CMAT  Chi-square distance of cycle matrix.</td><td>implemented</td><td>wafo.markov.chi2cmat</td></tr><tr><td>markov/Contents.m</td><td>Module MARKOV in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>markov/estmc.m</td><td>ESTMC  estimates transition matrix P from a time series of a Markov chain.</td><td>implemented</td><td>wafo.markov.estmc</td></tr><tr><td>markov/estsmctp.m</td><td>ESTSMCTP  Estimate SMCTP model from an observed rainflow matrix.</td><td>adapted</td><td>wafo.markov.estsmctp</td></tr><tr><td>markov/f_funm.m</td><td>F_FUNM  Calculate min-max matrix for Model-structure.</td><td>implemented</td><td>wafo.markov.f_funm</td></tr><tr><td>markov/f_smctp.m</td><td>F_SMCTP  Auxiliary function used by ESTSMCTP</td><td>adapted</td><td>wafo.markov.f_smctp</td></tr><tr><td>markov/hdcmat.m</td><td>HDCMAT  Hellinger distance of cycle matrix.</td><td>implemented</td><td>wafo.markov.hdcmat</td></tr><tr><td>markov/hmmplot.m</td><td>HMMPLOT  plots a Hidden Markov Model.</td><td>adapted</td><td>wafo.markov.hmmplot</td></tr><tr><td>markov/klcmat.m</td><td>KLCMAT  Kullback-Leibler distance of cycle matrix.</td><td>implemented</td><td>wafo.markov.klcmat</td></tr><tr><td>markov/loglcmat.m</td><td>LOGLCMAT  log-Likelihood of cycle matrix.</td><td>implemented</td><td>wafo.markov.loglcmat</td></tr><tr><td>markov/mat2tmat.m</td><td>MAT2TMAT  Converts a matrix to a transition matrix.</td><td>implemented</td><td>wafo.markov.mat2tmat</td></tr><tr><td>markov/mc2rfm.m</td><td>MC2RFM  Calculates the rainflow matrix/intensity for a Markov chain.</td><td>adapted</td><td>wafo.markov.mc2rfm</td></tr><tr><td>markov/mc2stat.m</td><td>MC2STAT  Calculates the stationary distribution for a Markov chain.</td><td>implemented</td><td>wafo.markov.mc2stat</td></tr><tr><td>markov/mctp2arfm.m</td><td>MCTP2ARFM  Calculates asymmetric rainflow matrix for a MCTP.</td><td>adapted</td><td>wafo.markov.mctp2arfm</td></tr><tr><td>markov/mctp2reverse.m</td><td>MCTP2REVERSE  Calculates the time-reversed MCTP for a SMCTP.</td><td>implemented</td><td>wafo.markov.mctp2reverse</td></tr><tr><td>markov/mctp2rfm.m</td><td>MCTP2RFM  Calculates the rainflow matrix for a MCTP.</td><td>implemented</td><td>wafo.markov.mctp2rfm</td></tr><tr><td>markov/mctp2stat.m</td><td>MCTP2STAT  Calculates the stationary distribution for a MCTP.</td><td>implemented</td><td>wafo.markov.mctp2stat</td></tr><tr><td>markov/mktestmat.m</td><td>MKTESTMAT   Makes test matrices for min-max (and max-min) matrices.</td><td>implemented</td><td>wafo.markov.mktestmat</td></tr><tr><td>markov/Readme.m</td><td>README Readme file for module MARKOV in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>markov/scalemat.m</td><td>SCALEMAT Scale and translate a cycle matrix.</td><td>adapted</td><td>wafo.markov.scalemat</td></tr><tr><td>markov/smc2rfm.m</td><td>SMC2RFM Calculates the rainflow matrix/intensity for a switching Markov chain.</td><td>adapted</td><td>wafo.markov.smc2rfm</td></tr><tr><td>markov/smctp2arfm.m</td><td>SMCTP2ARFM  Calculates the asymmetric rainflow matrix for a SMCTP.</td><td>adapted</td><td>wafo.markov.smctp2arfm</td></tr><tr><td>markov/smctp2joint.m</td><td>SMCTP2JOINT  Calculates the joint MCTP for a SMCTP.</td><td>implemented</td><td>wafo.markov.smctp2joint</td></tr><tr><td>markov/smctp2rfm.m</td><td>SMCTP2RFM  Calculates the rainflow matrix for a SMCTP.</td><td>implemented</td><td>wafo.markov.smctp2rfm</td></tr><tr><td>markov/smctp2stat.m</td><td>SMCTP2STAT  Stationary distributions for a switching MCTP.</td><td>implemented</td><td>wafo.markov.smctp2stat</td></tr><tr><td>markov/test/test_markov.m</td><td>TEST_MARKOV Quick test of the routines in module &#x27;markov&#x27;</td><td>documentation-or-script</td><td></td></tr><tr><td>markov/tr_m2x.m</td><td>TR_M2X Transform Model-structure to X-vector.</td><td>implemented</td><td>wafo.markov.tr_m2x</td></tr><tr><td>markov/tr_p2x.m</td><td>TR_P2X  Transform P-matrix to X-vector</td><td>implemented</td><td>wafo.markov.tr_p2x</td></tr><tr><td>markov/tr_x2m.m</td><td>TR_X2M Transform X-vector to Model-structure.</td><td>implemented</td><td>wafo.markov.tr_x2m</td></tr><tr><td>markov/tr_x2p.m</td><td>TR_X2P  Transforms a vector X to a transition matrix P.</td><td>implemented</td><td>wafo.markov.tr_x2p</td></tr><tr><td>misc/binom.m</td><td>BINOM calculates the binomial coefficient n!/((n-m)!*m!)</td><td>implemented</td><td>wafo.misc.binom</td></tr><tr><td>misc/ccquad.m</td><td>CCQUAD Numerical integration using a Clenshaw-Curtis quadrature.</td><td>adapted</td><td>wafo.misc.ccquad</td></tr><tr><td>misc/choices.m</td><td>CHOICES Create a list of choices with uicontrols and callbacks.</td><td>adapted</td><td>wafo.misc.choices</td></tr><tr><td>misc/choicex.m</td><td>CHOICEX Close a list of choices.</td><td>adapted</td><td>wafo.misc.choicex</td></tr><tr><td>misc/clevels.m</td><td>CLEVELS  Extract the contour levels from the contour matrix</td><td>adapted</td><td>wafo.misc.clevels</td></tr><tr><td>misc/cltext.m</td><td>CLTEXT Places contour level text in the current window</td><td>adapted</td><td>wafo.misc.cltext</td></tr><tr><td>misc/comnsize.m</td><td>COMNSIZE Check if all input arguments are either scalar or of common size.</td><td>adapted</td><td>wafo.misc.comnsize</td></tr><tr><td>misc/Contents.m</td><td>Module MISC in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>misc/convlv.m</td><td>CONVLV Convolves real data set with a response function.</td><td>adapted</td><td>wafo.misc.convlv</td></tr><tr><td>misc/csort.m</td><td>CSORT Counting sorting</td><td>implemented</td><td>wafo.misc.csort</td></tr><tr><td>misc/fcolorbar.m</td><td>FCOLORBAR  Display colorbar with discrete color axis for filled contour plot</td><td>adapted</td><td>wafo.misc.fcolorbar</td></tr><tr><td>misc/figtext.m</td><td>FIGTEXT Places text in figure window.</td><td>adapted</td><td>wafo.misc.figtext</td></tr><tr><td>misc/findpeaks.m</td><td>FINDPEAKS find peaks of vector or matrix possibly rainflow filtered</td><td>adapted</td><td>wafo.misc.findpeaks</td></tr><tr><td>misc/fwaitbar.m</td><td>FWAITBAR Fast display of wait bar.</td><td>adapted</td><td>wafo.misc.fwaitbar</td></tr><tr><td>misc/gaussq.m</td><td>GAUSSQ Numerically evaluates a integral using a Gauss quadrature.</td><td>adapted</td><td>wafo.misc.gaussq</td></tr><tr><td>misc/gaussq2d.m</td><td>GAUSSQ2D Numerically evaluates a 2D integral using Gauss quadrature.</td><td>adapted</td><td>wafo.misc.gaussq2d</td></tr><tr><td>misc/genchol.m</td><td>GENCHOL Generalized Cholesky factorization</td><td>adapted</td><td>wafo.misc.genchol</td></tr><tr><td>misc/geth1line.m</td><td>GETH1LINE Extracts the first comment line (the H1 line) of a m-file</td><td>adapted</td><td>wafo.misc.geth1line</td></tr><tr><td>misc/gravity.m</td><td>GRAVITY  returns the constant acceleration of gravity</td><td>implemented</td><td>wafo.misc.gravity</td></tr><tr><td>misc/hypgf.m</td><td>HYPGF  Hypergeometric function F(a,b,c,x)</td><td>implemented</td><td>wafo.misc.hypgf</td></tr><tr><td>misc/levels.m</td><td>LEVELS Calculates discrete levels given the parameter matrix.</td><td>implemented</td><td>wafo.misc.levels</td></tr><tr><td>misc/loaddata.m</td><td>LOADDATA Loads a matrix from a text file.</td><td>implemented</td><td>wafo.misc.loaddata</td></tr><tr><td>misc/maximizefigs.m</td><td>MAXIMIZEFIGS  Maximize figure(s) window size</td><td>adapted</td><td>wafo.misc.maximizefigs</td></tr><tr><td>misc/mkcontents.m</td><td>MKCONTENTS Makes Contents file in current working directory.</td><td>adapted</td><td>wafo.misc.mkcontents</td></tr><tr><td>misc/parseoptions.m</td><td>PARSEOPTIONS Create or alter a OPTIONS structure.</td><td>adapted</td><td>wafo.misc.parseoptions</td></tr><tr><td>misc/qrule.m</td><td>QRULE compute abscissas and weight factors for Gaussian quadratures</td><td>implemented</td><td>wafo.misc.qrule</td></tr><tr><td>misc/qrule2d.m</td><td>QRULE2D compute abscissas and weight factors for Gaussian quadratures</td><td>adapted</td><td>wafo.misc.qrule2d</td></tr><tr><td>misc/readme.m</td><td>README Readme file for module MISC in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>misc/savgol.m</td><td>SAVGOL  Savitzky-Golay filter coefficients.</td><td>adapted</td><td>wafo.misc.savgol</td></tr><tr><td>misc/simpson.m</td><td>SIMPSON Numerical integration with the Simpson method</td><td>implemented</td><td>wafo.misc.simpson</td></tr><tr><td>misc/sinc.m</td><td>SINC Sin(pi*x)/(pi*x) function.</td><td>implemented</td><td>wafo.misc.sinc</td></tr><tr><td>misc/smooth.m</td><td>SMOOTH Calculates a smoothing spline.</td><td>adapted</td><td>wafo.misc.smooth</td></tr><tr><td>misc/wafostamp.m</td><td>WAFOSTAMP Prints a caption &quot;made by WAFO&quot; in current figure.</td><td>adapted</td><td>wafo.misc.wafostamp</td></tr><tr><td>misc/wafoversion.m</td><td>WAFOVERSION Wave Analysis for Fatigue and Oceanography version.</td><td>adapted</td><td>wafo.misc.wafoversion</td></tr><tr><td>misc/wdensity.m</td><td>WDENSITY  Returns the water density</td><td>implemented</td><td>wafo.misc.wdensity</td></tr><tr><td>multidim/Contents.m</td><td>Module MULTIDIM in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>multidim/dat2dspec.m</td><td>DAT2DSPEC Estimates the directional wave spectrum from timeseries</td><td>adapted</td><td>wafo.multidim.dat2dspec</td></tr><tr><td>multidim/dspec2spreading.m</td><td>DSPEC2SPREADING Returns the directional spreading function D of S</td><td>implemented</td><td>wafo.multidim.dspec2spreading</td></tr><tr><td>multidim/fourier.m</td><td>FOURIER Returns Fourier coefficients.</td><td>implemented</td><td>wafo.multidim.fourier</td></tr><tr><td>multidim/private/bfsspec.m</td><td>BFSSPEC Estimate frequency spectrum for the surface elevation from the bfs timeseries</td><td>adapted</td><td>wafo.multidim.bfsspec</td></tr><tr><td>multidim/private/Contents.m</td><td>private Module to MULTIDIM in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>multidim/private/emem.m</td><td>EMEM  Extended Maximum Entropy Method</td><td>adapted</td><td>wafo.multidim.emem</td></tr><tr><td>multidim/private/getcrossspectra.m</td><td>GETCROSSSPECTRA Compute the cross spectra by integration</td><td>adapted</td><td>wafo.multidim.getcrossspectra</td></tr><tr><td>multidim/private/hwestimate.m</td><td>HWESTIMATE  Estimate absolute value of transfer function H(w) from sensor spectra</td><td>adapted</td><td>wafo.multidim.hwestimate</td></tr><tr><td>multidim/private/imlm.m</td><td>IMLM  Iterated maximum likelihood method for estimating the directional distribution</td><td>adapted</td><td>wafo.multidim.imlm</td></tr><tr><td>multidim/private/mem.m</td><td>MEM  maximum entropy method for estimating the directional distribution</td><td>adapted</td><td>wafo.multidim.mem</td></tr><tr><td>multidim/private/memfun.m</td><td>MEMFUN private function for MEM</td><td>adapted</td><td>wafo.multidim.memfun</td></tr><tr><td>multidim/private/mlm.m</td><td>MLM  maximum likelihood method for estimating the directional distribution</td><td>adapted</td><td>wafo.multidim.mlm</td></tr><tr><td>multidim/private/normspfn.m</td><td>NORMSPFN normalizes the spreading function</td><td>adapted</td><td>wafo.multidim.normspfn</td></tr><tr><td>multidim/ratio.m</td><td>RATIO compute ratio of hyperbolic functions</td><td>implemented</td><td>wafo.multidim.ratio</td></tr><tr><td>multidim/sensortype.m</td><td>SENSORTYPE Return sensortype name</td><td>implemented</td><td>wafo.multidim.sensortype</td></tr><tr><td>multidim/sensortypeid.m</td><td>SENSORTYPEID Return ID for sensortype name</td><td>implemented</td><td>wafo.multidim.sensortypeid</td></tr><tr><td>multidim/specoptset.m</td><td>SPECOPTSET Create or alter SPECTRUM OPTIONS structure.</td><td>adapted</td><td>wafo.multidim.specoptset</td></tr><tr><td>multidim/testbuoy.m</td><td>TESTBUOY creates a test case for a buoy measurement</td><td>adapted</td><td>wafo.multidim.testbuoy</td></tr><tr><td>multidim/testmeasurements.m</td><td>TESTMEASUREMENTS Creates a test case for measurement time series</td><td>adapted</td><td>wafo.multidim.testmeasurements</td></tr><tr><td>multidim/testsurf.m</td><td>TESTSURF creates a test case for a surface elevation measurement</td><td>adapted</td><td>wafo.multidim.testsurf</td></tr><tr><td>multidim/tran.m</td><td>TRAN Computes transfer functions based on linear wave theory</td><td>implemented</td><td>wafo.multidim.tran</td></tr><tr><td>onedim/Contents.m</td><td>Module ONEDIM in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>onedim/covplot.m</td><td>COVPLOT Plots the auto covariance function (ACF) 1D or 2D.</td><td>adapted</td><td>wafo.onedim.covplot</td></tr><tr><td>onedim/dat2cor.m</td><td>DAT2COR Estimate auto correlation function from data.</td><td>adapted</td><td>wafo.onedim.dat2cor</td></tr><tr><td>onedim/dat2cov.m</td><td>DAT2COV Estimate auto covariance function from data.</td><td>adapted</td><td>wafo.onedim.dat2cov</td></tr><tr><td>onedim/dat2crossind.m</td><td>DAT2CROSSIND Finds indices to level v down and/or upcrossings from data</td><td>adapted</td><td>wafo.onedim.dat2crossind</td></tr><tr><td>onedim/dat2lc.m</td><td>DAT2LC Extracts level-crossing spectrum from data,</td><td>implemented</td><td>wafo.onedim.dat2lc</td></tr><tr><td>onedim/dat2midind.m</td><td>DAT2MIDIND Finds indices to midpoints between a min and Max and Max and min.</td><td>adapted</td><td>wafo.onedim.dat2midind</td></tr><tr><td>onedim/dat2spec.m</td><td>DAT2SPEC Estimate one-sided spectral density from data.</td><td>adapted</td><td>wafo.onedim.dat2spec</td></tr><tr><td>onedim/dat2spec2.m</td><td>DAT2SPEC2 Estimate one-sided spectral density, version 2.</td><td>adapted</td><td>wafo.onedim.dat2spec2</td></tr><tr><td>onedim/dat2steep.m</td><td>DAT2STEEP Extracts waveheights and steepnesses from data.</td><td>adapted</td><td>wafo.onedim.dat2steep</td></tr><tr><td>onedim/dat2tc.m</td><td>DAT2TC Extracts troughs and crests from data.</td><td>adapted</td><td>wafo.onedim.dat2tc</td></tr><tr><td>onedim/dat2tp.m</td><td>DAT2TP Extracts turning points from data,</td><td>implemented</td><td>wafo.onedim.dat2tp</td></tr><tr><td>onedim/dat2wa.m</td><td>DAT2WA Extracts sequence of wavelengths from data.</td><td>adapted</td><td>wafo.onedim.dat2wa</td></tr><tr><td>onedim/detrendma.m</td><td>DETRENDMA Removes a trend from data using a moving average</td><td>adapted</td><td>wafo.onedim.detrendma</td></tr><tr><td>onedim/ecross.m</td><td>ECROSS Extracts exact level v crossings</td><td>implemented</td><td>wafo.onedim.ecross</td></tr><tr><td>onedim/findcross.m</td><td>FINDCROSS Finds indices to level v up and downcrossings of a vector</td><td>implemented</td><td>wafo.onedim.findcross</td></tr><tr><td>onedim/findextrema.m</td><td>FINDEXTREMA Finds indices to minima and maxima of data</td><td>implemented</td><td>wafo.onedim.findextrema</td></tr><tr><td>onedim/findoutliers.m</td><td>FINDOUTLIERS Finds the indices to spurious points in a timeseries</td><td>adapted</td><td>wafo.onedim.findoutliers</td></tr><tr><td>onedim/findrfc.m</td><td>FINDRFC Finds indices to rainflow cycles of a sequence of TP.</td><td>implemented</td><td>wafo.onedim.findrfc</td></tr><tr><td>onedim/hs2sign.m</td><td>HS2SIGN Calculates a ratio-significant value of a histogram.</td><td>adapted</td><td>wafo.onedim.hs2sign</td></tr><tr><td>onedim/lcplot.m</td><td>LCPLOT Plots level-crossing spectrum (lc)</td><td>adapted</td><td>wafo.onedim.lcplot</td></tr><tr><td>onedim/mm2lc.m</td><td>MM2LC Extracts level-crossing spectrum from min2Max cycles.</td><td>adapted</td><td>wafo.onedim.mm2lc</td></tr><tr><td>onedim/private/bingham.m</td><td>BINGHAM  returns the N-point Bingham window in a column vector.</td><td>adapted</td><td>wafo.onedim.bingham</td></tr><tr><td>onedim/private/hanning.m</td><td>HANNING returns the N-point Hanning window in a column vector.</td><td>adapted</td><td>wafo.onedim.hanning</td></tr><tr><td>onedim/private/parzen.m</td><td>PARZEN returns the N-point Parzen window in a column vector.</td><td>adapted</td><td>wafo.onedim.parzen</td></tr><tr><td>onedim/Readme.m</td><td>README Readme file for module ONEDIM in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>onedim/reconstruct.m</td><td>RECONSTRUCT reconstruct the spurious/missing points of timeseries</td><td>adapted</td><td>wafo.onedim.reconstruct</td></tr><tr><td>onedim/spwaveplot.m</td><td>SPWAVEPLOT Plots specified waves from a timeseries</td><td>adapted</td><td>wafo.onedim.spwaveplot</td></tr><tr><td>onedim/vc2sign.m</td><td>VC2SIGN Calculates ratio-significant value of the input vector.</td><td>adapted</td><td>wafo.onedim.vc2sign</td></tr><tr><td>onedim/waveplot.m</td><td>WAVEPLOT Plots the surface elevation of timeseries.</td><td>adapted</td><td>wafo.onedim.waveplot</td></tr><tr><td>papers/Contents.m</td><td>Module PAPERS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/papermenu.m</td><td>PAPERMENU displays a user interface to the paper scripts of WAFO</td><td>adapted</td><td>wafo.papers.papermenu</td></tr><tr><td>papers/rec/Contents.m</td><td>Paper REC in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/rec/recdemo.m</td><td>RECDEMO  Show Rec figures with point and click interface</td><td>adapted</td><td>wafo.papers.recdemo</td></tr><tr><td>papers/rec/recfig.m</td><td>RECFIG  callback implementing functions of RecDemo</td><td>adapted</td><td>wafo.papers.recfig</td></tr><tr><td>papers/rec/recfig1.m</td><td>RECFIG1  Location of Gullfaks C and Statfjord A platforms in The North Sea</td><td>adapted</td><td>wafo.papers.recfig1</td></tr><tr><td>papers/rec/recfig10.m</td><td>RECFIG10 Joint distribution of  V and H:</td><td>adapted</td><td>wafo.papers.recfig10</td></tr><tr><td>papers/rec/recfig11.m</td><td>RECFIG11 Probability of exceeding H: Model (dash); data (dots)</td><td>adapted</td><td>wafo.papers.recfig11</td></tr><tr><td>papers/rec/recfig12.m</td><td>RECFIG12 Probability of exceeding V: Model (dash); data (dots)</td><td>adapted</td><td>wafo.papers.recfig12</td></tr><tr><td>papers/rec/recfig13.m</td><td>RECFIG13 The conditional probability of exceeding V given H: Model (dash); data (dots)</td><td>adapted</td><td>wafo.papers.recfig13</td></tr><tr><td>papers/rec/recfig2.m</td><td>RECFIG2 10 minutes mean values of wind  (dash) and direction (solid)</td><td>adapted</td><td>wafo.papers.recfig2</td></tr><tr><td>papers/rec/recfig3.m</td><td>RECFIG3 Example of the reconstructed (solid) and original data set (pluses)</td><td>adapted</td><td>wafo.papers.recfig3</td></tr><tr><td>papers/rec/recfig4.m</td><td>RECFIG4 Estimated spectral density (solid) and 95% confidence intervals (dots)</td><td>adapted</td><td>wafo.papers.recfig4</td></tr><tr><td>papers/rec/recfig5.m</td><td>RECFIG5 Transfer function, g, versus the crossing level u</td><td>adapted</td><td>wafo.papers.recfig5</td></tr><tr><td>papers/rec/recfig6.m</td><td>RECFIG6 Variability of simulated e(g(u)-u) (circles)</td><td>adapted</td><td>wafo.papers.recfig6</td></tr><tr><td>papers/rec/recfig7.m</td><td>RECFIG7 Estimated Weibull scale parameter versus h=H/Hrms (circles)</td><td>adapted</td><td>wafo.papers.recfig7</td></tr><tr><td>papers/rec/recfig8.m</td><td>RECFIG8 Estimated Weibull shape parameter versus h=H/Hrms (circles)</td><td>adapted</td><td>wafo.papers.recfig8</td></tr><tr><td>papers/rec/recfig9.m</td><td>RECFIG9 Conditional mean (solid, circle) and standard deviation (dash,cross) of V given H:</td><td>adapted</td><td>wafo.papers.recfig9</td></tr><tr><td>papers/rec/recinit.m</td><td>RECINIT  setup all global variables of the RECDEMO</td><td>adapted</td><td>wafo.papers.recinit</td></tr><tr><td>papers/rec/recintro.m</td><td>RECINTRO  Info about RECDEMO: A statistical procedure for reconstruction of 1D signals.</td><td>adapted</td><td>wafo.papers.recintro</td></tr><tr><td>papers/rec/recleanup.m</td><td>RECLEANUP Clears global variables defined and used by the RECDEMO</td><td>adapted</td><td>wafo.papers.recleanup</td></tr><tr><td>papers/tutorcom/Chapter1.m</td><td>CHAPTER1 demonstrates some applications of WAFO</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/tutorcom/Chapter2.m</td><td>CHAPTER2 Modelling random loads and stochastic waves</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/tutorcom/Chapter3.m</td><td>CHAPTER3  Demonstrates distributions of wave characteristics</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/tutorcom/Chapter4.m</td><td>CHAPTER4 contains the commands used in Chapter 4 of the tutorial</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/tutorcom/Chapter5.m</td><td>CHAPTER5 contains the commands used in Chapter 5 of the tutorial</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/tutorcom/Contents.m</td><td>Paper TUTORCOM in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/wafodemo/Contents.m</td><td>Paper WAFODEMO in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>papers/wafodemo/wafocleanup.m</td><td>WAFOCLEANUP Clears global variables defined and used by the WAFODEMO</td><td>adapted</td><td>wafo.papers.wafocleanup</td></tr><tr><td>papers/wafodemo/wafodemo.m</td><td>WAFODEMO  Show WAFO figures with point and click interface</td><td>adapted</td><td>wafo.papers.wafodemo</td></tr><tr><td>papers/wafodemo/wafofig.m</td><td>WAFOFIG  callback implementing functions of WAFODEMO</td><td>adapted</td><td>wafo.papers.wafofig</td></tr><tr><td>papers/wafodemo/wafofig1.m</td><td>WAFOFIG1  Linear simulation from a Torsethaugen spectrum.</td><td>adapted</td><td>wafo.papers.wafofig1</td></tr><tr><td>papers/wafodemo/wafofig10.m</td><td>WAFOFIG10 Intensity of trough-crest cycles computed from  St</td><td>adapted</td><td>wafo.papers.wafofig10</td></tr><tr><td>papers/wafodemo/wafofig2.m</td><td>WAFOFIG2  Spectral densities:</td><td>adapted</td><td>wafo.papers.wafofig2</td></tr><tr><td>papers/wafodemo/wafofig3.m</td><td>WAFOFIG3  Probability density distributions (pdf) of wave period, Tt,</td><td>adapted</td><td>wafo.papers.wafofig3</td></tr><tr><td>papers/wafodemo/wafofig4.m</td><td>WAFOFIG4  Directional spectra using Thorsethaugen and cos2s spreading</td><td>adapted</td><td>wafo.papers.wafofig4</td></tr><tr><td>papers/wafodemo/wafofig5.m</td><td>WAFOFIG5  Joint distribution (pdf) of crest front velocity and wave height:</td><td>adapted</td><td>wafo.papers.wafofig5</td></tr><tr><td>papers/wafodemo/wafofig6.m</td><td>WAFOFIG6  Joint distribution (pdf) of crest front period, Tcf, and crest amplitude, Ac</td><td>adapted</td><td>wafo.papers.wafofig6</td></tr><tr><td>papers/wafodemo/wafofig7.m</td><td>WAFOFIG7  Joint distribution (pdf) of crest wavelength, Lc, and crest amplitude, Ac</td><td>adapted</td><td>wafo.papers.wafofig7</td></tr><tr><td>papers/wafodemo/wafofig8.m</td><td>WAFOFIG8  Joint distribution (pdf) of crest wavelength, Lc, and crest amplitude, Ac for extremal waves</td><td>adapted</td><td>wafo.papers.wafofig8</td></tr><tr><td>papers/wafodemo/wafofig9.m</td><td>WAFOFIG9  Intensity of rainflow cycles computed from St</td><td>adapted</td><td>wafo.papers.wafofig9</td></tr><tr><td>papers/wafodemo/wafoinit.m</td><td>WAFOINIT  setup all global variables of the WAFODEMO</td><td>adapted</td><td>wafo.papers.wafoinit</td></tr><tr><td>papers/wafodemo/wafointro.m</td><td>WAFOINTRO  Info about WAFODEMO: WAFO - a Matlab toolbox for analysis of random waves and loads</td><td>adapted</td><td>wafo.papers.wafointro</td></tr><tr><td>parzen.m</td><td>PARZEN returns the N-point Parzen window in a column vector.</td><td>adapted</td><td>wafo.root.parzen</td></tr><tr><td>pathdef.m</td><td>PATHDEF Search path defaults.</td><td>adapted</td><td>wafo.root.pathdef</td></tr><tr><td>Readme.m</td><td>README Readme file for WAFO Toolbox - Wave Analysis for Fatigue and Oceanography</td><td>documentation-or-script</td><td></td></tr><tr><td>spec/Contents.m</td><td>Module SPEC in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>spec/cov2spec.m</td><td>COV2SPEC Computes spectral density given the auto covariance function</td><td>adapted</td><td>wafo.spec.cov2spec</td></tr><tr><td>spec/covinterp.m</td><td>COVINTERP Interpolation of covariance function and derivatives</td><td>adapted</td><td>wafo.spec.covinterp</td></tr><tr><td>spec/createcov.m</td><td>CREATECOV Covariance class constructor</td><td>adapted</td><td>wafo.spec.createcov</td></tr><tr><td>spec/createspec.m</td><td>CREATESPEC Spectrum structure constructor</td><td>implemented</td><td>wafo.spec.createspec</td></tr><tr><td>spec/demospec.m</td><td>DEMOSPEC Loads a precreated spectrum of chosen type</td><td>adapted</td><td>wafo.spec.demospec</td></tr><tr><td>spec/dspec2char.m</td><td>DSPEC2CHAR Evaluates directional spectral characteristics</td><td>implemented</td><td>wafo.spec.dspec2char</td></tr><tr><td>spec/freqtype.m</td><td>FREQTYPE returns the frequency type of a Spectral density struct.</td><td>adapted</td><td>wafo.spec.freqtype</td></tr><tr><td>spec/getjonswappeakedness.m</td><td>GETJONSWAPPEAKEDNESS Peakedness factor Gamma given Hm0 and Tp for JONSWAP</td><td>implemented</td><td>wafo.spec.getjonswappeakedness</td></tr><tr><td>spec/jonswap.m</td><td>JONSWAP Calculates (and plots) a JONSWAP spectral density</td><td>implemented</td><td>wafo.spec.jonswap</td></tr><tr><td>spec/k2w.m</td><td>K2W Translates from wave number to frequency</td><td>implemented</td><td>wafo.spec.k2w</td></tr><tr><td>spec/lagtype.m</td><td>LAGTYPE Returns the lag type of a Covariance struct.</td><td>adapted</td><td>wafo.spec.lagtype</td></tr><tr><td>spec/mccormick.m</td><td>MCCORMICK Calculates (and plots) a McCormick spectral density.</td><td>implemented</td><td>wafo.spec.mccormick</td></tr><tr><td>spec/mkdspec.m</td><td>MKDSPEC Make a directional spectrum</td><td>adapted</td><td>wafo.spec.mkdspec</td></tr><tr><td>spec/ohspec.m</td><td>OHSPEC Calculates (and plots) a Ochi-Hubble spectral density.</td><td>implemented</td><td>wafo.spec.ohspec</td></tr><tr><td>spec/ohspec2.m</td><td>OHSPEC2 Calculates and plots a bimodal Ochi-Hubble spectral density</td><td>implemented</td><td>wafo.spec.ohspec2</td></tr><tr><td>spec/ohspec3.m</td><td>OHSPEC3 Calculates Bimodal Ochi-Hubble spectral densities</td><td>implemented</td><td>wafo.spec.ohspec3</td></tr><tr><td>spec/oscspec.m</td><td>OSCSPEC Spectral density for a harmonic oscillator</td><td>implemented</td><td>wafo.spec.oscspec</td></tr><tr><td>spec/phi1.m</td><td>PHI1 factor for transforming spectra to finite water depth spectra</td><td>adapted</td><td>wafo.spec.phi1</td></tr><tr><td>spec/pmspec.m</td><td>PMSPEC Calculates (and plots) a Pierson-Moskowitz spectral density.</td><td>implemented</td><td>wafo.spec.pmspec</td></tr><tr><td>spec/polplot.m</td><td></td><td>documentation-or-script</td><td></td></tr><tr><td>spec/private/dir2enc.m</td><td>DIR2ENC Transform a dir. spectrum to an encountered. (Used in spec2spec)</td><td>adapted</td><td>wafo.spec.dir2enc</td></tr><tr><td>spec/private/dir2k1d.m</td><td>DIR2K1D Transforms directional spectrum to wavenumber spectrum.</td><td>adapted</td><td>wafo.spec.dir2k1d</td></tr><tr><td>spec/private/dspec2dcov.m</td><td>DSPEC2DCOV Return covariance function given a directional spectrum</td><td>adapted</td><td>wafo.spec.dspec2dcov</td></tr><tr><td>spec/private/spa2time.m</td><td>SPA2TIME Transform of spectrum from wave no. to frequency (used in spec2spec)</td><td>adapted</td><td>wafo.spec.spa2time</td></tr><tr><td>spec/private/time2spa.m</td><td>TIME2SPA Transform of spectrum from frequency to wave no. (used in spec2spec)</td><td>adapted</td><td>wafo.spec.time2spa</td></tr><tr><td>spec/Readme.m</td><td>README Readme file for module SPEC in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>spec/rotspec.m</td><td>ROTSPEC Rotate spectrum anti-clockwise around the origin.</td><td>adapted</td><td>wafo.spec.rotspec</td></tr><tr><td>spec/scalespec.m</td><td>SCALESPEC  Scale spectral density so that the moments equals m0,m2.</td><td>adapted</td><td>wafo.spec.scalespec</td></tr><tr><td>spec/spec2bw.m</td><td>SPEC2BW Evaluates some spectral bandwidth and irregularity factors</td><td>implemented</td><td>wafo.spec.spec2bw</td></tr><tr><td>spec/spec2char.m</td><td>SPEC2CHAR  Evaluates spectral characteristics and their covariance</td><td>adapted</td><td>wafo.spec.spec2char</td></tr><tr><td>spec/spec2cov.m</td><td>SPEC2COV Computes covariance function and its derivatives</td><td>adapted</td><td>wafo.spec.spec2cov</td></tr><tr><td>spec/spec2cov2.m</td><td>SPEC2COV2 Computes covariance function and its derivatives, alternative version</td><td>adapted</td><td>wafo.spec.spec2cov2</td></tr><tr><td>spec/spec2dt.m</td><td>SPEC2DT  Computes sampling interval from Nyquist frequency in spectrum</td><td>implemented</td><td>wafo.spec.spec2dt</td></tr><tr><td>spec/spec2mom.m</td><td>SPEC2MOM Calculates spectral moments from spectrum</td><td>implemented</td><td>wafo.spec.spec2mom</td></tr><tr><td>spec/spec2spec.m</td><td>SPEC2SPEC Transforms between different types of spectra</td><td>adapted</td><td>wafo.spec.spec2spec</td></tr><tr><td>spec/specdiag.m</td><td>SPECDIAG  Diagonalize a 2 x 2 spectral matrix.</td><td>implemented</td><td>wafo.spec.specdiag</td></tr><tr><td>spec/specinterp.m</td><td>SPECINTERP Interpolation and zero-padding of spectrum</td><td>adapted</td><td>wafo.spec.specinterp</td></tr><tr><td>spec/spreading.m</td><td>SPREADING Directional spreading functions</td><td>adapted</td><td>wafo.spec.spreading</td></tr><tr><td>spec/tmaspec.m</td><td>TMASPEC Calculates a JONSWAP spectral density for finite water depth</td><td>adapted</td><td>wafo.spec.tmaspec</td></tr><tr><td>spec/torsethaugen.m</td><td>TORSETHAUGEN Calculates a double peaked (swell + wind) spectrum</td><td>implemented</td><td>wafo.spec.torsethaugen</td></tr><tr><td>spec/ttspec.m</td><td>TTSPEC Toggle Transform between angular frequency and frequency spectrum</td><td>adapted</td><td>wafo.spec.ttspec</td></tr><tr><td>spec/w2k.m</td><td>W2K Translates from frequency to wave number</td><td>implemented</td><td>wafo.spec.w2k</td></tr><tr><td>spec/wallop.m</td><td>WALLOP  Calculates (and plots) a Wallop spectral density.</td><td>implemented</td><td>wafo.spec.wallop</td></tr><tr><td>spec/wnormspec.m</td><td>WNORMSPEC Normalize a spectral density such that m0=m2=1</td><td>adapted</td><td>wafo.spec.wnormspec</td></tr><tr><td>spec/wspecplot.m</td><td>WSPECPLOT Plot a spectral density</td><td>adapted</td><td>wafo.spec.wspecplot</td></tr><tr><td>trgauss/bvnormcdf.m</td><td>BVNORMCDF Bivariate Normal cumulative distribution function</td><td>adapted</td><td>wafo.trgauss.bvnormcdf</td></tr><tr><td>trgauss/bvnormprb.m</td><td>BVNORMPRB Bivariate Normal probability</td><td>adapted</td><td>wafo.trgauss.bvnormprb</td></tr><tr><td>trgauss/cdf2tr.m</td><td>CDF2TR Estimate transformation, g, from observed CDF.</td><td>adapted</td><td>wafo.trgauss.cdf2tr</td></tr><tr><td>trgauss/chitwo2lc_sorm.m</td><td>CHITWO2LC_SORM  SORM-approximation of the crossing intensity for the noncentral Chi^2 process</td><td>adapted</td><td>wafo.trgauss.chitwo2lc_sorm</td></tr><tr><td>trgauss/chitwo2lc_sp.m</td><td>CHITWO2LC_SP  Saddlepoint approximation of the crossing intensity for the noncentral Chi^2 process</td><td>adapted</td><td>wafo.trgauss.chitwo2lc_sp</td></tr><tr><td>trgauss/Contents.m</td><td>Module TRGAUSS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>trgauss/createpdf.m</td><td>CREATEPDF PDF class constructor</td><td>adapted</td><td>wafo.trgauss.createpdf</td></tr><tr><td>trgauss/dat2gaus.m</td><td>DAT2GAUS Transforms  x  using the transformation  g.</td><td>adapted</td><td>wafo.trgauss.dat2gaus</td></tr><tr><td>trgauss/dat2tr.m</td><td>DAT2TR Estimate transformation, g, from data.</td><td>adapted</td><td>wafo.trgauss.dat2tr</td></tr><tr><td>trgauss/dirsp2chitwo.m</td><td>DIRSP2CHITWO  gives parameters in non-central CHI-TWO process for directional Stokes waves.</td><td>adapted</td><td>wafo.trgauss.dirsp2chitwo</td></tr><tr><td>trgauss/gaus2dat.m</td><td>GAUS2DAT Transforms  xx  using the inverse of transformation  g.</td><td>adapted</td><td>wafo.trgauss.gaus2dat</td></tr><tr><td>trgauss/hermitetr.m</td><td>HERMITETR Calculate transformation, g, proposed by Winterstein</td><td>adapted</td><td>wafo.trgauss.hermitetr</td></tr><tr><td>trgauss/initoptions.m</td><td>INITOPTIONS Initializes RIND options according to speed.</td><td>adapted</td><td>wafo.trgauss.initoptions</td></tr><tr><td>trgauss/iter.m</td><td>ITER  Calculates a Markov matrix given a rainflow matrix</td><td>adapted</td><td>wafo.trgauss.iter</td></tr><tr><td>trgauss/iter_mc.m</td><td>ITER_MC  Calculates a kernel of a MC given a rainflow matrix</td><td>adapted</td><td>wafo.trgauss.iter_mc</td></tr><tr><td>trgauss/lc2tr.m</td><td>LC2TR Estimate transformation, g, from observed crossing intensity.</td><td>adapted</td><td>wafo.trgauss.lc2tr</td></tr><tr><td>trgauss/lc2tr2.m</td><td>LC2TR2 Estimate transformation, g, from observed crossing intensity, version2.</td><td>adapted</td><td>wafo.trgauss.lc2tr2</td></tr><tr><td>trgauss/lomaxcdf.m</td><td>LOMAXCDF CDF for local maxima for a zero-mean Gaussian process</td><td>implemented</td><td>wafo.trgauss.lomaxcdf</td></tr><tr><td>trgauss/mc2rfc.m</td><td>MC2RFC  Calculates a rainflow matrix given a Markov chain with kernel f_xy;</td><td>adapted</td><td>wafo.trgauss.mc2rfc</td></tr><tr><td>trgauss/mctp2rfc.m</td><td>MCTP2RFC  Rainflow matrix given a Markov matrix of a Markov chain of turning points</td><td>adapted</td><td>wafo.trgauss.mctp2rfc</td></tr><tr><td>trgauss/mctp2tc.m</td><td>MCTP2TC  Frequencies of upcrossing troughs and crests using Markov chain of turning points.</td><td>adapted</td><td>wafo.trgauss.mctp2tc</td></tr><tr><td>trgauss/mctrtest.m</td><td>MCTRTEST Test if a stochastic process is Gaussian.</td><td>adapted</td><td>wafo.trgauss.mctrtest</td></tr><tr><td>trgauss/mvnormpcprb.m</td><td>MVNORMPCPRB Multivariate Normal probabilities with product correlation</td><td>adapted</td><td>wafo.trgauss.mvnormpcprb</td></tr><tr><td>trgauss/mvnormprb.m</td><td>MVNORMPRB Multivariate Normal probability by Genz&#x27; algorithm.</td><td>adapted</td><td>wafo.trgauss.mvnormprb</td></tr><tr><td>trgauss/mvnortpcprb.m</td><td>MVNORTPCPRB Multivariate normal or student T probability with product correlation structure.</td><td>adapted</td><td>wafo.trgauss.mvnortpcprb</td></tr><tr><td>trgauss/nt2fr.m</td><td>NT2FR  Calculates the frequency matrix given the counting distribution matrix.</td><td>adapted</td><td>wafo.trgauss.nt2fr</td></tr><tr><td>trgauss/ochitr.m</td><td>OCHITR  Calculates transformation, g, proposed by Ochi et al.</td><td>adapted</td><td>wafo.trgauss.ochitr</td></tr><tr><td>trgauss/pdfplot.m</td><td>PDFPLOT Plot contents of pdf structures</td><td>adapted</td><td>wafo.trgauss.pdfplot</td></tr><tr><td>trgauss/private/Contents.m</td><td>private Module to TRGAUSS in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>trgauss/private/ewwdir.m</td><td>EWWDIR Computes values of the quadratic transfer function E, for quadratic sea</td><td>adapted</td><td>wafo.trgauss.ewwdir</td></tr><tr><td>trgauss/private/hermitefun.m</td><td>HERMITEFUN Calculates the transformation by a Hermite polynomial.</td><td>adapted</td><td>wafo.trgauss.hermitefun</td></tr><tr><td>trgauss/private/holmberg1.m</td><td>HOLMBERG1 Computes moments for higher order reliability methods.</td><td>adapted</td><td>wafo.trgauss.holmberg1</td></tr><tr><td>trgauss/private/holmberg2.m</td><td>HOLMBERG2 Computes moments for higher order reliability methods.</td><td>adapted</td><td>wafo.trgauss.holmberg2</td></tr><tr><td>trgauss/private/holmberg3.m</td><td>HOLMBERG3 Computes moments for higher order reliability methods.</td><td>adapted</td><td>wafo.trgauss.holmberg3</td></tr><tr><td>trgauss/private/holmquist1.m</td><td>HOLMQUIST1 Computes moments for higher order reliability methods.</td><td>adapted</td><td>wafo.trgauss.holmquist1</td></tr><tr><td>trgauss/private/holmquist2.m</td><td>HOLMQUIST2 Computes moments for higher order reliability methods.</td><td>adapted</td><td>wafo.trgauss.holmquist2</td></tr><tr><td>trgauss/private/holmquist3.m</td><td>HOLMQUIST3 Computes moments for higher order reliability methods.</td><td>adapted</td><td>wafo.trgauss.holmquist3</td></tr><tr><td>trgauss/private/kchitwo.m</td><td>KCHITWO Computes the cumulant generating function formula for noncentral Chi2-process.</td><td>adapted</td><td>wafo.trgauss.kchitwo</td></tr><tr><td>trgauss/private/mexGenzMvnPrb.m</td><td>MEXGENZMVNPRB Computes multivariate normal probability by Genz&#x27; algorithm</td><td>adapted</td><td>wafo.trgauss.mexGenzMvnPrb</td></tr><tr><td>trgauss/private/mexmvnprb.m</td><td>MEXMVNPRB Computes multivariate normal probability by Genz&#x27; algorithm</td><td>adapted</td><td>wafo.trgauss.mexmvnprb</td></tr><tr><td>trgauss/private/mexmvnprb2.m</td><td>MEXMVNPRB2 Computes multivariate normal probability by Genz&#x27; algorithm</td><td>adapted</td><td>wafo.trgauss.mexmvnprb2</td></tr><tr><td>trgauss/private/mindist.m</td><td>MINDIST Finds minimal distance to the origin on the surface b&#x27;*x+x&#x27;*diag(g)*x=u</td><td>adapted</td><td>wafo.trgauss.mindist</td></tr><tr><td>trgauss/private/mindist3.m</td><td>MINDIST3 Finds point of minimal distance to the origin on the surface b&#x27;*x+g&#x27;*x.^2=u.</td><td>adapted</td><td>wafo.trgauss.mindist3</td></tr><tr><td>trgauss/private/mvnprodcorrprbmex.m</td><td>MVNPRODCORRPRBMEX Computes multivariate normal probability</td><td>documentation-or-script</td><td></td></tr><tr><td>trgauss/private/ochifun.m</td><td>OCHIFUN Calculates the transformation g proposed by Ochi et al.</td><td>adapted</td><td>wafo.trgauss.ochifun</td></tr><tr><td>trgauss/private/rfadd.m</td><td>RFADD Addition of two rational functions</td><td>adapted</td><td>wafo.trgauss.rfadd</td></tr><tr><td>trgauss/private/rqlf_asympt.m</td><td>RQLF_ASYMPT Gives first two terms in an asymptotic expansion of the</td><td>adapted</td><td>wafo.trgauss.rqlf_asympt</td></tr><tr><td>trgauss/private/wminmax.m</td><td>WMINMAX Calculates joint density of minimum and following maximum</td><td>adapted</td><td>wafo.trgauss.wminmax</td></tr><tr><td>trgauss/private/writecov.m</td><td>WRITECOV Calculates spline coefficients for the covariance and</td><td>adapted</td><td>wafo.trgauss.writecov</td></tr><tr><td>trgauss/Readme.m</td><td>README Readme file for module TRGAUSS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>trgauss/rind.m</td><td>RIND Computes multivariate normal expectations</td><td>adapted</td><td>wafo.trgauss.rind</td></tr><tr><td>trgauss/rindoptset.m</td><td>RINDOPTSET Create or alter RIND OPTIONS structure.</td><td>adapted</td><td>wafo.trgauss.rindoptset</td></tr><tr><td>trgauss/spec2AcAt.m</td><td>SPEC2ACAT   Evaluates survival function R(h1,h2)=P(Ac&gt;h1,At&gt;h2).</td><td>adapted</td><td>wafo.trgauss.spec2AcAt</td></tr><tr><td>trgauss/spec2Acdf.m</td><td>SPEC2ACDF  Evaluates cdf of crests P(Ac&lt;=h) or troughs P(At&lt;=h).</td><td>adapted</td><td>wafo.trgauss.spec2Acdf</td></tr><tr><td>trgauss/spec2cmat.m</td><td>SPEC2CMAT Joint intensity matrix for cycles (max,min)-, rainflow- and (crest,trough)</td><td>adapted</td><td>wafo.trgauss.spec2cmat</td></tr><tr><td>trgauss/spec2mmtpdf.m</td><td>SPEC2MMTPDF Calculates joint density of Maximum, minimum and period.</td><td>adapted</td><td>wafo.trgauss.spec2mmtpdf</td></tr><tr><td>trgauss/spec2skew.m</td><td>SPEC2SKEW Estimates the moments of 2&#x27;nd order non-linear waves</td><td>adapted</td><td>wafo.trgauss.spec2skew</td></tr><tr><td>trgauss/spec2tccpdf.m</td><td>SPEC2TCCPDF Evaluates densities of wave period Tcc, wave lenght Lcc.</td><td>adapted</td><td>wafo.trgauss.spec2tccpdf</td></tr><tr><td>trgauss/spec2thpdf.m</td><td>SPEC2THPDF Joint density of amplitude and period/wave-length characteristics</td><td>adapted</td><td>wafo.trgauss.spec2thpdf</td></tr><tr><td>trgauss/spec2tpdf.m</td><td>SPEC2TPDF Evaluates densities for crest-,trough-period, length.</td><td>adapted</td><td>wafo.trgauss.spec2tpdf</td></tr><tr><td>trgauss/spec2tpdf2.m</td><td>SPEC2TPDF2 Evaluates densities for various wave periods or wave lengths</td><td>adapted</td><td>wafo.trgauss.spec2tpdf2</td></tr><tr><td>trgauss/specq2lc.m</td><td>SPECQ2LC  Saddlepoint approximation of the crossing intensity for the quadratic sea.</td><td>adapted</td><td>wafo.trgauss.specq2lc</td></tr><tr><td>trgauss/th2vhpdf.m</td><td>TH2VHPDF Transform joint T-H density to V-H density</td><td>adapted</td><td>wafo.trgauss.th2vhpdf</td></tr><tr><td>trgauss/trangood.m</td><td>TRANGOOD Makes a transformation that is suitable for efficient transforms.</td><td>adapted</td><td>wafo.trgauss.trangood</td></tr><tr><td>trgauss/tranproc.m</td><td>TRANPROC Transforms process X and up to four derivatives</td><td>adapted</td><td>wafo.trgauss.tranproc</td></tr><tr><td>trgauss/trmak.m</td><td>TRMAK Put together a transformation object.</td><td>adapted</td><td>wafo.trgauss.trmak</td></tr><tr><td>trgauss/troptset.m</td><td>TROPTSET Create or alter TRANSFORM OPTIONS structure.</td><td>adapted</td><td>wafo.trgauss.troptset</td></tr><tr><td>trgauss/trplot.m</td><td>TRPLOT Plots transformation, g, eg. estimated with dat2tr.</td><td>adapted</td><td>wafo.trgauss.trplot</td></tr><tr><td>trgauss/trunmak.m</td><td>TRUNMAK Split a transformation object into its pieces.</td><td>adapted</td><td>wafo.trgauss.trunmak</td></tr><tr><td>wafoexepath.m</td><td>WAFOEXEPATH Returns the path to executables for the WAFO Toolbox</td><td>adapted</td><td>wafo.root.wafoexepath</td></tr><tr><td>wafopath.m</td><td>WAFOPATH Adds or removes WAFO subdirectories from the search path.</td><td>adapted</td><td>wafo.root.wafopath</td></tr><tr><td>waforoot.m</td><td>WAFOROOT Root directory of WAFO installation.</td><td>adapted</td><td>wafo.root.waforoot</td></tr><tr><td>wavemodels/b04cdf.m</td><td>B04CDF  Brodtkorb (2004) joint (Scf,Hd) CDF of laboratory data.</td><td>implemented</td><td>wafo.wavemodels.b04cdf</td></tr><tr><td>wavemodels/b04jcdf.m</td><td>B04JCDF  Brodtkorb (2004) joint (Scf,Hd) CDF from Japan Sea.</td><td>implemented</td><td>wafo.wavemodels.b04jcdf</td></tr><tr><td>wavemodels/b04jpdf.m</td><td>B04JPDF Brodtkorb (2004) joint (Scf,Hd) PDF from Japan Sea.</td><td>implemented</td><td>wafo.wavemodels.b04jpdf</td></tr><tr><td>wavemodels/b04jpdf2.m</td><td>B04JPDF2 Brodtkorb  (2004) joint (Scf,Hd) PDF from Japan Sea.</td><td>implemented</td><td>wafo.wavemodels.b04jpdf2</td></tr><tr><td>wavemodels/b04pdf.m</td><td>B04PDF Brodtkorb (2004) joint (Scf,Hd) PDF of laboratory data.</td><td>implemented</td><td>wafo.wavemodels.b04pdf</td></tr><tr><td>wavemodels/b04pdf2.m</td><td>B04PDF2 Brodtkorb  (2004) joint (Scf,Hd) PDF of laboratory data.</td><td>implemented</td><td>wafo.wavemodels.b04pdf2</td></tr><tr><td>wavemodels/bmr00cdf.m</td><td>BMR00CDF  Brodtkorb et.al. (2000) joint (Scf,Hd) CDF from North Sea.</td><td>implemented</td><td>wafo.wavemodels.bmr00cdf</td></tr><tr><td>wavemodels/bmr00pdf.m</td><td>BMR00PDF Brodtkorb et.al (2000) joint (Scf,Hd) PDF from North Sea.</td><td>implemented</td><td>wafo.wavemodels.bmr00pdf</td></tr><tr><td>wavemodels/bmr00pdf2.m</td><td>BMR00PDF2 Brodtkorb et.al (2000) joint (Scf,Hd) PDF from North Sea.</td><td>implemented</td><td>wafo.wavemodels.bmr00pdf2</td></tr><tr><td>wavemodels/braylcdf.m</td><td>BRAYLCDF Beta Rayleigh CDF of wave heights</td><td>implemented</td><td>wafo.wavemodels.braylcdf</td></tr><tr><td>wavemodels/braylfit.m</td><td>BRAYLFIT Parameter estimates for Beta-Rayleigh data.</td><td>adapted</td><td>wafo.wavemodels.braylfit</td></tr><tr><td>wavemodels/braylpdf.m</td><td>BRAYLPDF Beta Rayleigh PDF of wave heigth</td><td>implemented</td><td>wafo.wavemodels.braylpdf</td></tr><tr><td>wavemodels/cav76pdf.m</td><td>CAV76PDF Cavanie et al. (1976) approximation of the density  (Tc,Ac)</td><td>implemented</td><td>wafo.wavemodels.cav76pdf</td></tr><tr><td>wavemodels/Contents.m</td><td>Module WAVEMODELS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>wavemodels/jhnlwparfun.m</td><td>JHNLWPARFUN Wave height, Hd, distribution parameters for Stokes waves with Jonswap spectrum.</td><td>implemented</td><td>wafo.wavemodels.jhnlwparfun</td></tr><tr><td>wavemodels/jhscdf.m</td><td>JHSCDF Joint (Scf,Hd) CDF for linear waves with a JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhscdf</td></tr><tr><td>wavemodels/jhsnlcdf.m</td><td>JHSNLCDF Joint (Scf,Hd) CDF for non-linear waves with JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhsnlcdf</td></tr><tr><td>wavemodels/jhsnlpdf.m</td><td>JHSNLPDF Joint (Scf,Hd) PDF for nonlinear waves with a JONSWAP spectra.</td><td>adapted</td><td>wafo.wavemodels.jhsnlpdf</td></tr><tr><td>wavemodels/jhsnlpdf2.m</td><td>JHSNLPDF2 Joint (Scf,Hd) PDF for non-linear waves with a JONSWAP spectra.</td><td>adapted</td><td>wafo.wavemodels.jhsnlpdf2</td></tr><tr><td>wavemodels/jhspdf.m</td><td>JHSPDF Joint (Scf,Hd) PDF for linear waves with JONSWAP spectra.</td><td>adapted</td><td>wafo.wavemodels.jhspdf</td></tr><tr><td>wavemodels/jhspdf2.m</td><td>JHSPDF2 Joint (Scf,Hd) PDF for linear waves with a JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhspdf2</td></tr><tr><td>wavemodels/jhvcdf.m</td><td>JHVCDF Joint (Vcf,Hd) CDF for linear waves with JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhvcdf</td></tr><tr><td>wavemodels/jhvnlcdf.m</td><td>JHVNLCDF Joint (Vcf,Hd) CDF for non-linear waves with JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhvnlcdf</td></tr><tr><td>wavemodels/jhvnlpdf.m</td><td>JHVNLPDF Joint (Vcf,Hd) PDF for linear waves with a JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhvnlpdf</td></tr><tr><td>wavemodels/jhvnlpdf2.m</td><td>JHVNLPDF2 Joint (Vcf,Hd) PDF for non-linear waves with a JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhvnlpdf2</td></tr><tr><td>wavemodels/jhvpdf.m</td><td>JHVPDF Joint (Vcf,Hd) PDF for linear waves with a JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhvpdf</td></tr><tr><td>wavemodels/jhvpdf2.m</td><td>JHVPDF2 Joint (Vcf,Hd) PDF for linear waves with a JONSWAP spectrum.</td><td>adapted</td><td>wafo.wavemodels.jhvpdf2</td></tr><tr><td>wavemodels/jhwparfun.m</td><td>JHWPARFUN Wave height, Hd, distribution parameters for Jonswap spectrum.</td><td>implemented</td><td>wafo.wavemodels.jhwparfun</td></tr><tr><td>wavemodels/lh83pdf.m</td><td>LH83PDF Longuet-Higgins (1983) approximation of the density (Tc,Ac)</td><td>implemented</td><td>wafo.wavemodels.lh83pdf</td></tr><tr><td>wavemodels/ltwcpdf.m</td><td>LTWCPDF Long Term Wave Climate PDF of significant wave height and wave period</td><td>adapted</td><td>wafo.wavemodels.ltwcpdf</td></tr><tr><td>wavemodels/mk87cdf.m</td><td>MK87CDF  Myrhaug and Kjeldsen (1987) joint (Scf,Hd) CDF.</td><td>implemented</td><td>wafo.wavemodels.mk87cdf</td></tr><tr><td>wavemodels/mk87pdf.m</td><td>MK87PDF Myrhaug and Kjeldsen (1987) joint (Scf,Hd) PDF.</td><td>implemented</td><td>wafo.wavemodels.mk87pdf</td></tr><tr><td>wavemodels/mk87pdf2.m</td><td>MK87PDF2 Myrhaug and Kjeldsen (1987) joint (Scf,Hd) PDF.</td><td>implemented</td><td>wafo.wavemodels.mk87pdf2</td></tr><tr><td>wavemodels/mk87rnd.m</td><td>MK87RND Random points from MK87 distribution of steepness and wave height.</td><td>adapted</td><td>wafo.wavemodels.mk87rnd</td></tr><tr><td>wavemodels/ochi98cdf.m</td><td>OCHI98CDF Ochi&#x27;s (1998) CDF of peaks and troughs of non-gaussian processes</td><td>implemented</td><td>wafo.wavemodels.ochi98cdf</td></tr><tr><td>wavemodels/ochi98fit.m</td><td>OCHI98FIT Parameter estimates and confidence intervals for Ochi data.</td><td>adapted</td><td>wafo.wavemodels.ochi98fit</td></tr><tr><td>wavemodels/ochi98pdf.m</td><td>OCHI98PDF Ochi&#x27;s (1998) PDF of peaks and troughs of non-gaussian processes</td><td>implemented</td><td>wafo.wavemodels.ochi98pdf</td></tr><tr><td>wavemodels/ohhcdf.m</td><td>OHHCDF Marginal wave height, Hd, CDF for Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhcdf</td></tr><tr><td>wavemodels/ohhgparfun.m</td><td>OHHGPARFUN Wave height, Hd, distribution parameters for Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhgparfun</td></tr><tr><td>wavemodels/ohhpdf.m</td><td>OHHPDF Marginal wave height, Hd, PDF for Bimodal Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhpdf</td></tr><tr><td>wavemodels/ohhscdf.m</td><td>OHHSCDF Joint (Scf,Hd) CDF for linear waves with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhscdf</td></tr><tr><td>wavemodels/ohhspdf.m</td><td>OHHSPDF Joint (Scf,Hd) PDF for linear waves with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhspdf</td></tr><tr><td>wavemodels/ohhspdf2.m</td><td>OHHSPDF2 Joint (Scf,Hd) PDF for linear waves with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhspdf2</td></tr><tr><td>wavemodels/ohhsscdf.m</td><td>OHHSSCDF Joint (Scf,Hd) CDF for linear waves in space with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhsscdf</td></tr><tr><td>wavemodels/ohhsspdf.m</td><td>OHHSSPDF Joint (Scf,Hd) PDF linear waves in space with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhsspdf</td></tr><tr><td>wavemodels/ohhsspdf2.m</td><td>OHHSSPDF2 Joint (Scf,Hd) PDF linear waves in space with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhsspdf2</td></tr><tr><td>wavemodels/ohhvpdf.m</td><td>OHHVPDF Joint (Vcf,Hd) PDF for lineare waves with Ochi-Hubble spectra.</td><td>adapted</td><td>wafo.wavemodels.ohhvpdf</td></tr><tr><td>wavemodels/Readme.m</td><td>README Readme file for module WAVEMODELS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>wavemodels/tay81cdf.m</td><td>TAY81CDF Tayfun (1981) CDF of  breaking limited wave heights</td><td>adapted</td><td>wafo.wavemodels.tay81cdf</td></tr><tr><td>wavemodels/tay81fun.m</td><td>TAY81FUN internal function to tay81pdf and tay81cdf.</td><td>implemented</td><td>wafo.wavemodels.tay81fun</td></tr><tr><td>wavemodels/tay81pdf.m</td><td>TAY81PDF  Tayfun (1981) PDF of  breaking limited wave heights</td><td>adapted</td><td>wafo.wavemodels.tay81pdf</td></tr><tr><td>wavemodels/tay90cdf.m</td><td>TAY90CDF Tayfun (1990) CDF of large wave heights</td><td>implemented</td><td>wafo.wavemodels.tay90cdf</td></tr><tr><td>wavemodels/tay90fun.m</td><td>TAY90FUN is an internal integrand function to tay90pdf</td><td>implemented</td><td>wafo.wavemodels.tay90fun</td></tr><tr><td>wavemodels/tay90pdf.m</td><td>TAY90PDF Tayfun (1990) PDF of large wave heights</td><td>implemented</td><td>wafo.wavemodels.tay90pdf</td></tr><tr><td>wavemodels/thcdf.m</td><td>THCDF Marginal wave height, Hd, CDF for Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thcdf</td></tr><tr><td>wavemodels/thgparfun.m</td><td>THGPARFUN Wave height, Hd, distribution parameters for Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thgparfun</td></tr><tr><td>wavemodels/thpdf.m</td><td>THPDF Marginal wave height, Hd, PDF for Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thpdf</td></tr><tr><td>wavemodels/thscdf.m</td><td>THSCDF Joint (Scf,Hd) CDF for linear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thscdf</td></tr><tr><td>wavemodels/thsnlcdf.m</td><td>THSNLCDF Joint (Scf,Hd) CDF for nonlinear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thsnlcdf</td></tr><tr><td>wavemodels/thsnlpdf.m</td><td>THSNLPDF Joint (Scf,Hd) PDF for nonlinear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thsnlpdf</td></tr><tr><td>wavemodels/thsnlpdf2.m</td><td>THSNLPDF2 Joint (Scf,Hd) PDF for nonlinear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thsnlpdf2</td></tr><tr><td>wavemodels/thspdf.m</td><td>THSPDF Joint (Scf,Hd) PDF for linear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thspdf</td></tr><tr><td>wavemodels/thspdf2.m</td><td>THSPDF2 Joint (Scf,Hd) PDF for linear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thspdf2</td></tr><tr><td>wavemodels/thsscdf.m</td><td>THSSCDF Joint (Scf,Hd) CDF for linear waves in space with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thsscdf</td></tr><tr><td>wavemodels/thsspdf.m</td><td>THSSPDF Joint (Scf,Hd) PDF for linear waves in space with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thsspdf</td></tr><tr><td>wavemodels/thsspdf2.m</td><td>THSSPDF2 Joint (Scf,Hd) PDF for linear waves in space with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thsspdf2</td></tr><tr><td>wavemodels/thvcdf.m</td><td>THVCDF Joint (Vcf,Hd) CDF for linear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thvcdf</td></tr><tr><td>wavemodels/thvpdf.m</td><td>THVPDF Joint (Vcf,Hd) PDF for linear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thvpdf</td></tr><tr><td>wavemodels/thvpdf2.m</td><td>THVPDF2 Joint (Vcf,Hd) PDF for linear waves with Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thvpdf2</td></tr><tr><td>wavemodels/thwparfun.m</td><td>THWPARFUN Wave height, Hd, distribution parameters for Torsethaugen spectra.</td><td>adapted</td><td>wafo.wavemodels.thwparfun</td></tr><tr><td>wavemodels/trraylpdf.m</td><td>TRRAYLPDF Calculates transformed Rayleigh approximation for amplitudes</td><td>implemented</td><td>wafo.wavemodels.trraylpdf</td></tr><tr><td>wdemos/Contents.m</td><td>Module WDEMOS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/democc.m</td><td>DEMOCC A program for visualization of cycle counts in random</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/democc_markmax.m</td><td>DEMOCC_MARKMAX plots load and marks a maximum</td><td>adapted</td><td>wafo.wdemos.democc_markmax</td></tr><tr><td>wdemos/democc_mmdef.m</td><td>DEMOCC_MMDEF illustrates the definition of min-max cycles.</td><td>adapted</td><td>wafo.wdemos.democc_mmdef</td></tr><tr><td>wdemos/democc_plotmat.m</td><td>DEMOCC_PLOTMAT plots RFC and min-max counts.</td><td>adapted</td><td>wafo.wdemos.democc_plotmat</td></tr><tr><td>wdemos/democc_rfcdef.m</td><td>DEMOCC_RFCDEF illustrates the definition of rainflow cycles.</td><td>adapted</td><td>wafo.wdemos.democc_rfcdef</td></tr><tr><td>wdemos/democc_tpdef.m</td><td>DEMOCC_TPDEF illustrates the definition of turning points.</td><td>adapted</td><td>wafo.wdemos.democc_tpdef</td></tr><tr><td>wdemos/itmkurs/alevel.m</td><td>ALEVEL Slice virkler.mat at a given crack length.</td><td>adapted</td><td>wafo.wdemos.alevel</td></tr><tr><td>wdemos/itmkurs/Contents.m</td><td>Contents of itmkurs</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/itmkurs/itmkurs_lab1.m</td><td>ITMKURS_LAB1 Script to computer exercises 1</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/itmkurs/itmkurs_lab2.m</td><td>ITMKURS_LAB2 Script to computer exercises 2</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/itmkurs/itmkurs_lab3.m</td><td>ITMKURS_LAB3 Script to computer exercises 3</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/itmkurs/itmkurs_lab4.m</td><td>ITMKURS_LAB4 Script to computer exercises 4</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/itmkurs/load2ud.m</td><td>LOAD2UD Calculates the number of up/downcrossings of a load.</td><td>adapted</td><td>wafo.wdemos.load2ud</td></tr><tr><td>wdemos/itmkurs/nlevel.m</td><td>NLEVEL Slice virkler.mat at a given number of cycles.</td><td>adapted</td><td>wafo.wdemos.nlevel</td></tr><tr><td>wdemos/itmkurs/splitload.m</td><td>SPLITLOAD Split a switching load (e.g. switchingload.mat)</td><td>adapted</td><td>wafo.wdemos.splitload</td></tr><tr><td>wdemos/itmkurs.m</td><td>ITMKURS Initiate paths for Demo Load and Fatigue Analysis</td><td>documentation-or-script</td><td></td></tr><tr><td>wdemos/rfcdemo1/armacov.m</td><td>ARMACOV   Computes the covariance function for an AR- or ARMA-model.</td><td>adapted</td><td>wafo.wdemos.armacov</td></tr><tr><td>wdemos/rfcdemo1/armaspec.m</td><td>ARMASPEC   Computes the spectral density for an AR- or ARMA-model.</td><td>adapted</td><td>wafo.wdemos.armaspec</td></tr><tr><td>wdemos/rfcdemo1/discar.m</td><td>DISCAR   Discretizes an AR(1) process.</td><td>adapted</td><td>wafo.wdemos.discar</td></tr><tr><td>wdemos/rfcdemo1/f_ar.m</td><td>F_AR  Auxiliary function used by RFCDEMO1</td><td>adapted</td><td>wafo.wdemos.f_ar</td></tr><tr><td>wdemos/rfcdemo1.m</td><td>RFCDEMO1  Demo for switching AR(1)-processes.</td><td>adapted</td><td>wafo.wdemos.rfcdemo1</td></tr><tr><td>wdemos/rfcdemo2.m</td><td>RFCDEMO2 Rainflow matrix for Switching Markov Chains of Turning Points.</td><td>adapted</td><td>wafo.wdemos.rfcdemo2</td></tr><tr><td>wsim/Contents.m</td><td>Module WSIM in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>wsim/cov2csdat.m</td><td>COV2CSDAT generates conditionally simulated values</td><td>adapted</td><td>wafo.wsim.cov2csdat</td></tr><tr><td>wsim/cov2sdat.m</td><td>COV2SDAT Simulates a Gaussian process and its derivative</td><td>adapted</td><td>wafo.wsim.cov2sdat</td></tr><tr><td>wsim/disufq.m</td><td>DISUFQ  Return difference- and sum-frequency effects.</td><td>implemented</td><td>wafo.wsim.disufq</td></tr><tr><td>wsim/duffsim.m</td><td>DUFFSIM Generates a sample path of a harmonic oscillator</td><td>adapted</td><td>wafo.wsim.duffsim</td></tr><tr><td>wsim/lc2sdat.m</td><td>LC2SDAT Simulates process with given irregularity factor and crossing spectrum</td><td>adapted</td><td>wafo.wsim.lc2sdat</td></tr><tr><td>wsim/mcsim.m</td><td>MCSIM   Simulates a Markov chain.</td><td>implemented</td><td>wafo.wsim.mcsim</td></tr><tr><td>wsim/mctpsim.m</td><td>MCTPSIM  Simulates a Markov chain of turning points</td><td>adapted</td><td>wafo.wsim.mctpsim</td></tr><tr><td>wsim/private/comb2pro.m</td><td>COMB2PRO Probability vector of placing a cycle on a specific place given all combinations</td><td>adapted</td><td>wafo.wsim.comb2pro</td></tr><tr><td>wsim/private/fr2comb.m</td><td>FR2COMB Combination matrix for placing out cycles given the frequency matrix</td><td>adapted</td><td>wafo.wsim.fr2comb</td></tr><tr><td>wsim/private/fr2nt.m</td><td>FR2NT  Calculates the counting distribution given the frequency matrix.</td><td>adapted</td><td>wafo.wsim.fr2nt</td></tr><tr><td>wsim/private/fr2res.m</td><td>FR2RES Generates a stationary residual from the frequency matrix.</td><td>adapted</td><td>wafo.wsim.fr2res</td></tr><tr><td>wsim/private/getulcc.m</td><td>GETULCC Finds the upper left element &gt; 0 in a matrix.</td><td>adapted</td><td>wafo.wsim.getulcc</td></tr><tr><td>wsim/private/rfc2load_fat.m</td><td>RFC2LOAD_FAT  Recontructs a load process given the frequency matrix (and residual).</td><td>adapted</td><td>wafo.wsim.rfc2load_fat</td></tr><tr><td>wsim/readme.m</td><td>README Readme file for module WSIM in WAFO Toolbox</td><td>documentation-or-script</td><td></td></tr><tr><td>wsim/rfm2dtp.m</td><td>RFM2DTP  Reconstructs a sequence of turning points from a rainflow matrix.</td><td>adapted</td><td>wafo.wsim.rfm2dtp</td></tr><tr><td>wsim/sarmasim.m</td><td>SARMASIM   Simulates a switching ARMA-process.</td><td>adapted</td><td>wafo.wsim.sarmasim</td></tr><tr><td>wsim/seamovie.m</td><td>SEAMOVIE Makes a movie of a 2D (x,t) or 3D (x,y,t) simulated sea</td><td>adapted</td><td>wafo.wsim.seamovie</td></tr><tr><td>wsim/seasim.m</td><td>SEASIM Spectral simulation of a Gaussian sea, 2D (x,t) or 3D (x,y,t)</td><td>adapted</td><td>wafo.wsim.seasim</td></tr><tr><td>wsim/smcsim.m</td><td>SMCSIM  Simulates a Switching Markov chain with state space.</td><td>adapted</td><td>wafo.wsim.smcsim</td></tr><tr><td>wsim/smctpsim.m</td><td>SMCTPSIM  Simulates a switching Markov chain of turning points,</td><td>adapted</td><td>wafo.wsim.smctpsim</td></tr><tr><td>wsim/spec2linspec.m</td><td>SPEC2LINSPEC  Separates the linear component of the Spectrum</td><td>adapted</td><td>wafo.wsim.spec2linspec</td></tr><tr><td>wsim/spec2nlsdat.m</td><td>SPEC2NLSDAT Simulates a Randomized 2nd order non-linear wave X(t)</td><td>adapted</td><td>wafo.wsim.spec2nlsdat</td></tr><tr><td>wsim/spec2sdat.m</td><td>SPEC2SDAT Simulates a Gaussian process and its derivative from spectrum</td><td>adapted</td><td>wafo.wsim.spec2sdat</td></tr><tr><td>wstats/alias.m</td><td>ALIAS Alias structure of a fractional design.</td><td>implemented</td><td>wafo.wstats.alias</td></tr><tr><td>wstats/cdr.m</td><td>CDR Complete Defining Relation</td><td>implemented</td><td>wafo.wstats.cdr</td></tr><tr><td>wstats/cempdistr.m</td><td>CEMPDISTR Computes and plots the conditional empirical CDF</td><td>implemented</td><td>wafo.wstats.cempdistr</td></tr><tr><td>wstats/cl2cnr.m</td><td>CL2CNR Column Label to Column Number</td><td>implemented</td><td>wafo.wstats.cl2cnr</td></tr><tr><td>wstats/cnr2cl.m</td><td>CNR2CL Column Number to Column Label.</td><td>implemented</td><td>wafo.wstats.cnr2cl</td></tr><tr><td>wstats/comnsize.m</td><td>COMNSIZE Check if all input arguments are either scalar or of common size.</td><td>adapted</td><td>wafo.wstats.comnsize</td></tr><tr><td>wstats/Contents.m</td><td>Module WSTATS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>wstats/cplot.m</td><td>CPLOT Cubic plot of responses</td><td>adapted</td><td>wafo.wstats.cplot</td></tr><tr><td>wstats/dist2dcdf.m</td><td>DIST2DCDF Joint 2D CDF computed as int F(X1&lt;v|X2=x2).*f(x2)dx2</td><td>adapted</td><td>wafo.wstats.dist2dcdf</td></tr><tr><td>wstats/dist2dcdfplot.m</td><td>DIST2DCDFPLOT Plot conditional empirical CDF of X1 given X2=x2</td><td>adapted</td><td>wafo.wstats.dist2dcdfplot</td></tr><tr><td>wstats/dist2dfit.m</td><td>DIST2DFIT Parameter estimates for DIST2D data.</td><td>adapted</td><td>wafo.wstats.dist2dfit</td></tr><tr><td>wstats/dist2dfun.m</td><td>DIST2DFUN is an internal function to dist2dcdf dist2dprb.</td><td>adapted</td><td>wafo.wstats.dist2dfun</td></tr><tr><td>wstats/dist2dparamplot.m</td><td>DIST2DPARAMPLOT Plot parameters of the conditional distribution</td><td>adapted</td><td>wafo.wstats.dist2dparamplot</td></tr><tr><td>wstats/dist2dpdf.m</td><td>DIST2DPDF Joint 2D PDF computed as f(x1|X2=x2)*f(x2)</td><td>adapted</td><td>wafo.wstats.dist2dpdf</td></tr><tr><td>wstats/dist2dpdf2.m</td><td>DIST2DPDF2 Joint 2D PDF computed as f(x1|X2=x2)*f(x2)</td><td>adapted</td><td>wafo.wstats.dist2dpdf2</td></tr><tr><td>wstats/dist2dprb.m</td><td>DIST2DPRB returns the probability for rectangular regions.</td><td>adapted</td><td>wafo.wstats.dist2dprb</td></tr><tr><td>wstats/dist2drnd.m</td><td>DIST2DRND  Random points from a bivariate DIST2D distribution</td><td>adapted</td><td>wafo.wstats.dist2drnd</td></tr><tr><td>wstats/dist2dsmfun.m</td><td>DIST2DSMFUN Smooths the conditional DIST2D distribution parameters.</td><td>adapted</td><td>wafo.wstats.dist2dsmfun</td></tr><tr><td>wstats/dist2dsmfun2.m</td><td>DIST2DSMFUN2 Smooths the conditional DIST2D distribution parameters.</td><td>adapted</td><td>wafo.wstats.dist2dsmfun2</td></tr><tr><td>wstats/dist2dstat.m</td><td>DIST2DSTAT  Mean and variance for the DIST2D distribution</td><td>adapted</td><td>wafo.wstats.dist2dstat</td></tr><tr><td>wstats/dist2dstatplot.m</td><td>DIST2DSTATPLOT Computes and plots the conditional mean and standard deviation</td><td>adapted</td><td>wafo.wstats.dist2dstatplot</td></tr><tr><td>wstats/distplot.m</td><td>DISTPLOT Displays a 1D distribution probability plot.</td><td>adapted</td><td>wafo.wstats.distplot</td></tr><tr><td>wstats/empdistr.m</td><td>EMPDISTR Computes and plots the empirical CDF</td><td>implemented</td><td>wafo.wstats.empdistr</td></tr><tr><td>wstats/ffd.m</td><td>FFD Two-level Fractional Factorial Design</td><td>implemented</td><td>wafo.wstats.ffd</td></tr><tr><td>wstats/fitmodel.m</td><td>FITMODEL  Fits response by polynomial</td><td>adapted</td><td>wafo.wstats.fitmodel</td></tr><tr><td>wstats/getmodel.m</td><td>GETMODEL Return the model parameters</td><td>adapted</td><td>wafo.wstats.getmodel</td></tr><tr><td>wstats/identify.m</td><td>IDENTIFY Identify points on a plot by clicking with the mouse.</td><td>adapted</td><td>wafo.wstats.identify</td></tr><tr><td>wstats/iqr.m</td><td>IQR Computes the Inter Quartile Range</td><td>implemented</td><td>wafo.wstats.iqr</td></tr><tr><td>wstats/kdeplot.m</td><td>KDEPLOT Computes and plots a kernel density estimate of PDF</td><td>adapted</td><td>wafo.wstats.kdeplot</td></tr><tr><td>wstats/loglike.m</td><td>LOGLIKE Log-likelihood function.</td><td>implemented</td><td>wafo.wstats.loglike</td></tr><tr><td>wstats/mdist2dcdf.m</td><td>MDIST2DCDF Joint 2D CDF due to Plackett</td><td>implemented</td><td>wafo.wstats.mdist2dcdf</td></tr><tr><td>wstats/mdist2dcdfplot.m</td><td>MDIST2DCDFPLOT Plot conditional empirical CDF of X1 given X2=x2</td><td>adapted</td><td>wafo.wstats.mdist2dcdfplot</td></tr><tr><td>wstats/mdist2dcinv.m</td><td>MDIST2DCINV Inverse of the conditional cdf of X2 given X1.</td><td>implemented</td><td>wafo.wstats.mdist2dcinv</td></tr><tr><td>wstats/mdist2dfit.m</td><td>MDIST2DFIT Parameter estimates for MDIST2D data.</td><td>adapted</td><td>wafo.wstats.mdist2dfit</td></tr><tr><td>wstats/mdist2dlike.m</td><td>MDIST2DLIKE MDIST log-likelihood function.</td><td>implemented</td><td>wafo.wstats.mdist2dlike</td></tr><tr><td>wstats/mdist2dpdf.m</td><td>MDIST2DPDF Joint 2D PDF due to Plackett given as  f{x1}*f{x2}*G(x1,x2;Psi).</td><td>implemented</td><td>wafo.wstats.mdist2dpdf</td></tr><tr><td>wstats/mdist2dpdf2.m</td><td>MDIST2DPDF2 Joint 2D PDF due to Plackett given as  f{x1}*f{x2}*G(x1,x2;Psi).</td><td>implemented</td><td>wafo.wstats.mdist2dpdf2</td></tr><tr><td>wstats/mdist2drnd.m</td><td>MDIST2DRND  Random points from a bivariate MDIST2D distribution</td><td>adapted</td><td>wafo.wstats.mdist2drnd</td></tr><tr><td>wstats/mdist2dstat.m</td><td>MDIST2DSTAT  Mean and variance for the MDIST2D distribution.</td><td>adapted</td><td>wafo.wstats.mdist2dstat</td></tr><tr><td>wstats/mdist2dstatplot.m</td><td>MDIST2DSTATPLOT Computes and plots the conditional mean and standard deviation.</td><td>adapted</td><td>wafo.wstats.mdist2dstatplot</td></tr><tr><td>wstats/mvnormpdf.m</td><td>MVNORMPDF Multivariate Normal probability density function.</td><td>implemented</td><td>wafo.wstats.mvnormpdf</td></tr><tr><td>wstats/nplot.m</td><td>NPLOT Normal probability plot of effects</td><td>adapted</td><td>wafo.wstats.nplot</td></tr><tr><td>wstats/pairs.m</td><td>PAIRS  Pairwise scatter plots.</td><td>adapted</td><td>wafo.wstats.pairs</td></tr><tr><td>wstats/range.m</td><td>RANGE  Calculates the difference between the maximum and minimum values.</td><td>implemented</td><td>wafo.wstats.range</td></tr><tr><td>wstats/Readme.m</td><td>README Readme file for module WSTATS in WAFO Toolbox.</td><td>documentation-or-script</td><td></td></tr><tr><td>wstats/ryates.m</td><td>RYATES Reverse Yates&#x27; algorithm to give estimated responses</td><td>implemented</td><td>wafo.wstats.ryates</td></tr><tr><td>wstats/sudg.m</td><td>SUDG Some Useful Design Generators</td><td>implemented</td><td>wafo.wstats.sudg</td></tr><tr><td>wstats/var.m</td><td>VAR  Variance</td><td>implemented</td><td>wafo.wstats.var</td></tr><tr><td>wstats/walpharnd.m</td><td>WALPHARND Random matrices from a symmetric alpha-stable distribution</td><td>adapted</td><td>wafo.wstats.walpharnd</td></tr><tr><td>wstats/wbetacdf.m</td><td>WBETACDF   Beta cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wbetacdf</td></tr><tr><td>wstats/wbetafit.m</td><td>WBETAFIT Parameter estimates for Beta data.</td><td>adapted</td><td>wafo.wstats.wbetafit</td></tr><tr><td>wstats/wbetainv.m</td><td>WBETAINV  Inverse of the Beta distribution function</td><td>implemented</td><td>wafo.wstats.wbetainv</td></tr><tr><td>wstats/wbetapdf.m</td><td>WBETAPDF   Beta probability density function</td><td>implemented</td><td>wafo.wstats.wbetapdf</td></tr><tr><td>wstats/wbetarnd.m</td><td>WBETARND  Random matrices from a Beta distribution</td><td>adapted</td><td>wafo.wstats.wbetarnd</td></tr><tr><td>wstats/wbetastat.m</td><td>WBETASTAT Mean and variance for the Beta distribution.</td><td>implemented</td><td>wafo.wstats.wbetastat</td></tr><tr><td>wstats/wchi2cdf.m</td><td>WCHI2CDF Chi squared cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wchi2cdf</td></tr><tr><td>wstats/wchi2fit.m</td><td>WCHI2FIT Parameter estimates for Chi squared data.</td><td>adapted</td><td>wafo.wstats.wchi2fit</td></tr><tr><td>wstats/wchi2inv.m</td><td>WCHI2INV Inverse of the Chi squared distribution function</td><td>implemented</td><td>wafo.wstats.wchi2inv</td></tr><tr><td>wstats/wchi2pdf.m</td><td>WCHI2PDF Chi squared probability density function</td><td>implemented</td><td>wafo.wstats.wchi2pdf</td></tr><tr><td>wstats/wchi2rnd.m</td><td>WCHI2RND Random matrices from a Chi squared distribution.</td><td>adapted</td><td>wafo.wstats.wchi2rnd</td></tr><tr><td>wstats/wchi2stat.m</td><td>WCHI2STAT Mean and variance for the Chi squared distribution.</td><td>implemented</td><td>wafo.wstats.wchi2stat</td></tr><tr><td>wstats/weib2dcdf.m</td><td>WEIB2DCDF Joint 2D Weibull cumulative distribution function</td><td>implemented</td><td>wafo.wstats.weib2dcdf</td></tr><tr><td>wstats/weib2dcdfplot.m</td><td>WEIB2DCDFPLOT Plot conditional empirical CDF of X1 given X2=x2</td><td>adapted</td><td>wafo.wstats.weib2dcdfplot</td></tr><tr><td>wstats/weib2dcinv.m</td><td>WEIB2DCINV Inverse of the conditional 2D weibull cdf of X2 given X1.</td><td>implemented</td><td>wafo.wstats.weib2dcinv</td></tr><tr><td>wstats/weib2dfit.m</td><td>WEIB2DFIT Parameter estimates for 2D Weibull data.</td><td>adapted</td><td>wafo.wstats.weib2dfit</td></tr><tr><td>wstats/weib2dlike.m</td><td>WEIB2DLIKE 2D Weibull log-likelihood function.</td><td>implemented</td><td>wafo.wstats.weib2dlike</td></tr><tr><td>wstats/weib2dpdf.m</td><td>WEIB2DPDF 2D Weibull probability density function (pdf).</td><td>implemented</td><td>wafo.wstats.weib2dpdf</td></tr><tr><td>wstats/weib2dpdf2.m</td><td>WEIB2DPDF2 Joint 2D Weibull probability density function</td><td>implemented</td><td>wafo.wstats.weib2dpdf2</td></tr><tr><td>wstats/weib2dprb.m</td><td>WEIB2DPRB returns the probability for rectangular regions.</td><td>implemented</td><td>wafo.wstats.weib2dprb</td></tr><tr><td>wstats/weib2drnd.m</td><td>WEIB2DRND Random numbers from the 2D Weibull distribution.</td><td>adapted</td><td>wafo.wstats.weib2drnd</td></tr><tr><td>wstats/weib2dstat.m</td><td>WEIB2DSTAT  Mean and variance for the 2D Weibull distribution</td><td>implemented</td><td>wafo.wstats.weib2dstat</td></tr><tr><td>wstats/weib2dstatplot.m</td><td>WEIB2DSTATPLOT Computes and plots the conditional mean and standard deviation</td><td>adapted</td><td>wafo.wstats.weib2dstatplot</td></tr><tr><td>wstats/wexpcdf.m</td><td>WEXPCDF Exponential cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wexpcdf</td></tr><tr><td>wstats/wexpfit.m</td><td>WEXPFIT Parameter estimates for Exponential data.</td><td>adapted</td><td>wafo.wstats.wexpfit</td></tr><tr><td>wstats/wexpinv.m</td><td>WEXPINV Inverse of the Exponential distribution function</td><td>implemented</td><td>wafo.wstats.wexpinv</td></tr><tr><td>wstats/wexppdf.m</td><td>WEXPPDF Exponential probability density function</td><td>implemented</td><td>wafo.wstats.wexppdf</td></tr><tr><td>wstats/wexpplot.m</td><td>WEXPPLOT Plots data on a Exponential distribution paper</td><td>adapted</td><td>wafo.wstats.wexpplot</td></tr><tr><td>wstats/wexprnd.m</td><td>WEXPRND Random matrices from an Exponential distribution</td><td>adapted</td><td>wafo.wstats.wexprnd</td></tr><tr><td>wstats/wexpstat.m</td><td>WEXPSTAT Mean and variance for the Exponential distribution.</td><td>implemented</td><td>wafo.wstats.wexpstat</td></tr><tr><td>wstats/wfcdf.m</td><td>WFCDF  Snedecor&#x27;s F cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wfcdf</td></tr><tr><td>wstats/wfinv.m</td><td>WFINV  Inverse of the Snedecor&#x27;s F distribution function</td><td>implemented</td><td>wafo.wstats.wfinv</td></tr><tr><td>wstats/wfpdf.m</td><td>WFPDF Snedecor&#x27;s F probability density function</td><td>implemented</td><td>wafo.wstats.wfpdf</td></tr><tr><td>wstats/wfrechcdf.m</td><td>WFRECHCDF Frechet cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wfrechcdf</td></tr><tr><td>wstats/wfrechinv.m</td><td>WFRECHINV Inverse of the Frechet distribution function</td><td>implemented</td><td>wafo.wstats.wfrechinv</td></tr><tr><td>wstats/wfrechpdf.m</td><td>WFRECHPDF Frechet probability density function</td><td>implemented</td><td>wafo.wstats.wfrechpdf</td></tr><tr><td>wstats/wfrechstat.m</td><td>WFRECHSTAT Mean and variance for the Frechet distribution.</td><td>implemented</td><td>wafo.wstats.wfrechstat</td></tr><tr><td>wstats/wfrnd.m</td><td>WFRND Random matrices from the Snedecor&#x27;s F distribution</td><td>adapted</td><td>wafo.wstats.wfrnd</td></tr><tr><td>wstats/wfstat.m</td><td>WFSTAT Mean and variance for the Snedecor&#x27;s F distribution.</td><td>implemented</td><td>wafo.wstats.wfstat</td></tr><tr><td>wstats/wgamafit.m</td><td>WGAMAFIT Is an internal routine for wgamfit</td><td>adapted</td><td>wafo.wstats.wgamafit</td></tr><tr><td>wstats/wgamcdf.m</td><td>WGAMCDF Gamma cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wgamcdf</td></tr><tr><td>wstats/wgamfit.m</td><td>WGAMFIT Parameter estimates for Gamma data.</td><td>adapted</td><td>wafo.wstats.wgamfit</td></tr><tr><td>wstats/wgaminv.m</td><td>WGAMINV Inverse of the Gamma distribution function</td><td>implemented</td><td>wafo.wstats.wgaminv</td></tr><tr><td>wstats/wgampdf.m</td><td>WGAMPDF Gamma probability density function</td><td>implemented</td><td>wafo.wstats.wgampdf</td></tr><tr><td>wstats/wgamrnd.m</td><td>WGAMRND Random matrices from a Gamma distribution.</td><td>adapted</td><td>wafo.wstats.wgamrnd</td></tr><tr><td>wstats/wgamstat.m</td><td>WGAMSTAT Mean and variance for the Gamma distribution.</td><td>implemented</td><td>wafo.wstats.wgamstat</td></tr><tr><td>wstats/wgevcdf.m</td><td>WGEVCDF Generalized Extreme Value cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wgevcdf</td></tr><tr><td>wstats/wgevfit.m</td><td>WGEVFIT Parameter estimates for GEV data</td><td>adapted</td><td>wafo.wstats.wgevfit</td></tr><tr><td>wstats/wgevinv.m</td><td>WGEVINV Inverse of the Generalized Extreme Value distribution function</td><td>implemented</td><td>wafo.wstats.wgevinv</td></tr><tr><td>wstats/wgevlike.m</td><td>WGEVLIKE Is an internal routine for wgevfit</td><td>implemented</td><td>wafo.wstats.wgevlike</td></tr><tr><td>wstats/wgevpdf.m</td><td>WGEVPDF Generalized Extreme Value probability density function</td><td>implemented</td><td>wafo.wstats.wgevpdf</td></tr><tr><td>wstats/wgevrnd.m</td><td>WGEVRND Random matrices from a Generalized Extreme Value distribution</td><td>adapted</td><td>wafo.wstats.wgevrnd</td></tr><tr><td>wstats/wgevstat.m</td><td>WGEVSTAT Mean and variance for the GEV distribution.</td><td>implemented</td><td>wafo.wstats.wgevstat</td></tr><tr><td>wstats/wggambfit.m</td><td>WGGAMBFIT Is an internal routine for wggamfit</td><td>adapted</td><td>wafo.wstats.wggambfit</td></tr><tr><td>wstats/wggamcdf.m</td><td>WGGAMCDF Generalized Gamma cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wggamcdf</td></tr><tr><td>wstats/wggamfit.m</td><td>WGGAMFIT Parameter estimates for Generalized Gamma data.</td><td>adapted</td><td>wafo.wstats.wggamfit</td></tr><tr><td>wstats/wggaminv.m</td><td>WGGAMINV Inverse of the Generalized Gamma distribution function</td><td>implemented</td><td>wafo.wstats.wggaminv</td></tr><tr><td>wstats/wggampdf.m</td><td>WGGAMPDF Generalized Gamma probability density function</td><td>implemented</td><td>wafo.wstats.wggampdf</td></tr><tr><td>wstats/wggamrnd.m</td><td>WGGAMRND Random matrices from a Generalized Gamma distribution.</td><td>adapted</td><td>wafo.wstats.wggamrnd</td></tr><tr><td>wstats/wggamstat.m</td><td>WGGAMSTAT Mean and variance for the Generalized Gamma distribution.</td><td>implemented</td><td>wafo.wstats.wggamstat</td></tr><tr><td>wstats/wgpdcdf.m</td><td>WGPDCDF Generalized Pareto cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wgpdcdf</td></tr><tr><td>wstats/wgpdfit.m</td><td>WGPDFIT Parameter estimates for Generalized Pareto data</td><td>adapted</td><td>wafo.wstats.wgpdfit</td></tr><tr><td>wstats/wgpdfit_ml.m</td><td>WGPDFIT_ML Internal routine for wgpdfit (ML estimates for GPD data)</td><td>implemented</td><td>wafo.wstats.wgpdfit_ml</td></tr><tr><td>wstats/wgpdinv.m</td><td>WGPDINV Inverse of the Generalized Pareto distribution function</td><td>implemented</td><td>wafo.wstats.wgpdinv</td></tr><tr><td>wstats/wgpdpdf.m</td><td>WGPDPDF Generalized Pareto probability density function</td><td>implemented</td><td>wafo.wstats.wgpdpdf</td></tr><tr><td>wstats/wgpdrnd.m</td><td>WGPDRND Random matrices from a Generalized Pareto Distribution</td><td>adapted</td><td>wafo.wstats.wgpdrnd</td></tr><tr><td>wstats/wgpdstat.m</td><td>WGPDSTAT Mean and variance for the Generalized Pareto distribution.</td><td>implemented</td><td>wafo.wstats.wgpdstat</td></tr><tr><td>wstats/wgumbafit.m</td><td>WGUMBAFIT Is an internal routine for wgumbfit</td><td>adapted</td><td>wafo.wstats.wgumbafit</td></tr><tr><td>wstats/wgumbcdf.m</td><td>WGUMBCDF Gumbel cumulative distribution function.</td><td>implemented</td><td>wafo.wstats.wgumbcdf</td></tr><tr><td>wstats/wgumbfit.m</td><td>WGUMBFIT Parameter estimates for Gumbel data.</td><td>adapted</td><td>wafo.wstats.wgumbfit</td></tr><tr><td>wstats/wgumbinv.m</td><td>WGUMBINV Inverse of the Gumbel distribution function.</td><td>implemented</td><td>wafo.wstats.wgumbinv</td></tr><tr><td>wstats/wgumbpdf.m</td><td>WGUMBPDF Gumbel probability density function.</td><td>implemented</td><td>wafo.wstats.wgumbpdf</td></tr><tr><td>wstats/wgumbplot.m</td><td>WGUMBPLOT Plots data on a Gumbel distribution paper.</td><td>adapted</td><td>wafo.wstats.wgumbplot</td></tr><tr><td>wstats/wgumbrnd.m</td><td>WGUMBRND Random matrices from a Gumbel distribution.</td><td>adapted</td><td>wafo.wstats.wgumbrnd</td></tr><tr><td>wstats/wgumbstat.m</td><td>WGUMBSTAT Mean and variance for the Gumbel distribution.</td><td>implemented</td><td>wafo.wstats.wgumbstat</td></tr><tr><td>wstats/wgumbtest.m</td><td>WGUMBTEST Tests whether the shape parameter in a GEV is equal to zero</td><td>adapted</td><td>wafo.wstats.wgumbtest</td></tr><tr><td>wstats/whisto.m</td><td>WHISTO Plots a histogram</td><td>adapted</td><td>wafo.wstats.whisto</td></tr><tr><td>wstats/winvgcdf.m</td><td>WINVGCDF Inverse Gaussian cumulative distribution function</td><td>implemented</td><td>wafo.wstats.winvgcdf</td></tr><tr><td>wstats/winvgfit.m</td><td>WINVGFIT Parameter estimates for Inverse Gaussian data.</td><td>adapted</td><td>wafo.wstats.winvgfit</td></tr><tr><td>wstats/winvginv.m</td><td>WINVGINV Inverse of the Inverse Gaussian distribution function</td><td>implemented</td><td>wafo.wstats.winvginv</td></tr><tr><td>wstats/winvgpdf.m</td><td>WINVGPDF Inverse Gaussian probability density function</td><td>implemented</td><td>wafo.wstats.winvgpdf</td></tr><tr><td>wstats/winvgrnd.m</td><td>WINVGRND Random matrices from a Inverse Gaussian distribution.</td><td>adapted</td><td>wafo.wstats.winvgrnd</td></tr><tr><td>wstats/winvgstat.m</td><td>WINVGSTAT Mean and variance for the Inverse Gaussian distribution.</td><td>implemented</td><td>wafo.wstats.winvgstat</td></tr><tr><td>wstats/wkurtosis.m</td><td>WKURTOSIS Computes sample kurtosis</td><td>implemented</td><td>wafo.wstats.wkurtosis</td></tr><tr><td>wstats/wlogncdf.m</td><td>WLOGNCDF Lognormal cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wlogncdf</td></tr><tr><td>wstats/wlognfit.m</td><td>WLOGNFIT Parameter estimates for Lognormal data.</td><td>adapted</td><td>wafo.wstats.wlognfit</td></tr><tr><td>wstats/wlogninv.m</td><td>WLOGNINV Inverse of the Lognormal distribution function</td><td>implemented</td><td>wafo.wstats.wlogninv</td></tr><tr><td>wstats/wlognpdf.m</td><td>WLOGNPDF Lognormal probability density function</td><td>implemented</td><td>wafo.wstats.wlognpdf</td></tr><tr><td>wstats/wlognrnd.m</td><td>WLOGNRND Random matrices from a Lognormal distribution.</td><td>adapted</td><td>wafo.wstats.wlognrnd</td></tr><tr><td>wstats/wlognstat.m</td><td>WLOGNSTAT Mean and variance for the Lognormal distribution.</td><td>implemented</td><td>wafo.wstats.wlognstat</td></tr><tr><td>wstats/wmnormrnd.m</td><td>WMNORMRND Random vectors from a multivariate Normal distribution</td><td>adapted</td><td>wafo.wstats.wmnormrnd</td></tr><tr><td>wstats/wnormcdf.m</td><td>WNORMCDF Normal cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wnormcdf</td></tr><tr><td>wstats/wnormfit.m</td><td>WNORMFIT Parameter estimates for Normal data.</td><td>adapted</td><td>wafo.wstats.wnormfit</td></tr><tr><td>wstats/wnorminv.m</td><td>WNORMINV Inverse of the Normal distribution function</td><td>implemented</td><td>wafo.wstats.wnorminv</td></tr><tr><td>wstats/wnormndpdf.m</td><td>WNORMNDPDF N-Dimensional Normal probability density function.</td><td>implemented</td><td>wafo.wstats.wnormndpdf</td></tr><tr><td>wstats/wnormpdf.m</td><td>WNORMPDF Normal probability density function</td><td>implemented</td><td>wafo.wstats.wnormpdf</td></tr><tr><td>wstats/wnormplot.m</td><td>WNORMPLOT Plots data on a Normal distribution paper</td><td>adapted</td><td>wafo.wstats.wnormplot</td></tr><tr><td>wstats/wnormrnd.m</td><td>WNORMRND Random matrices from a Normal distribution.</td><td>adapted</td><td>wafo.wstats.wnormrnd</td></tr><tr><td>wstats/wnormstat.m</td><td>WNORMSTAT Mean and variance for the Normal distribution.</td><td>implemented</td><td>wafo.wstats.wnormstat</td></tr><tr><td>wstats/wqqplot.m</td><td>WQQPLOT   Plot empirical quantile of X vs empirical quantile of Y</td><td>adapted</td><td>wafo.wstats.wqqplot</td></tr><tr><td>wstats/wquantile.m</td><td>WQUANTILE Empirical quantile (percentile).</td><td>implemented</td><td>wafo.wstats.wquantile</td></tr><tr><td>wstats/wraylcdf.m</td><td>WRAYLCDF Rayleigh cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wraylcdf</td></tr><tr><td>wstats/wraylfit.m</td><td>WRAYLFIT Parameter estimates for Rayleigh data.</td><td>adapted</td><td>wafo.wstats.wraylfit</td></tr><tr><td>wstats/wraylinv.m</td><td>WRAYLINV Inverse of the Rayleigh distribution function</td><td>implemented</td><td>wafo.wstats.wraylinv</td></tr><tr><td>wstats/wraylpdf.m</td><td>WRAYLPDF Rayleigh probability density function</td><td>implemented</td><td>wafo.wstats.wraylpdf</td></tr><tr><td>wstats/wraylplot.m</td><td>WRAYLPLOT Plots data on a Rayleigh distribution paper</td><td>adapted</td><td>wafo.wstats.wraylplot</td></tr><tr><td>wstats/wraylrnd.m</td><td>WRAYLRND Random matrices from a Rayleigh distribution</td><td>adapted</td><td>wafo.wstats.wraylrnd</td></tr><tr><td>wstats/wraylstat.m</td><td>WRAYLSTAT Mean and variance for the Rayleigh distribution.</td><td>implemented</td><td>wafo.wstats.wraylstat</td></tr><tr><td>wstats/wskewness.m</td><td>WSKEWNESS Computes sample skewness</td><td>implemented</td><td>wafo.wstats.wskewness</td></tr><tr><td>wstats/wtcdf.m</td><td>WTCDF  Student&#x27;s T  cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wtcdf</td></tr><tr><td>wstats/wtfit.m</td><td>WTFIT Parameter estimates for Student&#x27;s T data.</td><td>adapted</td><td>wafo.wstats.wtfit</td></tr><tr><td>wstats/wtinv.m</td><td>WTINV Inverse of the Student&#x27;s T distribution function</td><td>implemented</td><td>wafo.wstats.wtinv</td></tr><tr><td>wstats/wtpdf.m</td><td>WTPDF  Student&#x27;s T probability density function</td><td>implemented</td><td>wafo.wstats.wtpdf</td></tr><tr><td>wstats/wtraylcdf.m</td><td>WTRAYLCDF Truncated Rayleigh cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wtraylcdf</td></tr><tr><td>wstats/wtraylfit.m</td><td>WTRAYLFIT Parameter estimates for Truncated Rayleigh data.</td><td>adapted</td><td>wafo.wstats.wtraylfit</td></tr><tr><td>wstats/wtraylpdf.m</td><td>WTRAYLPDF Truncated Rayleigh probability density function</td><td>implemented</td><td>wafo.wstats.wtraylpdf</td></tr><tr><td>wstats/wtrnd.m</td><td>WTRND  Random matrices from a Student&#x27;s T distribution</td><td>adapted</td><td>wafo.wstats.wtrnd</td></tr><tr><td>wstats/wtstat.m</td><td>WTSTAT Mean and variance for the Student&#x27;s T  distribution.</td><td>implemented</td><td>wafo.wstats.wtstat</td></tr><tr><td>wstats/wtweibcdf.m</td><td>WTWEIBCDF Truncated Weibull cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wtweibcdf</td></tr><tr><td>wstats/wtweibfit.m</td><td>WTWEIBFIT Parameter estimates for truncated Weibull data.</td><td>adapted</td><td>wafo.wstats.wtweibfit</td></tr><tr><td>wstats/wtweibfun.m</td><td>WTWEIBFUN Is an internal routine for wtweibfit</td><td>implemented</td><td>wafo.wstats.wtweibfun</td></tr><tr><td>wstats/wtweibpdf.m</td><td>WTWEIBPDF Truncated Weibull probability density function</td><td>implemented</td><td>wafo.wstats.wtweibpdf</td></tr><tr><td>wstats/wweibcdf.m</td><td>WWEIBCDF Weibull cumulative distribution function</td><td>implemented</td><td>wafo.wstats.wweibcdf</td></tr><tr><td>wstats/wweibcfit.m</td><td>WWEIBCFIT Is an internal routine for wweibfit</td><td>adapted</td><td>wafo.wstats.wweibcfit</td></tr><tr><td>wstats/wweibfit.m</td><td>WWEIBFIT Parameter estimates for Weibull data.</td><td>adapted</td><td>wafo.wstats.wweibfit</td></tr><tr><td>wstats/wweibinv.m</td><td>WWEIBINV Inverse of the Weibull distribution function</td><td>implemented</td><td>wafo.wstats.wweibinv</td></tr><tr><td>wstats/wweibpdf.m</td><td>WWEIBPDF Weibull probability density function</td><td>implemented</td><td>wafo.wstats.wweibpdf</td></tr><tr><td>wstats/wweibplot.m</td><td>WWEIBPLOT Plots data on a Weibull distribution paper</td><td>adapted</td><td>wafo.wstats.wweibplot</td></tr><tr><td>wstats/wweibrnd.m</td><td>WWEIBRND Random matrices a the Weibull distribution.</td><td>adapted</td><td>wafo.wstats.wweibrnd</td></tr><tr><td>wstats/wweibstat.m</td><td>WWEIBSTAT Mean and variance for the Weibull  distribution.</td><td>implemented</td><td>wafo.wstats.wweibstat</td></tr><tr><td>wstats/yates.m</td><td>YATES Calculates main and interaction effects using Yates&#x27; algorithm.</td><td>implemented</td><td>wafo.wstats.yates</td></tr></tbody></table><h2>Original source documentation</h2><details><summary>Contents</summary><pre>Module WSTATS in WAFO Toolbox. 
+Version 2.1.1  07-Sep-2005
+
+What&#x27;s new
+Readme     - New features, bug fixes, and changes in WSTATS. 
+
+Parameter estimation
+loglike    - Log-likelihood function
+wbetafit   - Parameter estimates for Beta data
+wchi2fit   - Parameter estimates for Chi squared data
+wexpfit    - Parameter estimates for Exponential data
+wgamfit    - Parameter estimates for Gamma data
+wgamafit   - Is an internal routine for wgamfit
+wgevfit    - Parameter estimates for GEV data
+wgevlike   - Is an internal routine for wgevfit
+wggamfit   - Parameter estimates for Generalized Gamma data
+wggambfit  - Is an internal routine for wggamfit
+wgpdfit    - Parameter estimates for GPD data
+wgpdfit_ml - Internal routine for wgpdfit (ML estimates for GPD data)
+wgumbfit   - Parameter estimates for Gumbel data
+wgumbafit  - Is an internal routine for wgumbfit
+winvgfit   - Parameter estimates for Inverse Gaussian data
+wlognfit   - Parameter estimates for Lognormal data
+wnormfit   - Parameter estimates for Normal data
+wraylfit   - Parameter estimates for Rayleigh data
+wtraylfit  - Parameter estimates for Truncated Rayleigh data
+wtfit      - Parameter estimates for Student&#x27;s T data
+wweibfit   - Parameter estimates for Weibull data
+wweibcfit  - Is an internal routine for wweibfit
+wtweibfit  - Parameter estimates for Truncated Weibull data
+wtweibfun  - Is an internal routine for wtweibfit
+weib2dfit  - Parameter estimates for 2D Weibull data
+weib2dlike - 2D Weibull log-likelihood function
+dist2dfit  - Parameter estimates for DIST2D data
+dist2dsmfun  - Smooths the conditional DIST2D distribution parameters
+dist2dsmfun2 - Smooths the conditional DIST2D distribution parameters
+mdist2dfit   - Parameter estimates for MDIST2D data
+mdist2dlike  - MDIST log-likelihood function
+
+Probability density functions (pdf)
+wbetapdf   - Beta probability density function 
+wchi2pdf   - Chi squared probability density function
+wexppdf    - Exponential probability density function
+wfpdf      - Snedecor&#x27;s F probability density function 
+wfrechpdf  - Frechet probability density function
+wgampdf    - Gamma probability density function
+wggampdf   - Generalized Gamma probability density function
+wgevpdf    - Generalized Extreme Value probability density function
+wgpdpdf    - Generalized Pareto probability density function
+wgumbpdf   - Gumbel probability density function
+winvgpdf   - Inverse Gaussian probability density function
+wlognpdf   - Lognormal probability density function
+wnormpdf   - Normal probability density function
+mvnormpdf  - Multivariate Normal probability density function
+wraylpdf   - Rayleigh probability density function
+wtraylpdf  - Truncated Rayleigh probability density function
+wtpdf      - Student&#x27;s T probability density function 
+wweibpdf   - Weibull probability density function
+wtweibpdf  - Truncated Weibull probability density function
+weib2dpdf  - 2D Weibull probability density function (pdf)
+weib2dpdf2 - Joint 2D Weibull probability density function 
+dist2dpdf  - Joint 2D PDF computed as f(x1|X2=x2)*f(x2) 
+dist2dpdf2 - Joint 2D PDF computed as f(x1|X2=x2)*f(x2)
+mdist2dpdf - Joint 2D PDF due to Plackett given as  f{x1}*f{x2}*G(x1,x2;Psi)
+mdist2dpdf2 - Joint 2D PDF due to Plackett given as  f{x1}*f{x2}*G(x1,x2;Psi)
+
+Cumulative distribution functions (cdf)
+wbetacdf   - Beta cumulative distribution function 
+wchi2cdf   - Chi squared cumulative distribution function
+wexpcdf    - Exponential cumulative distribution function
+wfcdf      - Snedecor&#x27;s F cumulative distribution function 
+wfrechcdf  - Frechet cumulative distribution function
+wgamcdf    - Gamma cumulative distribution function
+wggamcdf   - Generalized Gamma cumulative distribution function
+wgevcdf    - Generalized Extreme Value cumulative distribution function
+wgpdcdf    - Generalized Pareto cumulative distribution function
+wgumbcdf   - Gumbel cumulative distribution function
+winvgcdf   - Inverse Gaussian cumulative distribution function
+wlogncdf   - Lognormal cumulative distribution function
+wnormcdf   - Normal cumulative distribution function
+wraylcdf   - Rayleigh cumulative distribution function
+wtraylcdf  - Truncated Rayleigh cumulative distribution function
+wtcdf      - Student&#x27;s T  cumulative distribution function 
+wweibcdf   - Weibull cumulative distribution function
+wtweibcdf  - Truncated Weibull cumulative distribution function
+weib2dcdf  - Joint 2D Weibull cumulative distribution function 
+weib2dprb  - Returns the probability for rectangular regions. 
+dist2dcdf  - Joint 2D CDF computed as int F(X1&lt;v|X2=x2).*f(x2)dx2 
+dist2dfun  - Is an internal function to dist2dcdf dist2dprb.
+dist2dprb  - Returns the probability for rectangular regions.
+mdist2dcdf - Joint 2D CDF due to Plackett
+
+Inverse cumulative distribution functions
+wbetainv   - Inverse of the Beta distribution function 
+wchi2inv   - Inverse of the Chi squared distribution function
+wexpinv    - Inverse of the Exponential distribution function
+wfinv      - Inverse of the Snedecor&#x27;s F distribution function
+wgaminv    - Inverse of the Gamma distribution function
+wggaminv   - Inverse of the Generalized Gamma distribution function
+wgevinv    - Inverse of the Generalized Extreme Value distribution function
+wgpdinv    - Inverse of the Generalized Pareto distribution function
+wgumbinv   - Inverse of the Gumbel distribution function
+winvginv   - Inverse of the Inverse Gaussian distribution function
+wlogninv   - Inverse of the Lognormal distribution function
+wnorminv   - Inverse of the Normal distribution function
+wraylinv   - Inverse of the Rayleigh distribution function
+wtinv      - Inverse of the Student&#x27;s T distribution function
+wweibinv   - Inverse of the Weibull distribution function
+weib2dcinv - Inverse of the conditional 2D weibull cdf of X2 given X1.
+mdist2dcinv - Inverse of the conditional cdf of X2 given X1.
+
+Random number generators
+walpharnd  - Random matrices from a symmetric alpha-stable distribution
+wbetarnd   - Random matrices from an Beta distribution 
+wchi2rnd   - Random matrices from a Chi squared distribution
+wexprnd    - Random matrices from an Exponential distribution
+wfrnd      - Random matrices from a Snedecor&#x27;s F distribution
+wfrechinv  - Inverse of the Frechet distribution function
+wgamrnd    - Random matrices from a Gamma distribution
+wggamrnd   - Random matrices from a Generalized Gamma distribution
+wgevrnd    - Random matrices from a Generalized Extreme-Value distribution
+wgpdrnd    - Random matrices from a Generalized Pareto Distribution
+wgumbrnd   - Random matrices from a Gumbel distribution
+winvgrnd   - Random matrices from an Inverse Gaussian distribution
+wlognrnd   - Random matrices from a Lognormal distribution
+wmnormrnd  - Random vectors from a multivariate Normal distribution
+wnormrnd   - Random matrices from a Normal distribution
+wraylrnd   - Random matrices from a Rayleigh distribution
+wtrnd      - Random matrices from a Student&#x27;s T distribution
+wweibrnd   - Random matrices from a Weibull distribution
+weib2drnd  - Random numbers from the 2D Weibull distribution.
+dist2drnd  - Random points from a bivariate DIST2D distribution
+mdist2drnd - Random points from a bivariate MDIST2D distribution 
+
+Statistics
+wbetastat  - Mean and variance for the Beta distribution.
+wchi2stat  - Mean and variance for the Chi squared distribution
+wexpstat   - Mean and variance for the Exponential distribution
+wfstat     - Mean and variance for the Snedecor&#x27;s F distribution
+wfrechstat - Mean and variance for the Frechet distribution
+wgamstat   - Mean and variance for the Gamma distribution
+wggamstat  - Mean and variance for the Generalized Gamma distribution
+wgevstat   - Mean and variance for the GEV distribution
+wgpdstat   - Mean and variance for the Generalized Pareto distribution
+wgumbstat  - Mean and variance for the Gumbel distribution
+winvgstat  - Mean and variance for the Inverse Gaussian distribution
+wlognstat  - Mean and variance for the Lognormal distribution
+wnormstat  - Mean and variance for the Normal distribution
+wraylstat  - Mean and variance for the Rayleigh
+wtstat     - Mean and variance for the Student&#x27;s T  distribution
+wweibstat  - Mean and variance for the Weibull distribution
+weib2dstat - Mean and variance for the 2D Weibull distribution 
+dist2dstat - Mean and variance for the DIST2D distribution 
+mdist2dstat - Mean and variance for the MDIST2D distribution 
+
+Descriptive Statistics
+mean       - Computes sample mean (in matlab toolbox)
+median     - Computes sample median value (in matlab toolbox)
+std        - Computes standard deviation (in matlab toolbox)
+var        - Computes sample variance (in matlab toolbox)
+cov        - Computes sample covariance matrix (in matlab toolbox)
+corrcoef   - Computes sample correlation coefficients (in matlab toolbox)
+wkurtosis  - Computes sample kurtosis
+wskewness  - Computes sample skewness
+iqr        - Computes the Inter Quartile Range 
+range      - Calculates the difference between maximum and minimum values
+
+Statistical plotting
+wgumbplot  - Plots data on a Gumbel distribution paper
+wnormplot  - Plots data on a Normal distribution paper
+wweibplot  - Plots data on a Weibull distribution paper
+wexpplot   - Plots data on a Exponential distribution paper
+wraylplot  - Plots data on a Rayleigh distribution paper
+wqqplot    - Plots empirical quantile vs empirical quantile 
+distplot   - Displays a 1D distribution probability plot
+empdistr   - Computes and plots the empirical CDF
+cempdistr  - Computes and plots the conditional empirical CDF
+whisto     - Plots a histogram
+kdeplot    - Computes and plots a kernel estimate of PDF
+identify   - Identify points on a plot by clicking with the mouse. 
+pairs      - Pairwise scatter plots.
+weib2dcdfplot   - Plot conditional empirical CDF of X1 given X2=x2 
+weib2dstatplot  - Computes and plots the conditional mean and standard deviation
+dist2dcdfplot   - Plot conditional empirical CDF of X1 given X2=x2 
+dist2dparamplot - Plot parameters of the conditional distribution 
+dist2dstatplot  - Computes and plots the conditional mean and standard deviation 
+mdist2dcdfplot  - Plot conditional empirical CDF of X1 given X2=x2 
+mdist2dstatplot - Computes and plots the conditional mean and standard deviation 
+
+Hypothesis Tests
+wgumbtest  - Tests whether the shape parameter in a GEV is equal to zero
+
+Design of Experiments
+yates      - Calculates main and interaction effects using Yates&#x27; algorithm.
+ryates     - Reverse Yates&#x27; algorithm to give estimated responses
+fitmodel   - Fits response by polynomial
+alias      - Alias structure of a fractional design
+cdr        - Complete Defining Relation
+cl2cnr     - Column Label to Column Number
+cnr2cl     - Column Number to Column Label
+ffd        - Two-level Fractional Factorial Design
+getmodel   - Return the model parameters
+sudg       - Some Useful Design Generators
+cplot      - Cubic plot of responses
+nplot      - Normal probability plot of effects
+
+Misc
+comnsize   - Check if all input arguments are either scalar or of common size. </pre></details><details><summary>Readme</summary><pre>README Readme file for module WSTATS in WAFO Toolbox.
+
+Version 2.1.1   07-Jul-2005
+
+FIXES
+~~~~~
+wgpdpdf - fixed bug for k==0 now fixed
+wgpdcdf - distribution for k==0 was wrong, now fixed
+kdeplot - Default kernel used in the call to hldpi changed from &#x27;epan&#x27;
+to &#x27;gauss&#x27; because gauss kernel is the only supported one.  
+mdist2dfit   - replaced fmins with fminsearch  
+weib2dfit    - replaced fmins with fminsearch  
+wggamstat    - fixed a bug
+wggamfit     - Added secret option of C0
+wtweibfit    - minor fix
+dist2dsmfun  - minor fix
+dist2dsmfun2 - minor fix
+dist2dfit    - Added secret option of C0 to wggamfit 
+
+-------------------------------------------------------------------
+Version 2.1.0   07-Apr-2004
+
+Bug fixes, some new and/or updated routines.
+
+FIXES
+~~~~~
+wnormpdf - Fixed a bug
+wnormcdf - changed call from erf to erfc in order  
+to get more accurate lower tail probabilities
+wnorminv - replaced erfinv with PHIINV which perform more accurate 
+inversion in the lower tail. This also results in faster execution.
+wtcdf    - added new methods for df==1 or df==2 and for region1= x^2&lt;df^2 
+wtinv    - added new method for df==2 
+
+
+NEW FUNCTIONS
+~~~~~~~~~~~~~
+MVNORMPDF  multivariate Normal probability density function
+
+-------------------------------------------------------------------
+Version 2.0.5   14-Jun-2003
+
+Bug fixes, some new and/or updated routines.
+
+NEW FUNCTIONS
+~~~~~~~~~~~~~
+WEXPPLOT   plots data on a Exponential distribution paper
+WFRECHCDF  Frechet cumulative distribution function
+WFRECHPDF  Frechet probability density function
+WFRECHINV  Inverse of the Frechet distribution function
+WFRECHSTAT Mean and variance for the Frechet distribution.
+
+--------------------------------------------------------------------
+Version 2.0.4   11-Apr-2001
+
+This file describes new features, bug fixes, and changes in this version 
+of the WAFO/wstats Toolbox.
+
+List of changes:
+
+NOTE:
+Items marked with:
+(N)  : needs a new  name 
+*   : not yet available
++   : needs more work
+**  : have changed in a way which might affect your code!
+
+
+FIXES
+~~~~~
+Some but too small to mention.
+
+
+ENHANCEMENTS
+~~~~~~~~~~~~
+- All the PDF&#x27;s, CDF&#x27;s and STAT&#x27;s function now check if the input arguments
+are either scalar or of common size. Scalar inputs are transformed to 
+to a constant matrix with size equal to the common size of the non-scalar arguments.
+This is useful for implementing functions where arguments can either
+be scalars or of common size. 
+
+- (**) wggampdf,wggamcdf, wggamfit, wggamstat: The order of the distribution parameters 
+are changed so that they have the same order as wgamXXX.m functions, i.e.,
+wgampdf(x,a,b) is now the same as wggampdf(x,a,b,1).
+
+- (**) the order of input arguments to wgumbrnd are changed  in order to implement
+a more flexible sizing of the output. New CALL: R = wgumbrnd(a,b,trunc,sz) 
+
+- cempdistr and empdistr now allows to overplot the figure. Also different 
+plot symbols may be given.
+
+- LOGLIKE is a utility function for maximum likelihood estimation. 
+This works on any PDF having the following calling syntax:
+
+f = testpdf(x1,x2,..,xN,A1,A2,..,Am)
+
+where x1,x2,...,xN contain the points to be evaluated and A1,A2... are
+the distribution parameters. 
+LOGLIKE also calculates the asymptotic covariance matrix of phat=[A1,...,Am] 
+(if phat is estimated by a maximum likelihood method). This estimate is 
+usually better than the estimates returned by the log-likelihood functions
+implemented in MATLAB&#x27;s  STATS toolbox.
+
+- An option for Maximum Likelihood estimation added in wgpdfit. The ML estimates usually 
+gives best results. One problem with the other methods of estimation (pkd/mom/pwm) is 
+that the estimates may be inconsistant with the data, i.e. when k&gt;0 the estimated upper 
+end point (=s/k) of the distribution is often lower than the maximal observation. Try:
+sample = wgpdrnd(0.3,1,0,200,1);
+[phat] = wgpdfit(sample,&#x27;pwm&#x27;);
+[phat(2)/phat(1) max(sample)]  % Estimated upper end point  AND  maximal observation
+
+- New routines for Design of Experiments (see list of new functions).
+
+
+NEW FUNCTIONS
+~~~~~~~~~~~~~
+
+Parameter estimation
+dist2dfit  - Parameter estimates for DIST2D data.
+mdist2dfit - Parameter estimates for MDIST2D data. 
+dist2dsmfun - Smooths the conditional DIST2D distribution parameters. 
+dist2dsmfun2 - Smooths the conditional DIST2D distribution parameters.
+mdist2dlike - MDIST log-likelihood function. 
+loglike    - Log-likelihood function. 
+wbetafit   - Parameter estimates for Beta data.
+wchi2fit   - Parameter estimates for Chi squared data.
+weib2dfit   - Parameter estimates for 2D Weibull data. 
+wtfit      - Parameter estimates for Student&#x27;s T data.
+weib2dlike - 2D Weibull log-likelihood function.
+iqr        - Computes the Inter Quartile Range 
+range      - Calculates the difference between the maximum and minimum values.
+
+Probability density functions (pdf)
+dist2dpdf  - Joint 2D PDF computed as f(x1|X2=x2)*f(x2) 
+dist2dpdf2 - Joint 2D PDF computed as f(x1|X2=x2)*f(x2)
+mdist2dpdf - Joint 2D PDF due to Plackett given as  f{x1}*f{x2}*G(x1,x2;Psi). 
+mdist2dpdf2 - Joint 2D PDF due to Plackett given as  f{x1}*f{x2}*G(x1,x2;Psi). 
+wbetapdf   - Beta probability density function 
+weib2dpdf  - 2D Weibull probability density function (pdf). 
+weib2dpdf2 - Joint 2D Weibull probability density function 
+wfpdf      - Snedecor&#x27;s F probability density function
+wtpdf      - Student&#x27;s T probability density function 
+
+Cumulative distribution functions (cdf)
+dist2dcdf  - Joint 2D CDF computed as int F(X1&lt;v|X2=x2).*f(x2)dx2 
+dist2dfun  - Is an internal function to dist2dcdf dist2dprb.
+dist2dprb  - Returns the probability for rectangular regions.
+mdist2dcdf - Joint 2D CDF due to Plackett
+wbetacdf   - Beta cumulative distribution function 
+weib2dcdf  - Joint 2D Weibull cumulative distribution function 
+weib2dprb  - Returns the probability for rectangular regions. 
+wfcdf      - Snedecor&#x27;s F cumulative distribution function 
+wtcdf      - Student&#x27;s T  cumulative distribution function 
+
+Inverse cumulative distribution functions
+mdist2dcinv - Inverse of the conditional cdf of X2 given X1.
+wbetainv   - Inverse of the Beta distribution function 
+wchi2inv   - Inverse of the Chi squared distribution function
+weib2dcinv - Inverse of the conditional 2D weibull cdf of X2 given X1.
+wfinv      - Inverse of the Snedecor&#x27;s F distribution function
+wtinv      - Inverse of the Student&#x27;s T distribution function
+
+Random number generators
+dist2drnd  - Random points from a bivariate DIST2D distribution
+mdist2drnd - Random points from a bivariate MDIST2D distribution 
+wbetarnd   - Random matrices from a Beta distribution 
+wfrnd      - Random matrices from a Snedecor&#x27;s F distribution
+wtrnd      - Random matrices from a Student&#x27;s T distribution
+
+Statistical plotting
+dist2dcdfplot - Plot conditional empirical CDF of X1 given X2=x2 
+dist2dparamplot - Plot parameters of the conditional distribution 
+dist2dstatplot - Computes and plots the conditional mean and standard deviation 
+identify   - Identify points on a plot by clicking with the mouse. 
+mdist2dcdfplot - Plot conditional empirical CDF of X1 given X2=x2 
+mdist2dstatplot - Computes and plots the conditional mean and standard deviation. 
+weib2dcdfplot - Plot conditional empirical CDF of X1 given X2=x2 
+weib2dstatplot - Computes and plots the conditional mean and standard deviation
+pairs      - Pairwise scatter plots.
+
+Statistics
+dist2dstat - Mean and variance for the DIST2D distribution 
+mdist2dstat - Mean and variance for the MDIST2D distribution 
+wbetastat  - Mean and variance for the Beta distribution.
+weib2dstat - Mean and variance for the 2D Weibull distribution 
+wfstat     - Mean and variance for the Snedecor&#x27;s F distribution.
+wtstat     - Mean and variance for the Student&#x27;s T  distribution.
+
+Design of Experiments
+yates      - Calculates main and interaction effects using Yates&#x27; algorithm.
+ryates     - Reverse Yates&#x27; algorithm to give estimated responses
+fitmodel   - Fits response by polynomial
+alias      - Alias structure of a fractional design
+cdr        - Complete Defining Relation
+cl2cnr     - Column Label to Column Number
+cnr2cl     - Column Number to Column Label
+ffd        - Two-level Fractional Factorial Design
+sudg       - Some Useful Design Generators
+cplot      - Cubic plot of responses
+nplot      - Normal probability plot of effects
+
+Misc
+comnsize   - Check if all input arguments are either scalar or of common size. </pre></details><details><summary>aboutwafo</summary><pre>ABOUTWAFO  WAFO is a Matlab toolbox for analysis of random waves
+
+WAFO (Wave Analysis for Fatigue and Oceanography) is a toolbox of
+Matlab routines for statistical analysis and simulation of random waves 
+and random loads, and for calculation of the theoretical distributions
+related to the wave structure.
+
+The toolbox contains libraries and demonstration files, referring to
+papers, i.e. scripts for comparison of results in the litterature or
+generation of plots in recent publications. For modelling purposes
+within oceanography, families of common spectra and spreading functions 
+are implemented.
+
+For the modelling of sea waves, an important class of processes are
+stationary Gaussian processes with known spectral density. For these it 
+is possible to calculate the theoretical distribution of wave
+characterisics, e.g probability density for wave length or joint
+probability density for wave length and amplitude. Some routines handle 
+the case with random fields, taking dynamics of the sea into
+account. WAFO also contains algorithms for modelling with transformed
+Gaussian processes.
+
+An important part of WAFO are routines related to random loads and
+fatigue. For a random load, rainflow cycles can be extracted and the
+expected rainflow matrix can be calculated. Additional routines for
+more complex models, e.g model involving switching Markov chains of
+turning points, are also found.
+
+See also  docs 
+Reference
+Brodtkorb, P.A, and Johannesson, P and Lindgren, G. and  Rychlik, I. and
+Ryden,R and Sj\&quot;o, E (2000)
+&quot;WAFO - a Matlab toolbox for analysis of random waves&quot;
+To appear in the Proceedings of the 10th ISOPE Conference
+History
+by pab et.al. 21.01.2000
+function aboutwafo</pre></details><details><summary>addfeatr</summary><pre>ADDFEATR  How To Add New Features to WAFO
+
+NEW Functions 
+~~~~~~~~~~~~~~~
+General conventions:
+Each line of code in the functions must not exceed 76 columns
+to ease the readability of the code. Function names must be written in lower 
+case letters without any underscores. Also local variable names should 
+preferably be in lower case letters. Global variables should be written in 
+upper case letters in order to avoid confusion with local variables. 
+
+Help header:
+Generally a function included in WAFO should be well commented and include 
+the following information in the given order in the help header:
+
+Header: (H1 line) Name of the function (in uppercase letters) followed by a
+concise and definitive description appropriate for retrieval purposes by
+the MATLAB \verb+lookfor+ command. Not to exceed one line.  
+Call  : Specifying the calling prototype, i.e. output argument(s),
+function name and input argument(s). Function name in lower case letters. 
+Outputs/inputs: A list describing the output and input arguments in
+the order they appear in the calling prototype. The description should
+also indicate the data type of the argument. An optional input argument is
+indicated by specifying the default value enclosed in parenthesis. Each
+line should be aligned so that all the equal-signs are in the same column.
+Description: Detailed explanation of what the function does, the
+assumptions made, the limitations and how the algorithm works.  This
+should be as detailed as possible without exceeding one page.
+Side effects: If any like changing/using global variables, 
+changing properties of figure windows etc.
+should also be notified in the help header
+Example(s): An example of how to use the function in practice is desirable.
+See also  Comma separated list of related functions or functions which this 
+routine calls.
+Secret help:
+Immediately after the help header the following information should be given: 
+
+References: A complete reference from which the user can obtain further information
+Tested on : Specifies on which matlab version the function has been tested.
+History   : Revision log of the function in chronological order. 
+
+See jonswap for an example on how it looks like in the WAFO toolbox
+
+
+NEW DATASETS:
+~~~~~~~~~~~~~~
+
+Signals: 
+
+[1] Choose a filename  (preferably with less than eight characters)  e.g. &quot;gullfaks&quot; 
+
+[2] Create an ascii data file named  &quot;gullfaks.dat&quot;, which contains your
+signal in vertical format with sampled values in columns.
+The documentation m-file explains what each column is a measure of.
+Sampling times if given should be in the first column.
+
+[3] Create an documentation file named &quot;gullfaks.m&quot; with the 
+following structure: (all in lower case letters if not explicitly stated otherwise)
+
+Title         : name of the m file in upper case letters followed by a 
+descriptrive text. Not to exceed one line.
+Call          : indicating how to access the data
+Size          : The size of data.
+Sampling rate :
+Device        : Measuring device used to sample the data.
+Source        : Indication of the original source of the data
+Format        : Specifying the format of the data
+Description   : and other relevant facts of the data , \ie{} where and when the 
+data were measured. An indication of the quality of the data should 
+also be included.  Descriptive measures of the data like significant 
+wave height, Hm0 , and peak period, Tp, may also be given here.  
+Also restrictions on the use of the data if any should be given here.
+See also      : a comma separated list of related files or functions
+
+Example:
+
+GULLFAKS  surface elevation measured at Gullfaks C 30.12.1990
+
+CALL:  xn = load(&#x27;gullfaks.dat&#x27;)
+
+Size             :    2560 X 2
+Sampling Rate    :    2.5 Hz
+Device           :    EMI laser
+Source           :    STATOIL 
+Format           :    ascii, c1: time c2: surface elevation
+Description      :
+The wave data was measured 24th December 1989 at the Gullfaks C platform  
+in the North Sea from 17.00 to  21.20. The  water depth of  218 m is regarded 
+as deep water  for the most  important wave components.
+There are two EMI laser sensors named 219 and 220. This data  set  is obtained from
+sensor 219, which is  located in the
+Northwest corner  approximately two platform leg diameters away from   
+the closest  leg.  
+Thus the wave elevation is not expected  to be significantly 
+affected by  diffraction effects for incoming waves in the western sector.   
+The wind direction for this period is from the southwest.
+Some  difficulties in calibration of the instruments have been reported
+resulting in several consecutive measured values being equal or nearly equal 
+in the observed data set.
+
+Hm0 = 6.8m, Tm02 = 8s, Tp = 10.5
+
+See also  gullfaks.jpg
+
+
+NEW  DEMONSTRATIONS / PUBLISHED PAPERS:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+To add new demonstration scripts to the DEMOS directory:
+
+[1] Choose a name for your demo and a short prefix for files
+implementing your demo. For example, &quot;isope99&quot; and &quot;is&quot;.
+
+[2] Create the new subdirectory accordingly after the chosen name:
+
+WAFO/DEMOS/isope99. 
+
+[3] Create the m-files which implement your demo:
+isdemo    - starts a user controlled demonstration with choices
+isinit    - sets up data structures, globals etc...
+isfig1,2..- called from isdemo. 
+isintro   - help file describing the purpose of the demo
+iscleanup - clears all globals created by the demo and restores the 
+original workspace
+
+[4]  Specialized tools/functions not available in the official 
+release of WAFO needed for generating the figures should be put into 
+WAFO/DEMOS/isope99/private subdirectory.
+
+These are the rules for the scripts:
+
+I.   One m-file creates one complete figure, not a series
+of figures or a subplot of a figure.
+II.  If some variables in one script is needed by another script
+they  must be saved as global variables.
+III. No pause or prints statements allowed.
+IV.  As far as possible try to use the tools in WAFO
+
+Inspection of existing demonstrations will help in following these rules.
+
+
+
+To add new demonstration scripts to the PAPER directory is 
+similar to the DEMOS except that the scripts must recreate figures 
+in  published articles or technical reports.
+
+
+history
+by pab 14.12.1999
+</pre></details><details><summary>ampdef</summary><pre>AMPDEF wave heights and amplitude definitions and nomenclature
+
+Definition of wave amplitude and wave heights:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+&lt;----- Direction of wave propagation
+
+
+...............c_..........
+|             /| \         |
+Hd  |           _/ |  \        |  Hu
+M       |          /   |   \       |
+/ \      |     M   / Ac |    \_     |     c_  
+F   \     |    / \m/     |      \    |    /  \ 
+------d----|---u------------------d---|---u----d------ level v
+\   |  /|                   \  |  /      \L
+\_ | / | At                 \_|_/     
+\|/..|                      t
+t
+
+Ac   = crest amplitude
+At   = trough amplitude
+Hd   = wave height as defined for down crossing waves
+Hu   = wave height as defined for up crossing waves
+
+See also  wavedef, ampdef, crossdef, tpdef
+history:
+revised pab 21.01.2000
+-  changed  from: Wave propagating direction 
+to: Direction of wave propagation
+revised pab 12.12.1999
+added help ampdef
+by Per A. Brodtkorb 19.09.1999
+</pre></details><details><summary>atlantic</summary><pre>ATLANTIC Significant wave-height data recorded in the Atlantic Ocean
+
+CALL:  load(&#x27;atlantic.dat&#x27;);
+
+Size             :     582 X 1
+Sampling Rate    :     ~ 14 times a month
+Device           :    
+Source           :    
+Format           :    ascii
+Description      :
+atlantic.dat contains average significant wave-height data recorded
+approximately 14 times a month in December-February during 7 years and
+at 2 locations in the Atlantic Ocean
+
+Acknowledgement:
+This dataset were made available by Dr. David Carter
+and Dr. David Cotton, Satellite Observing Systems, UK.</pre></details><details><summary>bugreport</summary><pre>BUGREPORT Bug Report Form for WAFO
+
+Please fill out the following form and submit it as
+your report of a problem:
+
+Title of Problem:                        (e.g. Function XXXXX makes Mistake)
+
+Name of Submitter:
+e-mail of Submitter:
+
+Version of WAFO:
+Machine Architecture (PC,Mac,Unix):
+
+Short description of problem:
+
+
+
+
+
+Submit programming code which reproduces the problem here:
+
+
+
+Specify  here which file causes the problem:
+
+
+
+
+If possible, suggest a fix for problem here.
+
+
+
+
+Thanks for your cooperation!
+
+history:
+by pab 14.12.1999 </pre></details><details><summary>crossdef</summary><pre>CROSSDEF level v crossing definitions and nomenclature 
+
+Definition of level v crossing:   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Let the letters &#x27;m&#x27;, &#x27;M&#x27;, &#x27;F&#x27;, &#x27;L&#x27;,&#x27;d&#x27; and &#x27;u&#x27; in the 
+figure below denote local minimum, maximum, first value, last 
+value, down- and up-crossing, respectively. The remaining 
+sampled values are indicated with a &#x27;.&#x27;. Values that are identical 
+with v, but do not cross the level is indicated with the letter &#x27;o&#x27;.
+
+We have a level up-crossing at index, k, if 
+
+x(k) &lt;  v and v &lt; x(k+1) 
+or if 
+x(k) == v and v &lt; x(k+1) and x(r) &lt; v for some di &lt; r &lt;= k-1 
+
+where di is  the index to the previous downcrossing.
+Similarly there is a level down-crossing at index, k, if 
+
+x(k) &gt;  v and v &gt; x(k+1)
+or if 
+x(k) == v and v &gt; x(k+1) and x(r) &gt; v  for some ui &lt; r &lt;= k-1 
+
+where ui is  the index to the previous upcrossing.
+
+The first (F) value is a up crossing if  x(1) = v and x(2) &gt; v. 
+Similarly, it is a down crossing if      x(1) = v and x(2) &lt; v. 
+
+M
+.   .                  M                   M
+.      . .             .                   .   . 
+F            d               .             .       L
+----------------------u-------d-------o--------------------- level v
+.     .           .   .   u
+.                 m
+m
+
+See also  perioddef, wavedef, tpdef, findcross, dat2tp
+history:
+by Per A. Brodtkorb 19.09.1999</pre></details><details><summary>datastructures</summary><pre>DATASTRUCTURES of spectrum, covariance function and density (pdf) in WAFO
+
+To represent spectra, covariance functions and probability density functions
+in WAFO, the MATLAB datatype &#x27;structured array&#x27; is used. Here follows a list
+of the fields in the struct representing S, cvf and pdf, respectively.
+
+Spectrum structure
+~~~~~~~~~~~~~~~~~~
+Requisite fields:
+.type  String: &#x27;freq&#x27;, &#x27;dir&#x27;, &#x27;k2d&#x27;, k1d&#x27;, &#x27;encdir&#x27; or &#x27;enc&#x27;.
+.S     Spectrum values (size=[nf 1] or [np nf]).
+.w OR .f OR .k Frequency/wave number lag, length nf.
+.tr    Transformation function (default [] (none)). 
+.h     Water depth (default inf).
+.norm  Normalization flag, Logical 1 if S is normalized, 0 if not
+.note  Memorandum string.
+.date  Date and time of creation or change.
+Type-specific fields:
+.k2    Second dim. wave number lag, if .type=&#x27;k2d&#x27; or &#x27;rotk2d&#x27;, length np.
+.theta Angular lags, if .type=&#x27;dir&#x27;, &#x27;rotdir&#x27; or &#x27;encdir&#x27;, length np.
+.v     Ship speed, if .type = &#x27;enc&#x27; or &#x27;encdir&#x27;.
+.phi   angle of rotation of the coordinate system
+(counter-clocwise) e.g. azymuth of a ship.
+
+See also  createspec, wspecplot
+
+Covariance function (cvf) structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.R Covariance function values. Size [ny nx nt], all singleton dim. removed.
+.x     Lag of first space dimension, length nx.
+.y     Lag of second space dimension, length ny.
+.t     Time lag, length nt.
+.h     Water depth.
+.tr    Transformation function.
+.type  &#x27;enc&#x27;, &#x27;rot&#x27; or &#x27;none&#x27;.
+.v     Ship speed, if .type=&#x27;enc&#x27;
+.phi   Rotation of coordinate system, e.g.  direction of ship 
+.norm  Normalization flag, Logical 1 if autocorrelation, 0 if covariance.
+.Rx ... .Rtttt   Obvious derivatives of .R.
+.note  Memorandum string.
+.date  Date and time of creation or change.
+
+See also  createcov, spec2cov, cov2spec, covplot
+
+Probability density function (pdf) structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Describing a density of n variables:
+.f     Probability density function values (n-dimensional matrix)
+.x     Cell array of vectors defining grid for variables (n cells)
+.labx  Cell array of label strings for the variables (n cells)
+.title Title string                           
+.note  Memorandum string.
+
+See also  createpdf, pdfplot
+History: 
+revised by IR 03.04.2001
+revised pab 21.01.2000 
+- spellchecked the file 
+- added norm to spec
+- changed reference to specplot to wspecplot
+revised by es 20.10.1999 (cell arrays in pdf-struct)
+by es 13.10.1999</pre></details><details><summary>fatigue</summary><pre>Fatigue in WAFO (Wave Analysis for Fatigue and Oceanography).
+Version 2.1.1   28-Sep-2005 
+
+Routines for Markov models, cycle counting, damage, and fatigue.
+
+
+Cycle counting (Rainflow, min-max cycles) &amp; Crossings. [WAFO/cycles]
+dat2tp      - The turning points from data, optionally rainflowfiltered. [onedim]
+dat2rfm     - Calculates the rainflow matrix from a time signal.
+rfcfilter   - Rainflow filter turning points.
+tp2lc       - Level crossings from turning points.
+tp2mm       - min2Max (and Max2min) cycles from turning points.
+tp2rfc      - Rainflow cycles from turning points.
+tp2arfc     - Asymmetric rainflow cycles from TP.
+tp2arfc4p   - Asymmetric RFC and residual from TP (used by tp2arfc).
+res2arfc    - Asymmetric rainflow cycles for a residual.
+cc2lc       - Level crossings from a cycle count.
+cc2amp      - Amplitude histogram from a cycle count.
+findrfc     - Finds indices to rainflow cycles of a sequence of TP. [onedim]
+findcross   - Finds the indices of level v up- and down- crossings of a vector. [onedim]
+
+Discrete loads &amp; Cycle matrices (Rainflow matrix). [WAFO/cycles]
+dat2dtp     - Discrete TP from load.
+cc2dcc      - Discretization of a cycle count.
+dtp2rfm     - Rainflow matrix from discrete TP.
+dtp2arfm    - Asymmetric rainflow matrix from discrete TP.
+dtp2arfm4p  - Asymmetric RFM and residual from discrete TP (used by dtp2arfm).
+dtp2rfm_sid - RFM from discrete turning points with side information.
+dtp2arfm_sid- Asymmetric RFM from discrete TP with side information.
+cc2cmat     - Estimates cycle matrix from a cycle count. 
+dcc2cmat    - Histogram matrix from discrete class indices.
+cmat2nt     - Counting distribution from cycle matrix.
+nt2cmat     - Cycle matrix from counting distribution.
+cmat2lc     - Level crossings from cycle matrix.
+nt2lc       - Level crossings from counting distribution.
+cmat2amp    - Amplitude histogram from cycle matrix.
+cmat2rmcmat - Convert cycle matrix from min-max to range-mean.
+rmcmat2cmat - Convert cycle matrix from range-mean to min-max.
+cmatresamp  - Resamples a cycle matrix, random resampling.
+cmatcombine - Combines two cycle matrices.
+
+Extrapolation &amp; Smoothing of RFM/CMAT/LC. [WAFO/cycles]
+rfmextrapolate - Extrapolates a rainflow matrix.
+tpextrapolate  - Extrapolates a sequence of turning points.
+cmat2extralc   - Extrapolate level crossing spectrum from cycle matrix.
+wgpdfit_mld    - Routine for ML estimation of GPD with discrete data.
+lc2rfmextreme  - Compute extreme RFM from level crossings.
+extralc        - Extrapolate a level crossing spectrum.
+smoothcmat     - Smooth a cycle matrix.
+
+Plotting. [WAFO/cycles]
+ccplot      - Plot cycle count.
+cmatplot    - Plot cycle matrix.
+cocc        - Plot a cycle count with cycle matrix isolines.
+lcplot      - Plot level crossing intensity/spectrum. [onedim]
+lsplot      - Plot load spectra.
+
+Markov model. [WAFO/markov]
+mat2tmat    - Convert matrix to transition matrix.
+mc2stat     - Stationary distribution for a Markov chain.
+mc2rfm      - RFM for a Markov chain.
+mctp2stat   - Stationary distribution for a MCTP.
+mctp2reverse- Calculate time-reversed MCTP.
+mctp2rfm    - RFM for a Markov chain of turning points.
+mctp2arfm   - Asymmetric rainflow matrix for a MCTP.
+arfm2mctp   - Markov matrix given an asymmetric rainflow matrix. 
+mktestmat   - Makes test matrices for min-Max (and Max-min) matrices.
+
+Switching Markov model. [WAFO/markov]
+smc2rfm     - RFM for a Switching Markov chain.
+smctp2stat  - Stationary distribution for a SMCTP.
+smctp2joint - Calculate joint Markov chain for a SMCTP.
+smctp2rfm   - RFM for a Switching Markov chain of turning points.
+smctp2arfm  - Asymmetric rainflow matrix for a SMCTP.
+hmmplot     - Plot Hidden Markov Model (HMM).
+
+Estimate a Switching Markov model. [WAFO/markov]
+estsmctp    - Estimate SMCTP model from an observed RFM.
+f_smctp     - Help routine to estsmtp.
+estmc       - Estimate Transition matrix of MC from signal.
+
+loglcmat    - log-Likelihood of cycle matrix.
+chi2cmat    - Chi-square distance of cycle matrix.
+hdcmat      - Hellinger distance of cycle matrix.
+klcmat      - Kullback-Leibler distance of cycle matrix.
+
+tr_p2x      - Transform P-matrix to X-vector (Used by &#x27;estsmctp&#x27;)
+tr_x2p      - Transform X-vector to P-matrix. (Used by &#x27;estsmctp&#x27;)
+tr_m2x      - Transform Model-structure to X-vector. (Used by &#x27;estsmctp&#x27;)
+tr_x2m      - Transform X-vector to Model-structure. (Used by &#x27;estsmctp&#x27;)
+scalemat    - Scale and translate a cycle matrix. (Used by &#x27;estsmctp&#x27;)
+f_funm      - Calculate min-max matrix for Model-structure. (Used by &#x27;estsmctp&#x27;)
+
+Fatigue &amp; damage. [WAFO/damage]
+cc2dam      - Calculate total damage from a cycle count.
+cmat2dam    - Calculate total damage from a cycle matrix.
+cmat2dmat   - Calculate damage matrix from cycle matrix.
+lc2dplus    - Upper bound for total damage from level crossings.
+snplot      - Plots S-N data and estimates parameters.
+sphdam      - Calculates spherical damage for a 3-D load.
+ftf         - Calculates fatigue failure time distribution.
+damint      - Calculates damage intensity from counting distribution.
+down2cc     - Calculates the most damaging cycle count given crossings.
+roadspec    - Road spectrum.
+
+Simulation of random loads [WAFO/wsim]
+lc2sdat     - Simulates a process with given irregularity factor and crossing spectrum.
+rfm2dtp     - Reconstructs a sequence of turning points from a rainflow matrix. 
+mcsim       - Simulates a discrete Markov chain
+mctpsim     - Simulates a discrete Markov chain of turning points
+smcsim      - Simulates a switching Markov chain
+smctpsim    - Simulates a switching Markov chain of turning points
+sarmasim    - Simulates a switching AR- or ARMA-process
+
+Demos. [WAFO/wdemos]
+rfcdemo1       - Demo for switching AR(1)-processes.
+rfcdemo2       - Demo for calculation of the RFM for a switching MCTP model.
+itmkurs        - Initiate paths for Demo Load and Fatigue Analysis. 
+democc         - Demo of rainflow and min-max cycle definitions.
+democc_markmax - plots load and marks a maximum. (Used by democc) 
+democc_rfcdef  - illustrates the definition of rainflow cycles. (Used by democc) 
+democc_mmdef   - illustrates the definition of min-max cycles. (Used by democc) 
+democc_tpdef   - illustrates the definition of turning points. (Used by democc) 
+democc_plotmat - plots RFC and min-max counts. (Used by democc) </pre></details><details><summary>getstart</summary><pre>GETSTART  ideas for getting started with WAFO
+
+0). Install WAFO -- see install.m
+
+1). Get the manual from the home page
+http://www.maths.lth.se/matstat/wafo/
+if you do not already have it in the DOCS directory.
+
+2). Peak into the online documentation files by using wafomenu.m
+
+3). Run some of the scripts in the DEMOS and PAPER directory
+
+4). Look at the help header of a specific function and try out the
+examples if given. 
+
+5). Analyze some of the datasets in WAFO/data
+
+6). If you have come to this point, you are an experienced WAFO
+user. Congratulations.
+(+) can be made more detailed</pre></details><details><summary>gfaks89</summary><pre>GFAKS89  Surface elevation measured at Gullfaks C 24.12.1989
+
+CALL:  xn = load(&#x27;gfaks89.dat&#x27;)
+
+Size             :    39000 X 2
+Sampling Rate    :    2.5 Hz
+Device           :    EMI laser
+Source           :    STATOIL 
+Format           :    ascii, c1: time c2: surface elevation
+Description      :
+The wave data was measured 24th December 1989 at the Gullfaks C platform  
+in the North Sea from 17.00 to 21.20. The period from 20.00 to 20.20
+is missing and contains NaNs.  The water depth of 218 m is  
+regarded as deep water for the most important wave components.
+There are two EMI laser sensors named 219 and 220. This data set is 
+obtained from sensor 219, which is located in the Northwest
+corner approximately two platform leg diameters away from   
+the closest leg.  
+Thus the wave elevation is not expected to be significantly 
+affected by diffraction effects for incoming waves in the western sector.   
+The wind direction for this period is from the south.
+Some difficulties in calibration of the instruments have been reported
+resulting in several consecutive measured values being equal or almost equal 
+in the observed data set.
+
+This dataset is for non-commercial use only.
+
+Hm0 = 6.8m, Tm02 = 8s, Tp = 10.5
+
+Acknowledgement:
+This dataset were prepared and made available by Dr. S. Haver,
+STATOIL, Norway
+
+See also  gfaksr89, northsea
+Revised pab 04.10.2000
+- fixed some typing errors.</pre></details><details><summary>gfaksr89</summary><pre>GFAKSR89  Reconstructed surface elevation measured at Gullfaks C 24.12.1989. 
+
+CALL:  xn = load(&#x27;gfaksr89.dat&#x27;)
+
+Size             :    39000 X 2
+Sampling Rate    :    2.5 Hz
+Device           :    EMI laser
+Source           :    STATOIL 
+Format           :    ascii, c1: time c2: surface elevation
+Description      :
+This is a reconstructed version of the data in the GFAKS89.DAT file.
+The following calls were made to reconstruct the data:
+
+inds = findoutliers(gfaks89,.02,2,1.23);
+gfaksr89 = reconstruct(gfaks89,inds,6);
+
+The wave data was measured 24th December 1989 at the Gullfaks C platform  
+in the North Sea from 17.00 to 21.20. The period from 20.00 to 20.20
+is missing in the original data.  The  water depth of 218 m is  
+regarded as deep water for the most important wave components.
+There are two EMI laser sensors named 219 and 220. This data set is 
+obtained from sensor 219, which is located in the Northwest
+corner approximately two platform leg diameters away from   
+the closest leg.  
+Thus the wave elevation is not expected to be significantly 
+affected by diffraction effects for incoming waves in the western sector.   
+The wind direction for this period is from the south.
+Some difficulties in calibration of the instruments have been reported
+resulting in several consecutive measured values being equal or almost equal 
+in the observed data set. 
+
+Hm0 = 6.8m, Tm02 = 8s, Tp = 10.5
+
+See also  gfaks89 
+Revised pab 04.10.2000
+- fixed some typing errors.</pre></details><details><summary>install</summary><pre>Installation description of WAFO Toolbox
+
+Wave Analysis for Fatigue and Oceanography Toolbox
+--------------------------------------------------
+
+Unix Instructions:  
+~~~~~~~~~~~~~~~~~~ 
+1. Binary download the archive wafo.tar.gz 
+
+2. Uncompress the archive by &#x27;gunzip wafo.tar.gz&#x27;
+
+3. Change directory to the place you want the WAFO directory to reside
+
+4. &#x27;tar xf wafo.tar&#x27;
+
+5. Edit the file startup.m and give a path to the WAFO toolbox. 
+
+
+PC Instructions:
+~~~~~~~~~~~~~~~~
+1. Binary download the file wafo1.zip to your PC. You will be asked for the
+destination/directory of the compressed file. 
+
+2. Uncompress the zip-file by means of any software EnZIP or WinZip.
+
+3. Edit the file startup.m and give a path to the WAFO toolbox. 
+
+
+Trouble-Shooting
+~~~~~~~~~~~~~~~~			
+If you encounter any problems, please contact us via e-mail:
+igor@maths.lth.se, jesper@maths.lth.se, pab@marin.ntnu.no </pre></details><details><summary>japansea</summary><pre>JAPANSEA  coastline map of The Japan Sea
+
+CALL:  map = load(&#x27;japansea.dat&#x27;);
+
+Size             :     692 X 2
+Sampling Rate    :    
+Device           :    
+Source           :    http://crusty.er.usgs.gov/coast/getcoast.html
+Format           :    ascii, c1: longitude c2: latitude 
+Description      :
+JAPANSEA.DAT contains data for plotting a map of The Japan Sea.
+The data is obtained from USGS coastline extractor.
+
+Example: the map is seen by
+
+plot(map(:,1),map(:,2)), hold on
+text(131,46,&#x27;China&#x27;)
+text(132,43,&#x27;Vladivostok&#x27;)
+text(132,40,&#x27;Japan Sea&#x27;)
+text(135,35,&#x27;Japan&#x27;)
+text(139.5,38.3,&#x27;Yura&#x27;)
+text(139,35.7,&#x27;Tokyo&#x27;), hold off
+
+% If you have the m_map toolbox (see http://www.ocgy.ubc.ca/~rich/):
+m_proj(&#x27;lambert&#x27;,&#x27;long&#x27;,[130 148],&#x27;lat&#x27;,[30 48]);
+m_line(map(:,1),map(:,2));
+m_grid(&#x27;box&#x27;,&#x27;fancy&#x27;,&#x27;tickdir&#x27;,&#x27;out&#x27;);
+m_text(131,46,&#x27;China&#x27;);
+m_text(132,43,&#x27;Vladivostok&#x27;);
+m_text(132,40,&#x27;Japan Sea&#x27;);
+m_text(135,35,&#x27;Japan&#x27;);
+m_text(139.5,38.3,&#x27;Yura&#x27;);
+m_text(139,35.7,&#x27;Tokyo&#x27;);
+
+History:
+revised pab Nov 2004
+-Enhanced the example with commands to the m_map toolbox.
+By pab 15.01.2000</pre></details><details><summary>limitations</summary><pre>LIMITATIONS (+)  WAFO known limitations
+
+(1) Time: Some of the routines may take a while to execute 
+depending on the dimension of the problem and parameter values given.
+(E.g. all the functions in the trgauss directory)
+
+(2) Generally, we do not check to see if input parameters
+are reasonable. 
+
+(3) Some functions may have limited usability, i.e. can not
+handle every type of arguments even tough its name indicate so.
+This is hopefully accomplished in some future releases.
+(+) Other limitations?
+History
+By pab 09.09.1999
+</pre></details><details><summary>mvnprodcorrprbmex</summary><pre>MVNPRODCORRPRBMEX Computes multivariate normal probability 
+with product correlation structure.
+
+CALL [value,error,inform]=mvnprodcorrprbmex(rho,A,B,abseps,releps,useBreakPoints);
+
+RHO    REAL, array of coefficients defining the correlation
+coefficient by:
+correlation(I,J) =  RHO(I)%RHO(J) for J/=I
+where 
+1 &lt;= RHO(I) &lt;= 1
+A		 REAL, array of lower integration limits.
+B		 REAL, array of upper integration limits.
+NOTE: any values greater the 10, are considered as
+infinite values.
+ABSEPS REAL absolute error tolerance.
+RELEPS REAL relative error tolerance.
+USEBREAKPOINTS = 1 If extra integration points should be used
+around possible singularities
+0 If no extra
+
+ERROR  REAL estimated absolute error, with 99% confidence level.
+VALUE  REAL estimated value for the integral
+INFORM INTEGER, termination status parameter:
+if INFORM = 0, normal completion with ERROR &lt; EPS;
+if INFORM = 1, completion with ERROR &gt; EPS and MAXPTS 
+function vaules used; increase MAXPTS to 
+decrease ERROR;
+
+
+This file was successfully compiled for matlab 5.3
+using Compaq Visual Fortran 6.1, and Windows 2000.
+The example here uses Fortran77 source.
+First, you will need to modify your mexopts.bat file.
+To find it, issue the command prefdir(1) from the Matlab command line,
+the directory it answers with will contain your mexopts.bat file.
+Open it for editing. The first section will look like:
+
+rem %%%%%%%%%***********************************************************
+rem General parameters
+rem ********************************************************************
+set MATLAB=%MATLAB%
+set DF_ROOT=C:\Program Files\Microsoft Visual Studio
+set VCDir=%DF_ROOT%\VC98
+set MSDevDir=%DF_ROOT%\Common\msdev98
+set DFDir=%DF_ROOT%\DF98
+set PATH=%MSDevDir%\bin;%DFDir%\BIN;%VCDir%\BIN;%PATH%
+set INCLUDE=%DFDir%\INCLUDE;%DFDir%\IMSL\INCLUDE;%INCLUDE%
+set LIB=%DFDir%\LIB;%VCDir%\LIB
+
+then you are ready to compile this file at the matlab prompt using the
+following command:
+mex -O mvnprodcorrprbmex.f</pre></details><details><summary>northsea</summary><pre>NORTHSEA  coastline map of The Nortsea
+
+CALL:  map = load(&#x27;northsea.dat&#x27;);
+
+Size             :     60646 X 2
+Sampling Rate    :    
+Device           :    
+Source           :    http://crusty.er.usgs.gov/coast/getcoast.html
+Format           :    ascii, c1: longitude c2: latitude 
+Description      :
+NORTHSEA.DAT contains data for plotting a map of The Northsea.
+The data is obtained from USGS coastline extractor.
+
+Example: the map is seen by
+
+plot(map(:,1),map(:,2)), hold on
+text( 1,62     ,&#x27;Statfjord A&#x27;), line([1.8, 1.8], [62  ,61.2 ])
+plot(1.8,61.2,&#x27;x&#x27;)  
+text(1,60.5,&#x27;Gullfaks C&#x27;),      line([1.8, 2.3 ], [60.5 ,61.20 ])
+plot(2.30,61.20,&#x27;x&#x27;)
+text(1,59.1,&#x27;Frigg&#x27;),           line([1.8, 2.0 ], [59.1 ,59.9 ])
+plot(2.0,59.90,&#x27;x&#x27;),
+text(1,57.6,&#x27;Sleipner&#x27;),        line([1.8, 1.9 ], [57.60 ,58.4 ])
+plot(1.90,58.40,&#x27;x&#x27;) 
+text(1,56.9,&#x27;Draupner&#x27;),        line([1.8, 2.6 ], [56.90 ,57.7 ])
+plot(2.6,57.7,&#x27;x&#x27;),
+text(10.40,60.10,&#x27;Oslo&#x27;),      plot(10.80,59.85,&#x27;h&#x27;)
+text(10.00,63.05,&#x27;Trondheim&#x27;), plot(10.80,63.40,&#x27;h&#x27;)
+text(4.00,58.80,&#x27;Stavanger&#x27;),  plot(5.52,58.90,&#x27;h&#x27;)
+text(3.50,60.30,&#x27;Bergen&#x27;),     plot(5.20,60.30,&#x27;h&#x27;) , hold off
+
+% If you have the m_map toolbox (see http://www.ocgy.ubc.ca/~rich/):
+m_proj(&#x27;lambert&#x27;,&#x27;long&#x27;,[-2 12],&#x27;lat&#x27;,[56 64]);
+m_line(map(:,1),map(:,2));
+m_grid(&#x27;box&#x27;,&#x27;fancy&#x27;,&#x27;tickdir&#x27;,&#x27;out&#x27;);
+m_text( 1,62     ,&#x27;Statfjord A&#x27;) ;
+m_line([1.8, 1.8], [62  ,61.2 ]);
+m_text(1.7,61.2,&#x27;x&#x27;) ;
+m_text(1,59.5,&#x27;Gullfaks C&#x27;) ;
+m_line([1.8, 2.3 ], [59.50 ,61.20 ]);
+m_text(2.20,61.20,&#x27;x&#x27;) ;
+m_text(10.10,60.05,&#x27;Oslo&#x27;); 
+m_text(8.5,63.5,&#x27;Trondheim&#x27;); 
+m_text(4.00,58.80,&#x27;Stavanger&#x27;); 
+m_text(3.50,60.30,&#x27;Bergen&#x27;) ;
+m_text(8,61,&#x27;Norway&#x27;);
+History
+revised pab Nov 2004
+-Enhanced the example with commands to the m_map toolbox
+By pab 06.07.00</pre></details><details><summary>perioddef</summary><pre>PERIODDEF wave periods (lengths) definitions and nomenclature
+
+Definition of wave periods (lengths):
+---------------------------------------
+
+
+&lt;----- Direction of wave propagation 
+
+&lt;-------Tu---------&gt;
+:                  :
+&lt;---Tc-----&gt;       :
+:          :       : &lt;------Tcc----&gt;
+M           :      c   :       : :             :
+/ \          : M   / \_ :       : c_            c
+F   \         :/ \m/    \:       :/  \          / \  
+------d--------u----------d-------u----d--------u---d-------- level v
+\      /            \     /     :\_    _/:   :\_   L
+\_   /              \_t_/      :  \t_/  :   :  \m/
+\t/                 :        :        :   :
+:                  :        &lt;---Tt---&gt;   : 
+&lt;--------Ttt-------&gt;        :            :
+&lt;-----Td-----&gt;
+Tu   = Up crossing period
+Td   = Down crossing period
+Tc   = Crest period, i.e., period between up crossing and 
+the next down crossing 
+Tt   = Trough period, i.e., period between down crossing and 
+the next up crossing
+Ttt  = Trough2trough period
+Tcc  = Crest2crest period
+
+
+&lt;----- Direction of wave propagation 
+
+&lt;--Tcf-&gt;                              Tuc
+:      :               &lt;-Tcb-&gt;        &lt;-&gt; 
+M            :      c               :     :        : :
+/ \           : M   / \_             c_    :        : c
+F   \          :/ \m/    \           /  \___:        :/ \  
+------d---------u----------d---------u-------d--------u---d-------- level v
+:\_      /            \     __/:        \_    _/     \_   L
+:  \_   /              \_t_/   :          \t_/         \m/
+:    \t/                 :     :
+:     :                  :     : 
+&lt;-Ttf-&gt;                  &lt;-Ttb-&gt; 
+
+
+Tcf  = Crest front period, i.e., period between up crossing and crest
+Tcb  = Crest back period, i.e., period between crest and down crossing 
+Ttf  = Trough front period, i.e., period between down crossing and trough
+Ttb  = Trough back period, i.e., period between trough and up crossing 
+
+Also note that Tcf and Ttf can also be abbreviated by their crossing
+marker, e.g. Tuc (u2c)  and Tdt (d2t), respectively. Similar applies to all the
+other wave periods and wave lengths. 
+(The nomenclature for wave length is similar, just substitute T and
+period with L and length, respectively)
+
+&lt;----- Direction of wave propagation 
+
+&lt;--TMm--&gt;
+&lt;-TmM-&gt;    :       :
+M       :     :    M       :
+/ \      :     M   /:\_     :     M_            M
+F   \     :    / \m/ :  \    :    /: \          / \  
+\    :   /      :   \   :   / :  \        /   \
+\   :  /       :    \  :  /  :   \_    _/     \_   L
+\_ : /        :     \_m_/   :     \m_/         \m/
+\m/         :             :      :            :
+&lt;-----TMM-----&gt;      &lt;----Tmm-----&gt;
+
+
+TmM = Period between minimum and the following Maximum
+TMm = Period between Maximum and the following minimum
+TMM = Period between Maximum and the following Maximum
+Tmm = Period between minimum and the following minimum
+
+See also  wavedef, ampdef, crossdef, tpdef
+history:
+revised pab 15.05.2000
+- minor corrections for Tcb
+- added Tmm, TMM, etc.....
+revised pab 21.01.2000
+- updated help header
+-  changed from: Wave propagating direction 
+to: Direction of wave propagation
+by Per A. Brodtkorb 19.09.1999</pre></details><details><summary>readme</summary><pre>README Readme file for module WSIM in WAFO Toolbox 
+
+This file describes new features, bug fixes, and changes in this version 
+of the WAFO Toolbox.
+
+Version 2.1.1   07-Sep-2005
+
+FIXES
+~~~~~
+spec2sdat    - small fix
+seamovie     - fixed a bug: in matlab7: &quot;Mv =[]; Mv(j) = getframe;&quot;
+does not work, now fixed.
+seasim       - added fwaitbar and removed disp statements
+spec2linspec - changed the default constant controlling its
+performance. Can be improved further.
+
+
+NEW FUNCTIONS
+~~~~~~~~~~~~~
+rfm2dtp      - Reconstructs a sequence of turning points from a rainflow matrix.
+Replaces the function rfc2load.
+
+----------------------------------------------------------------
+Version 2.1.0   07-Apr-2004
+
+This file describes new features, bug fixes, and changes in this version 
+of the WAFO Toolbox.
+
+
+FIXES
+~~~~~
+disufq1.c   - is renamed to disufq.c
+spec2nlsdat - changed call from disifq1 to disufq
+derivate.m  - is no longer needed and hence deleted 
+smctpsim    - Corrections concerning initial state of regime process
+and simulation of non-Markovian regime process.
+
+----------------------------------------------------------------
+Version 2.0.5   14-Jun-2003
+
+This file describes new features, bug fixes, and changes in this version 
+of the WAFO Toolbox.
+
+
+FIXES
+~~~~~
+smctpsim    - &#x27;RFM&#x27; option didn&#x27;t work cause x was not initiated. Now fixed!
+</pre></details><details><summary>sea</summary><pre>SEA Surface elevation dataset used in WAT version 1.1.
+
+CALL:  xn = load(&#x27;sea.dat&#x27;);
+
+Size             :    9524    X    2
+Sampling Rate    :    4.0 Hz
+Device           :    unknown
+Source           :    unknown
+Format           :    ascii, c1: time c2: surface elevation
+Description      :
+The wave data was used in one of WAFO predecessors, i.e. the Wave 
+Analysis Toolbox version 1.1 (WAT)
+
+Hm0 = 1.9m, Tm02 = 4.0s, Tp2 = 11.5s Tp1=5.6s
+
+See also  </pre></details><details><summary>sfa89</summary><pre>SFA89 Wind measurements at Statfjord A 24.12.1989
+
+CALL:  xn = load(&#x27;sfa89.dat&#x27;);
+
+Size             :    144 X 3
+Sampling Rate    :     1/600 Hz
+Device           :    
+Source           :    DNMI (The Norwegian Meteorological Institute)
+Format           :    ascii, c1: time     (hours) 
+c2: velocity (m/s) 
+c3: direction (degrees) 
+Description      :
+The registration of wind speeds at the Gullfaks field 
+started up on Statfjord A in 1978 and continued until 1990.  
+The dataregistration was transferred to Gullfaks C in Nov 1989. 
+Due to some difficulties of the windregistration on Gullfaks C in 
+the beginning, they continued to use the registered data from 
+Statfjord A. 
+The windspeed is measured in  (meter/second), 110 m above mean water 
+level (MWL) and the wind direction is given in degrees for the data.
+The data are a mean value of every 10 minutes.
+Wind directions are defined in the meteorological convention, i.e., 
+0 degrees = wind approaching from North, 90 degrees = wind from East, etc. 
+
+This dataset is for non-commercial use only.
+
+Acknowledgement:
+These data are made available by Knut A. Iden, DNMI.
+
+See also  northsea</pre></details><details><summary>sn</summary><pre>SN Fatigue experiment, constant-amplitude loading.
+
+CALL:  sn = load(&#x27;sn.dat&#x27;);
+
+Size             :    40    X    2
+Source           :    unknown
+Format           :    ascii, c1: Amplitude MPa c2: Number of cycles
+
+A fatigue experiment with constant amplitudes at five levels:
+10,15,20,25 and 30 MPa. For each level is related 8 observations of
+the number of cycles to failure.
+
+The origin of the data is unknown. 
+
+See also  The same data appear in the directory wdemos/itmkurs/ 
+as SN.mat. </pre></details><details><summary>startup</summary><pre>STARTUP example startup file to put in your matlab path
+
+You should install the WAFO toolbox according to the description given
+in the install.m file. Then modify this file so that the root directory of
+WAFO defined in this file comply with the installation on your machine. 
+
+See also  install
+add the WAFO root directory to the search path
+modify the line below if this does not comply with 
+your machine
+adds the subdirectories of WAFO to the search path
+Edit &#x27;/Path/to/nctoolbox&#x27; to correct nctoolbox directory</pre></details><details><summary>tpdef</summary><pre>TPDEF turning points definitions and numenclature
+
+Definition of turningpoints: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Local minimum or maximum are indicated with the
+letters &#x27;m&#x27; or &#x27;M&#x27;. Turning points in this connection are all
+local max (M) and min (m) and the last (L) value and the 
+first (F) value if the first local extremum is a max. 
+
+(This choice is made in order to get the exact up-crossing intensity
+from rfc by mm2lc(tp2mm(rfc)) )
+
+Definition of min2min and Max2Max wave:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A min2min wave (mw) is defined starting from a minimum and  
+ending in the following minimum.
+Similarly a Max2Max wave (Mw) is thus a wave from a maximum 
+to the next maximum (all waves optionally rainflow filtered).
+
+Definition of Max2min and min2Max cycle:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A min2Max cycle (mM) is defined as the pair of a minimum
+and the following Maximum. Similarly a Max2min cycle (Mm) 
+is defined as the pair of a Maximum and the following minimum.
+(all cycles possibly rainflowfiltered)
+
+&lt;----- Direction of wave propagation 
+
+M                  M
+/ \       .... M   /:\_           M_            M
+F   \     |    / \m/ :  \         /: \          / \  
+\  h |   /      :   \       / :  \        /   \
+\   |  /       :    \     /  :   \_    _/     \_   L
+\_ | /        :     \_m_/   :     \m_/         \m/
+\m/         :             :      :            :
+&lt;------Mw-----&gt;      &lt;-----mw-----&gt;
+
+See also  wavedef, crossdef, dat2tp
+history:
+by Per A. Brodtkorb 19.09.1999
+revised pab 15.05.2000</pre></details><details><summary>wafohelp</summary><pre>WAFOHELP  Launch HTML help for the WAFO Toolbox.
+
+CALL:  URL = wafohelp(BN)
+
+URL = string with the URL address of WAFO.
+BN  = &#x27;yes&#x27; If display URL site
+&#x27;no&#x27;  If no display of URL site
+
+WAFOHELP displays and/or returns the HTML help
+site for the WAFO Toolbox.  
+
+Examples
+url = wafohelp(&#x27;n&#x27;); web(url)
+wafohelp 
+wafohelp(&#x27;yes&#x27;)
+
+See also  web
+Tested on: Matlab 5.2
+History:
+by pab 19.11.2004
+ButtonName =  questdlg(&#x27;Go To WAFO Toolbox Home Page?&#x27;, &#x27;WWW&#x27;, &#x27;Yes&#x27;, &#x27;No&#x27;, &#x27;No&#x27;); </pre></details><details><summary>wafomenu</summary><pre>WAFOMENU displays a user interface to the documentation files of WAFO
+
+CALL:  wafomenu(kind)
+
+kind = 0, displays a point and click menu (default)
+1, displays a text driven menu
+
+See also  docs
+history
+revised pab 21.01.2000
+- added kind
+- changed h1 line and ordering of menu
+- added aboutwafo
+By pab 17.12.1999</pre></details><details><summary>wafoweb</summary><pre>WAFOWEB  World Wide Web site of the WAFO Toolbox.
+
+CALL:  URL = wafoweb(BN)
+
+URL = string with the URL address of WAFO.
+BN  = &#x27;yes&#x27; If display URL site
+&#x27;no&#x27;  If no display of URL site
+
+WAFOWEB displays and/or returns the WWW
+site for the WAFO Toolbox.  If no input argument 
+is givendisplayed, a dialog asks whether to go there.
+
+Examples
+url = wafoweb(&#x27;n&#x27;); web(url)
+wafoweb 
+wafoweb(&#x27;yes&#x27;)
+
+See also  web
+Tested on: Matlab 5.2
+History:
+by pab 19.06.2001
+if nargout&gt;0, ButtonName = &#x27;No&#x27;;  else,    ButtonName =&#x27;Yes&#x27;;  end</pre></details><details><summary>wavedef</summary><pre>WAVEDEF Wave definitions and nomenclature 
+
+Definition of trough and crest: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A trough (t) is defined as the global minimum between a
+level v down-crossing (d) and the next up-crossing (u)  
+and a crest (c) is defined as the global maximum between a
+level v up-crossing and the following down-crossing.
+
+Definition of down- and up -crossing waves: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A level v-down-crossing wave (dw) is a wave from a 
+down-crossing to the following down-crossing.
+Similarly, a level v-up-crossing wave (uw) is a wave from an up-crossing 
+to the next up-crossing.
+
+Definition of trough and crest waves: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A trough-to-trough wave (tw) is a wave from a trough (t) to the 
+following trough. The crest-to-crest wave (cw) is defined similarly.
+
+Definition of min2min and Max2Max wave:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A min2min wave (mw) is defined starting from a minimum (m) and  
+ending in the following minimum.
+Similarly a Max2Max wave (Mw) is thus a wave from a maximum (M) 
+to the next maximum (all waves optionally rainflow filtered).
+
+&lt;----- Direction of wave propagation
+
+
+&lt;------Mw-----&gt; &lt;----mw----&gt;
+M             : :  c       :
+/ \            M : / \_     :     c_            c
+F   \          / \m/    \    :    /: \          /:\  
+------d--------u----------d-------u----d--------u---d-------- level v
+\      /:           \  :  /: :  :\_    _/  : :\_   L
+\_   / :            \_t_/ : :  :  \t_/    : :  \m/
+\t/  &lt;-------uw---------&gt; :  &lt;-----dw-----&gt;
+:                  :     :             : 
+&lt;--------tw--------&gt;     &lt;------cw-----&gt;              
+
+(F= first value and L=last value).
+
+See also  tpdef, crossdef, dat2tc, dat2wa, dat2crossind
+history:
+revised pab 21.01.2000
+-  changed  from: Wave propagating direction 
+to: Direction of wave propagation
+by Per A. Brodtkorb 19.09.1999</pre></details><details><summary>yura87</summary><pre>YURA87  Surface elevation measured off the coast of Yura.
+
+CALL:  xn = load(&#x27;yura87.dat&#x27;);
+
+Size             :    85547 X 4
+Sampling Rate    :    1 Hz
+Device           :    ultrasonic wave gauges
+Source           :    SRI, Ministry of Transport, Japan 
+Format           :    ascii, c1: time (sec) c2-4: surface elevation (m)
+Description      :
+The wave data was measured at the Poseidon platform  
+in the Japan Sea from 24th November 1987 08.12 hours to 25th November 
+1987 07.57 hours. Poseidon was located 3 km off the coast of Yura 
+in the Yamagata prefecture, in the Japan Sea during the measurements. 
+The most important wave components are to some extent influenced by the 
+water depth of 42 m. The data are measured with three ultrasonic wave 
+gauges located at the sea floor and the relative coordinates of the 
+gauges are as follows (x-axis points to the East, y-axis points to 
+the North):
+X (m)    Y (m)
+c2:   -4.93,    25.02
+c3:    5.80,    92.12
+c4:    0.00,     0.00
+
+This dataset is for non-commercial use only.
+
+Hm0 = 5.1m, Tm02 = 7.7s, Tp = 12.8s
+
+Acknowledgement:
+This dataset were prepared and made available by Dr. Sc. H. Tomita, 
+Ship Research Institute, Ministry of Transport, Japan.
+
+See also  japansea</pre></details></html>

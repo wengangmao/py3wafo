@@ -1,0 +1,9 @@
+# Store text with LF line endings; check out with the platform default.
+* text=auto eol=lf
+
+# Keep data files byte-for-byte identical to the original WAFO assets.
+*.dat -text
+*.npz binary
+*.mat binary
+*.png binary
+*.whl binary

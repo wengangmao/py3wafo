@@ -1,0 +1,11 @@
+{
+  "source": "m_map/private/m_coasts.mat",
+  "sha256": "37526c01b816ee71daca60728db0c2ee0e2495dcd4b787aaa72628cd94704f76",
+  "variables": [
+    "ncst",
+    "k",
+    "Area"
+  ],
+  "attribution": "M_Map by Rich Pawlowicz; original notices remain in wafo_matlab/m_map.",
+  "source_software_notice": "This software is provided as is without warranty of any kind. But it is mine, so you cannot sell it. Rich Pawlowicz; see original M_Map source for exact wording."
+}

@@ -1,0 +1,12 @@
+{
+  "passed-test-evidence": 731,
+  "failed-test-evidence": 0,
+  "untested": 0,
+  "pytest_exit_status": 0,
+  "unimplemented_matlab_functions": 0,
+  "source_script_or_documentation_files": 75,
+  "complete": false,
+  "unreviewed_source_scripts": 15,
+  "completion_gate_passed": false,
+  "completion_gate_exit_status": 1
+}

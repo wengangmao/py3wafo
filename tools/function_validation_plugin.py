@@ -1,0 +1,156 @@
+"""Pytest plugin recording which public APIs execute under which tests.
+
+This is execution evidence, not a proof that every input/option is correct.
+Only APIs exercised by successful tests receive passing-test evidence. Public
+APIs without evidence and unconverted MATLAB functions remain separate.
+"""
+from collections import defaultdict
+import csv
+import functools
+import importlib
+import inspect
+import json
+from pathlib import Path
+import pkgutil
+import sys
+from datetime import datetime,timezone
+
+ROOT = Path(__file__).resolve().parents[1]
+_active = None
+_calls = defaultdict(set)
+_outcomes = defaultdict(list)
+_apis = {}
+_failure_details = {}
+
+
+def pytest_addoption(parser):
+    parser.addoption('--require-complete',action='store_true',default=False,
+        help='Fail the completion gate if tests fail or APIs/source functions remain untested/unimplemented')
+
+
+def pytest_sessionstart(session):
+    import wafo
+    modules = [wafo]
+    for entry in pkgutil.walk_packages(wafo.__path__,wafo.__name__+'.'):
+        if not any(part.startswith('_') for part in entry.name.split('.')):
+            modules.append(importlib.import_module(entry.name))
+    originals = {}
+    for module in modules:
+        for name,obj in vars(module).items():
+            if not name.startswith('_') and inspect.isfunction(obj) and obj.__module__.startswith('wafo'):
+                api = module.__name__+'.'+name
+                _apis[api] = id(obj)
+                originals[id(obj)] = obj
+    wrappers = {}
+    for identity,original in originals.items():
+        def make_wrapper(function,identity):
+            @functools.wraps(function)
+            def wrapped(*args,**kwargs):
+                if _active is not None:
+                    _calls[identity].add(_active)
+                return function(*args,**kwargs)
+            return wrapped
+        wrappers[identity] = make_wrapper(original,identity)
+    # Replace aliases consistently, including private implementation modules.
+    for module in list(sys.modules.values()):
+        if module is not None and getattr(module,'__name__','').startswith('wafo'):
+            for name,obj in list(vars(module).items()):
+                if id(obj) in wrappers:
+                    setattr(module,name,wrappers[id(obj)])
+
+
+def pytest_runtest_setup(item):
+    global _active
+    _active = item.nodeid
+
+
+def pytest_runtest_logreport(report):
+    _outcomes[report.nodeid].append((report.when,report.outcome))
+    if report.failed:
+        _failure_details[report.nodeid] = str(report.longrepr)
+
+
+def pytest_sessionfinish(session,exitstatus):
+    def outcome(test):
+        results = _outcomes.get(test,[])
+        if any(status=='failed' for _,status in results):
+            return 'failed'
+        return 'passed' if ('call','passed') in results else 'not-passed'
+    records = []
+    for api,identity in sorted(_apis.items()):
+        tests = sorted(_calls[identity])
+        failing = [t for t in tests if outcome(t)=='failed']
+        passed = [t for t in tests if outcome(t)=='passed']
+        status = 'failed-test-evidence' if failing else 'passed-test-evidence' if passed else 'untested'
+        records.append(dict(api=api,status=status,tests=tests,passed_tests=passed,failed_tests=failing,
+            reason='Called by a failing test; inspect assertion/traceback, not proof this function caused it' if failing else
+                   'Executed during successful tests; coverage is limited to those scenarios' if passed else
+                   'No public call was recorded in a successful test'))
+    docs = ROOT/'docs'/'migration'
+    docs.mkdir(parents=True, exist_ok=True)
+    history_path = docs/'validation_history.json'
+    history = json.loads(history_path.read_text(encoding='utf-8')) if history_path.exists() else []
+    history.append(dict(utc=datetime.now(timezone.utc).isoformat(),exit_status=int(exitstatus),
+        tests_passed=sum(('call','passed') in outcomes and not any(s=='failed' for _,s in outcomes) for outcomes in _outcomes.values()),
+        failed_tests=_failure_details.copy()))
+    history_path.write_text(json.dumps(history,indent=2),encoding='utf-8')
+    (docs/'function_test_results.json').write_text(json.dumps(records,indent=2),encoding='utf-8')
+    with (docs/'function_test_results.csv').open('w',newline='',encoding='utf-8') as f:
+        writer = csv.DictWriter(f,fieldnames=['api','status','reason','tests'])
+        writer.writeheader()
+        for r in records:
+            writer.writerow({k:('; '.join(r[k]) if isinstance(r[k],list) else r[k]) for k in writer.fieldnames})
+    for filename,status in [('PASSED_FUNCTIONS.md','passed-test-evidence'),('FAILED_FUNCTIONS.md','failed-test-evidence'),('UNTESTED_FUNCTIONS.md','untested')]:
+        rows = [r for r in records if r['status']==status]
+        heading = filename.replace('_',' ').replace('.md','')
+        lines = ['# '+heading,'','Generated by actual pytest execution. A passing test is evidence for its exercised scenarios; it does not certify all inputs, branches, or MATLAB parity. Aliases share execution evidence.','',f'Count: {len(rows)}','', '| Python API | Reason | Test evidence |','|---|---|---|']
+        lines += ['| '+r['api']+' | '+r['reason']+' | '+'; '.join(r['tests'])+' |' for r in rows]
+        (docs/filename).write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    source = json.loads((ROOT/'src/wafo/conversion_manifest.json').read_text(encoding='utf-8'))
+    pending = [r for r in source if r['status']=='pending']
+    lines = ['# Unimplemented MATLAB functions','', 'These functions cannot pass a Python functional test because they have no corresponding implementation. They are not counted as test failures or passing stubs.','',f'Count: {len(pending)}','', '| Source file | Functionality | Reason |','|---|---|---|']
+    for r in pending:
+        lines.append('| '+r['matlab']+' | '+r['functionality'].replace('|','/')+' | No Python implementation; source-specific algorithm and tests required |')
+    (docs/'UNIMPLEMENTED_FUNCTIONS.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    summary = {status:sum(r['status']==status for r in records) for status in ('passed-test-evidence','failed-test-evidence','untested')}
+    summary.update(pytest_exit_status=int(exitstatus),unimplemented_matlab_functions=len(pending),
+                   source_script_or_documentation_files=sum(r['status']=='documentation-or-script' for r in source),
+                   complete=False)
+    unresolved_scripts=[r for r in source if r['status']=='documentation-or-script' and r.get('record_kind', 'script' if r['name'].lower() not in ('contents','readme') else 'documentation')=='script']
+    summary['unreviewed_source_scripts'] = len(unresolved_scripts)
+    script_lines=['# Source scripts still requiring review/porting','',
+        'These source files have executable MATLAB commands and no matching Python implementation. Comment-only help and pager scripts are reviewed separately in REVIEWED_SOURCE_DOCUMENTATION.md; scientific/demo workflows are not automatically treated as documentation.','',
+        '| Source script | Stated functionality |','|---|---|']
+    script_lines += ['| '+r['matlab']+' | '+r['functionality'].replace('|','/')+' |' for r in unresolved_scripts]
+    (docs/'UNREVIEWED_SCRIPTS.md').write_text('\n'.join(script_lines)+'\n',encoding='utf-8')
+    summary['completion_gate_passed'] = not pending and not unresolved_scripts and not summary['untested'] and not summary['failed-test-evidence'] and int(exitstatus)==0
+    if session.config.getoption('--require-complete') and not summary['completion_gate_passed']:
+        session.exitstatus = 1
+        summary['completion_gate_exit_status'] = 1
+    history[-1]['completion_gate_passed'] = summary['completion_gate_passed']
+    history[-1]['completion_gate_exit_status'] = summary.get('completion_gate_exit_status')
+    history_path.write_text(json.dumps(history,indent=2),encoding='utf-8')
+    (docs/'function_validation_summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+    totals = dict(summary)
+    tests_passed = sum(('call','passed') in outcomes and not any(s=='failed' for _,s in outcomes) for outcomes in _outcomes.values())
+    lines = ['# Function validation report','',
+        'Generated by `python tools/validate_functions.py` from actual test execution.',
+        '',f'- Tests passed: **{tests_passed}**.',
+        f'- Public API aliases with passing-test evidence: **{totals["passed-test-evidence"]}**.',
+        f'- Public API aliases touched by failing tests: **{totals["failed-test-evidence"]}**.',
+        f'- Public API aliases with no passing-test evidence: **{totals["untested"]}**.',
+        f'- Unimplemented MATLAB functions: **{len(pending)}**.',
+        f'- Additional source documentation/script records: **{totals["source_script_or_documentation_files"]}**.',
+        f'- Of those, source scripts still requiring review/porting: **{len(unresolved_scripts)}**.',
+        '', 'The complete toolbox migration is **not certified complete**. Passing tests cover their stated numerical scenarios; they do not establish all-input correctness, optional-branch coverage, or MATLAB parity.',
+        '', 'The requested lists are available in:', '',
+        '- [Passed functions](PASSED_FUNCTIONS.md)',
+        '- [Functions touched by failing tests](FAILED_FUNCTIONS.md)',
+        '- [Untested functions](UNTESTED_FUNCTIONS.md)',
+        '- [Unimplemented source functions and reasons](UNIMPLEMENTED_FUNCTIONS.md)',
+        '- [Unreviewed source scripts](UNREVIEWED_SCRIPTS.md)',
+        '- [Repair history](REPAIR_LOG.md)',
+        '- [Machine-readable function results](function_test_results.csv)',
+        '', 'Run `python tools/validate_functions.py --require-complete` to enforce the completion gate. That command returns a nonzero status while source implementations or function-test evidence are missing, even if every regression test passes.',
+        '', 'API aliases that reference the same function share test evidence. A function called within a failing test is flagged for inspection; the failure traceback determines whether the function or test expectation was wrong. Constructors and private implementation helpers are validated through their public callers.']
+    (docs/'FUNCTION_VALIDATION.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')

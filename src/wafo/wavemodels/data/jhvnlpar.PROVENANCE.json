@@ -1,0 +1,11 @@
+{
+  "source": "wavemodels/jhvnlpar.mat",
+  "sha256": "9d3b370656ad3ad51fc8f939ac397e05c670b0857fd76d296844065bce156098",
+  "variables": [
+    "gam",
+    "h2",
+    "A11s",
+    "B11s"
+  ],
+  "note": "Numeric-only, exact-value conversion. Actual table axes are gamma and normalized height. The inactive gamma-curve branch of jhvnlpdf.m matches these fields; its active branch requests unavailable Hm0/Tp axes."
+}

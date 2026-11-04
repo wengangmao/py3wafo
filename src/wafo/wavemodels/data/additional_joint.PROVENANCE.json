@@ -1,0 +1,94 @@
+[
+  {
+    "source": "wavemodels/ohhspar.mat",
+    "sha256": "f10dafe2f6e4b71203d3878cd3823e46ffbb0543354501e6a4b064ba9c86aa41",
+    "asset": "joint-ohhspar.mat.npz",
+    "variables": [
+      "Hm0",
+      "Tm02",
+      "A11s",
+      "B11s",
+      "h2"
+    ]
+  },
+  {
+    "source": "wavemodels/ohhsspar.mat",
+    "sha256": "e353333cbb0e6ac7bddb4c873f355c2244b4b37e315f309a91475a3d8dc75375",
+    "asset": "joint-ohhsspar.mat.npz",
+    "variables": [
+      "Hm0",
+      "Tm02",
+      "h2",
+      "B11s",
+      "A11s"
+    ]
+  },
+  {
+    "source": "wavemodels/ohhvpar.mat",
+    "sha256": "f1d819f80622f8cd820f714b69c5160848933d94b5cd2467d4e46323ab0025cb",
+    "asset": "joint-ohhvpar.mat.npz",
+    "variables": [
+      "Hm0",
+      "A11s",
+      "B11s",
+      "h2"
+    ]
+  },
+  {
+    "source": "wavemodels/thspar19-Jul-2004.mat",
+    "sha256": "0f086d8569f67de2c463cba3993271a005f35168b32d2e7b5521e0942991d34f",
+    "asset": "joint-thspar19-Jul-2004.mat.npz",
+    "variables": [
+      "Hm0",
+      "Tp",
+      "Tm02",
+      "h2",
+      "A11s",
+      "B11s"
+    ]
+  },
+  {
+    "source": "wavemodels/thsspar27-Jul-2004.mat",
+    "sha256": "6a4b003b6828068db3215c209cf97416f2aaadfab3901927a2b62ce26ecebaab",
+    "asset": "joint-thsspar27-Jul-2004.mat.npz",
+    "variables": [
+      "Hm0",
+      "Tp",
+      "Tm02",
+      "h2",
+      "A11s",
+      "B11s",
+      "A00s",
+      "B00s",
+      "C00s"
+    ]
+  },
+  {
+    "source": "wavemodels/thsnlpar06-Aug-2004.mat",
+    "sha256": "010b84c1eb142bd17f93b515d781e2b64977f945253674d59e298e9270c0a490",
+    "asset": "joint-thsnlpar06-Aug-2004.mat.npz",
+    "variables": [
+      "Hm0",
+      "Tp",
+      "Tm02",
+      "h2",
+      "A11s",
+      "B11s"
+    ]
+  },
+  {
+    "source": "wavemodels/thvpar.mat",
+    "sha256": "0cbc4978fe42e8a7d00d7fe9f40f0715bf833838859be2e000e5cc1895401c5a",
+    "asset": "joint-thvpar.mat.npz",
+    "variables": [
+      "Tp",
+      "Hm0",
+      "eps2",
+      "B11s",
+      "A11s",
+      "h2",
+      "e2",
+      "Tm02"
+    ]
+  }
+]
