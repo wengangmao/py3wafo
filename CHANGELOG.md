@@ -4,7 +4,11 @@ All notable changes to py3wafo are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
-## [0.4.0] — 2026-11-04
+## [0.5.0] — 2026-11-04
+
+First release from the GitHub repository, published to PyPI through GitHub
+Actions. It supersedes the earlier `0.4.0` build uploaded to PyPI in August
+2026; some items below may already have been present in that build.
 
 ### Added
 - Python counterparts for all remaining MATLAB WAFO 2.1.1 functions.
@@ -19,6 +23,12 @@ All notable changes to py3wafo are recorded here. The format follows
   transformations; time-series reconstruction; KDE bandwidth selection.
 - Getting-started guide, installation guide, quick-start example, and a test
   that runs every documentation example.
+- Continuous integration on Linux, Windows and macOS, and automatic PyPI
+  publishing of GitHub releases.
+
+### Changed
+- Requires Python 3.10 or newer (previously 3.9) and Matplotlib 3.8 or newer
+  for the optional plotting features.
 
 ### Fixed
 - Python 3.10 support: removed starred unpacking inside indexing

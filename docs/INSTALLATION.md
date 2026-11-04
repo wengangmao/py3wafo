@@ -57,17 +57,30 @@ conda activate py3wafo
 
 ## 3. Install py3wafo
 
-Choose one of the following.
+Choose one of the following. Most users want a).
 
-### a) From GitHub, without cloning
+### a) From PyPI
+
+```bash
+python -m pip install "py3wafo[all]"
+```
+
+Pin a version with `"py3wafo[all]==0.5.0"`, and upgrade later with
+`python -m pip install --upgrade "py3wafo[all]"`. The older, unrelated `wafo`
+package on PyPI (pywafo) installs a module with the same name, `wafo`; remove
+it first with `python -m pip uninstall wafo` if you have it.
+
+### b) From GitHub, without cloning
+
+This installs the latest development version:
 
 ```bash
 python -m pip install "py3wafo[all] @ git+https://github.com/wengangmao/py3wafo.git"
 ```
 
-Pin a release by appending a tag, for example `...py3wafo.git@v0.4.0`.
+Pin a release by appending a tag, for example `...py3wafo.git@v0.5.0`.
 
-### b) From a local clone
+### c) From a local clone
 
 ```bash
 git clone https://github.com/wengangmao/py3wafo.git
@@ -75,7 +88,7 @@ cd py3wafo
 python -m pip install ".[all]"
 ```
 
-### c) Editable install for development
+### d) Editable install for development
 
 Changes to the source take effect without reinstalling:
 
@@ -83,25 +96,26 @@ Changes to the source take effect without reinstalling:
 python -m pip install -e ".[test]"
 ```
 
-### d) From a wheel file (offline installs)
+### e) Offline installs
 
-Build the wheel once on a machine with internet access:
-
-```bash
-python -m pip install build
-python -m build                     # creates dist/py3wafo-0.4.0-py3-none-any.whl
-```
-
-Copy the wheel to the target machine and install it:
+On a machine with internet access, download py3wafo and all its
+dependencies into a folder. Use the same operating system and Python version
+as the target machine, because NumPy and SciPy wheels are platform specific:
 
 ```bash
-python -m pip install py3wafo-0.4.0-py3-none-any.whl
+python -m pip download "py3wafo[all]" -d wheels
 ```
 
-For a fully offline target, also download the dependencies on the connected
-machine with `python -m pip download py3wafo-0.4.0-py3-none-any.whl -d wheels`,
-copy the `wheels` folder across, and install with
-`python -m pip install --no-index --find-links wheels py3wafo`.
+Copy the `wheels` folder to the target machine and install from it:
+
+```bash
+python -m pip install --no-index --find-links wheels "py3wafo[all]"
+```
+
+To install an unreleased version instead, build its wheel from a clone with
+`python -m pip install build` and `python -m build`, which writes
+`dist/py3wafo-<version>-py3-none-any.whl`, and download its dependencies with
+`python -m pip download dist/py3wafo-<version>-py3-none-any.whl -d wheels`.
 
 ### Choosing extras
 
@@ -115,7 +129,7 @@ for both, and `[test]` for pytest plus both.
 python -c "import wafo, py3wafo; print(wafo.__version__)"
 ```
 
-This should print `0.4.0`. A short functional check:
+This should print `0.5.0`. A short functional check:
 
 ```bash
 python -c "from wafo.data import load; from wafo.onedim import dat2tp; from wafo.cycles import tp2rfc; print(len(tp2rfc(dat2tp(load('sea.dat')))), 'rainflow cycles')"

@@ -63,38 +63,89 @@ oldest supported NumPy and SciPy, and builds the distributions. Results are on
 the repository's **Actions** tab, and the README badge turns green after the
 first successful run.
 
-## 5. Make a release
+## 5. One-time setup: let GitHub publish to PyPI
 
-1. Update `version` in `pyproject.toml` and `__version__` in
-   `src/wafo/__init__.py`, and add an entry to `CHANGELOG.md`.
-2. Commit, tag and push:
+Releases are uploaded to PyPI by `.github/workflows/publish.yml` using
+[trusted publishing](https://docs.pypi.org/trusted-publishers/): PyPI trusts
+this repository's workflow directly, so no password or API token is stored in
+GitHub. Set it up once:
+
+1. **PyPI.** Sign in at <https://pypi.org>, open
+   **Your projects → py3wafo → Manage → Publishing**, and add a GitHub
+   publisher with:
+
+   | Field | Value |
+   |---|---|
+   | Owner | `wengangmao` |
+   | Repository name | `py3wafo` |
+   | Workflow name | `publish.yml` |
+   | Environment name | `pypi` |
+
+   For a project that does not exist on PyPI yet, use
+   <https://pypi.org/manage/account/publishing/> to add a "pending" publisher
+   under the new project name instead.
+
+2. **TestPyPI (optional, for trial uploads).** Repeat at
+   <https://test.pypi.org/manage/account/publishing/> as a pending publisher
+   for project `py3wafo`, with environment name `testpypi`. TestPyPI uses a
+   separate account from PyPI.
+
+3. **GitHub environments.** In the repository, open
+   **Settings → Environments** and create environments named `pypi` and
+   `testpypi`. Under `pypi`, optionally add yourself as a required reviewer,
+   so every upload waits for your approval.
+
+## 6. Make a release
+
+1. Set the new version in `src/wafo/__init__.py` (`__version__`); the build
+   reads it from there. Add a section for it to `CHANGELOG.md`. PyPI never
+   accepts the same version twice, even after a file is deleted.
+2. Commit and push, and wait for CI to pass:
 
    ```bash
-   git commit -am "Release 0.4.0"
-   git tag -a v0.4.0 -m "py3wafo 0.4.0"
-   git push origin main --tags
+   git commit -am "Release 0.5.0"
+   git push
    ```
 
-3. Build the distributions and attach them to a GitHub release:
+3. Optional trial run: on the **Actions** tab, choose **Publish to PyPI →
+   Run workflow**, target `testpypi`, then check
+   <https://test.pypi.org/project/py3wafo/>. TestPyPI also rejects repeated
+   versions, so a trial uses up that version number there, but not on PyPI.
+
+4. Create the GitHub release. The tag must be `v` followed by the version:
 
    ```bash
-   python -m pip install build
-   python -m build
-   gh release create v0.4.0 dist/* --title "py3wafo 0.4.0" --notes-file CHANGELOG.md
+   gh release create v0.5.0 --title "py3wafo 0.5.0" --generate-notes
    ```
 
-Users can then install a fixed version with
-`pip install "py3wafo @ git+https://github.com/wengangmao/py3wafo.git@v0.4.0"`.
+   You can do the same on GitHub under **Releases → Draft a new release**.
 
-## 6. Optional: publish on PyPI
+5. Publishing the release starts the workflow. It builds the sdist and
+   wheel, checks that the tag matches the version, runs the full test suite
+   on the built wheel, and uploads to PyPI. Follow it on the **Actions** tab;
+   if you added a reviewer, approve the `pypi` deployment there.
 
-Publishing on PyPI lets users run `pip install py3wafo`. Check first that the
-name is free at <https://pypi.org/project/py3wafo/>. Then:
+6. Check the result:
+
+   ```bash
+   python -m pip install --upgrade "py3wafo[all]"
+   python -c "import wafo; print(wafo.__version__)"
+   ```
+
+If a step fails before the upload, nothing reaches PyPI: fix the problem,
+delete the release and its tag on GitHub, and release again under the same
+version.
+
+## 7. Manual upload (fallback)
+
+Without the workflow, upload from your own computer with an API token from
+<https://pypi.org/manage/account/token/>:
 
 ```bash
-python -m pip install twine
-python -m twine upload --repository testpypi dist/*   # trial run on TestPyPI
-python -m twine upload dist/*
+python -m pip install --upgrade build twine
+python -m build
+python -m twine check dist/*
+python -m twine upload dist/*                 # user name: __token__, password: the token
 ```
 
-You will need a PyPI account and an API token.
+Add `--repository testpypi` to the upload command for a trial on TestPyPI.

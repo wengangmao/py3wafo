@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "py3wafo"
-version = "0.4.0"
+dynamic = ["version"]
 description = "Python 3 port of WAFO, the MATLAB toolbox for Wave Analysis for Fatigue and Oceanography"
 readme = "README.md"
 license = "GPL-3.0-or-later"
@@ -37,6 +37,9 @@ Homepage = "https://github.com/wengangmao/py3wafo"
 Documentation = "https://github.com/wengangmao/py3wafo/tree/main/docs"
 Issues = "https://github.com/wengangmao/py3wafo/issues"
 Changelog = "https://github.com/wengangmao/py3wafo/blob/main/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+version = {attr = "wafo.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]

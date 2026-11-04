@@ -8,4 +8,4 @@ from . import cycles, damage, kdetools, markov, misc, onedim, spec, trgauss, wav
 from ._registry import coverage, source_info
 from .root import initwafo, waforoot, wafopath, wafoexepath, pathdef, parzen
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

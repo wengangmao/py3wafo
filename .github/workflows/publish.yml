@@ -1,0 +1,88 @@
+name: Publish to PyPI
+
+# Publishing a GitHub release uploads that version to PyPI. Running the
+# workflow by hand ("Run workflow" on the Actions tab) uploads to TestPyPI or
+# PyPI as chosen. Uploads use PyPI trusted publishing: no API token is stored
+# in this repository. See docs/PUBLISHING_TO_GITHUB.md for the one-time setup.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Package index to upload to
+        type: choice
+        options: [testpypi, pypi]
+        default: testpypi
+
+jobs:
+  build:
+    name: Build and check distributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+          python -m twine check --strict dist/*
+      - name: Check that the release tag matches the package version
+        if: github.event_name == 'release'
+        run: |
+          version=$(ls dist/*.whl | sed -E 's#dist/py3wafo-([^-]+)-.*#\1#')
+          tag="${GITHUB_REF_NAME#v}"
+          echo "package version: $version, release tag: $GITHUB_REF_NAME"
+          if [ "$version" != "$tag" ]; then
+            echo "::error::Release tag $GITHUB_REF_NAME does not match package version $version"
+            exit 1
+          fi
+      - name: Test the built wheel
+        env:
+          MPLBACKEND: Agg
+        run: |
+          python -m pip install "$(ls dist/*.whl)[test]"
+          python -m pytest -o pythonpath= -q
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  pypi:
+    name: Upload to PyPI
+    needs: build
+    if: github.event_name == 'release' || inputs.target == 'pypi'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/py3wafo/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  testpypi:
+    name: Upload to TestPyPI
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi'
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/py3wafo/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
