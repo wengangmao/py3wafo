@@ -1,5 +1,6 @@
 """Source formulas, analytical signals and conservation checks for onedim."""
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 from numpy.testing import assert_allclose, assert_array_equal
 
@@ -35,7 +36,7 @@ def test_covariance_spectrum_matches_analytical_cosine_series_and_variance():
     lag0, lag1, lag2 = (1+1e-12), (-.75+1e-12)*5/9, (.5+1e-12)*2/27
     expected = (lag0+2*lag1*np.cos(s.w*.2)+2*lag2*np.cos(2*s.w*.2))*.2/np.pi
     assert_allclose(s.S, expected, rtol=2e-14, atol=1e-15)
-    assert_allclose(np.trapezoid(s.S, s.w), np.var(x)+1e-12, rtol=2e-14)
+    assert_allclose(trapezoid(s.S, s.w), np.var(x)+1e-12, rtol=2e-14)
     assert s.Bw == 2*np.pi*1.33/(3*.2)
     assert s.dof == int(np.floor(3.71*4/3))
     assert s.type == 'freq' and not s.negative_estimates
@@ -61,7 +62,7 @@ def test_covariance_spectrum_multicolumn_transform_missing_and_defaults():
     assert_allclose(transformed.S, np.mean(separate, axis=0), rtol=2e-14)
     missing = y.copy(); missing[::7] = np.nan
     censored = o.dat2spec2(missing, 20)
-    assert_allclose(np.trapezoid(censored.S, censored.w), np.nanvar(missing)+1e-12, rtol=2e-14)
+    assert_allclose(trapezoid(censored.S, censored.w), np.nanvar(missing)+1e-12, rtol=2e-14)
     # Source default-indexing bugs for n<300 and variance=0 are repaired.
     for n in (2, 3, 10, 400):
         short = o.dat2spec2(np.ones(n))

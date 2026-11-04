@@ -1,6 +1,7 @@
 """Render real diagnostic figures and verify their underlying numerical data."""
 from types import SimpleNamespace
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 import matplotlib
 matplotlib.use('Agg',force=True)
@@ -46,7 +47,7 @@ def test_histogram_scatter_and_kde_render(tmp_path):
     _save(axes[0,0],tmp_path/'pairs.png')
     ax=plt.subplots()[1]
     density=w.kdeplot(x,h=.3,ax=ax)
-    assert_allclose(np.trapezoid(density[:,1],density[:,0]),1,atol=1e-4)
+    assert_allclose(trapezoid(density[:,1],density[:,0]),1,atol=1e-4)
     _save(ax,tmp_path/'kde.png')
 
 

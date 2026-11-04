@@ -88,7 +88,7 @@ def _gpd_fit(values, weights, method='ml'):
             raise ValueError('Pickands estimation requires integer frequencies totaling at least four')
         desc, cumulative = values[::-1], np.cumsum(weights[::-1])
         maximum = int(n//4)
-        candidates = np.unique(np.r_[1, *(np.floor(cumulative/d)+1 for d in (1, 2, 4))]).astype(int)
+        candidates = np.unique(np.r_[(1, *(np.floor(cumulative/d)+1 for d in (1, 2, 4)))]).astype(int)
         candidates = candidates[(candidates >= 1) & (candidates <= maximum)]
         before = np.r_[0, np.cumsum(weights)[:-1]]
         left, right = (before+.5)/n, (np.cumsum(weights)-.5)/n

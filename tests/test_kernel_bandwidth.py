@@ -1,5 +1,6 @@
 """Independent formulas and numerical invariants for legacy KDE selectors."""
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 from numpy.testing import assert_allclose, assert_array_equal
 from scipy import integrate, stats
@@ -160,7 +161,7 @@ def test_new_univariate_selectors_drive_real_kde_workflows(normal_sample, method
     expected_h = float(np.asarray(getattr(kd, method)(x)).ravel()[0])
     assert_allclose(H, [[expected_h]])
     assert_allclose(f, stats.norm.pdf((points[:, None]-x[None, :])/expected_h).mean(axis=1)/expected_h)
-    assert_allclose(np.trapezoid(f, points), 1, atol=1e-10)
+    assert_allclose(trapezoid(f, points), 1, atol=1e-10)
 
 
 @pytest.mark.parametrize('method', ['hbcv2', 'hldpi2', 'hldpi2fft', 'hste', 'hstt'])

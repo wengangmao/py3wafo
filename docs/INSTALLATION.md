@@ -10,7 +10,7 @@ executable. These instructions cover Windows, macOS and Linux.
 | Python     | 3.10 – 3.13 | 64-bit recommended                                                       |
 | NumPy      | ≥ 1.26      | installed automatically                                                  |
 | SciPy      | ≥ 1.15      | installed automatically                                                  |
-| Matplotlib | ≥ 3.7       | optional, `[plot]` extra: plotting, demos, paper figures               |
+| Matplotlib | ≥ 3.8       | optional, `[plot]` extra: plotting, demos, paper figures               |
 | pyproj     | ≥ 3.6       | optional, `[map]` extra: ellipsoidal map projections in `wafo.m_map` |
 
 Check your Python version:

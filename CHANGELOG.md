@@ -21,6 +21,10 @@ All notable changes to py3wafo are recorded here. The format follows
   that runs every documentation example.
 
 ### Fixed
+- Python 3.10 support: removed starred unpacking inside indexing
+  (`np.r_[1, *xs]`), which needs Python 3.11.
+- The minimum Matplotlib version is now 3.8; contour handling fails on 3.7.
+- Tests no longer use `np.trapezoid`, so they run on NumPy 1.26.
 - `mvnormprb` works on SciPy 1.15, which lacks the `rng=` keyword.
 - `kchitwo` accepts random-phase models whose conditional derivative
   covariance is exactly zero.

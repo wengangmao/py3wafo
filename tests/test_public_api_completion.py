@@ -1,5 +1,6 @@
 """Numerical checks for public APIs absent from the previous test suite."""
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 from numpy.testing import assert_allclose,assert_array_equal
 from scipy.special import gamma
@@ -48,7 +49,7 @@ def test_crossing_types_and_spectral_estimation():
     assert_array_equal(onedim.dat2crossind(y,wdef='d'),[1])
     t = np.arange(1024)/128
     S = onedim.dat2spec(np.column_stack((t,np.sin(2*np.pi*8*t))),L=256)
-    assert_allclose(np.trapezoid(S.S,S.w),.5,rtol=1e-8)
+    assert_allclose(trapezoid(S.S,S.w),.5,rtol=1e-8)
     assert_allclose(S.w[np.argmax(S.S)],2*np.pi*8)
 
 

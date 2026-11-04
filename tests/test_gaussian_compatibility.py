@@ -1,5 +1,6 @@
 """Source-coefficient transforms and real packed-correlation gateway tests."""
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 from numpy.testing import assert_allclose, assert_array_equal
 from scipy import stats
@@ -17,7 +18,7 @@ def test_hermite_coefficients_softening_round_trip_and_exact_departure():
     assert_array_equal(table[:, 0], x)
     assert_allclose(table[:, 1], y, atol=2e-13)
     z = (x-2)/3
-    assert_allclose(departure, np.trapezoid((z-y)**2, z), atol=1e-13)
+    assert_allclose(departure, trapezoid((z-y)**2, z), atol=1e-13)
     # This private helper takes coefficients, rather than moments like hermitetr.
     assert_allclose(tr.hermitefun([0, 0], x, 2, 3)[:, 1], z, atol=2e-13)
     cubic = tr.hermitefun([0, 1/3], np.linspace(-2, 2, 101))
@@ -46,7 +47,7 @@ def test_ochi_direct_parameters_zero_limit_nan_defaults_and_normalization():
     gamma = np.where(z >= 0, .1, .2)
     expected = ((1-np.exp(-gamma*z))/gamma+.3)/.8
     assert_allclose(table[:, 1], expected, atol=3e-15)
-    assert_allclose(departure, np.trapezoid((z-expected)**2, z), atol=1e-14)
+    assert_allclose(departure, trapezoid((z-expected)**2, z), atol=1e-14)
     assert_allclose(tr.ochifun(x, [0, 0, 2, 1, .8, -.3])[:, 1], (z+.3)/.8)
     assert_allclose(tr.ochifun(x, [np.nan]*6), tr.ochifun(x))
     tiny = tr.ochifun(x, [1e-15, 1e-15, 2, 1])

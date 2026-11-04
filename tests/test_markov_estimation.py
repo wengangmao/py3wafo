@@ -119,7 +119,7 @@ def test_estsmctp_callable_model_recovers_location_and_builtin_calc_dispatch():
     assert estimate['objective'] < 1e-7
     builtin_models = [dict(x0=[-.35, -.1], s=.3, lam=.8), dict(x0=[.1, .35], s=.23, lam=1.3)]
     P = [[.8, .2], [.3, .7]]
-    X = np.r_[m.tr_p2x(P, 1), *(m.tr_m2x(model) for model in builtin_models)]
+    X = np.r_[(m.tr_p2x(P, 1), *(m.tr_m2x(model) for model in builtin_models))]
     expected = m.smctp2rfm(P, models())
     value, calculated, _, _ = m.f_smctp(X, 1000*expected, 'P,CalcF', 'chi2',
                                        dict(param=[-1, 1, 7], nM=[4, 4], Ffun='f_funm', trX2Model='tr_x2m'),

@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 from numpy.testing import assert_allclose,assert_array_equal
 from wafo import multidim as m,spec
@@ -32,7 +33,7 @@ def test_fourier_coefficients_arbitrary_period_multiple_cycles():
 def test_spreading_normalization():
     S = spec.demospec('dir')
     D = m.dspec2spreading(S)
-    mass = np.trapezoid(D.S,D.theta,axis=0)
+    mass = trapezoid(D.S,D.theta,axis=0)
     assert_allclose(mass[S.S.sum(axis=0)>0],1)
     bad = dict(S,S=S.S.copy())
     bad['S'][0,0]=np.nan

@@ -1,5 +1,6 @@
 """Source steering identities, directional recovery, and measured spectral units."""
 import numpy as np
+from scipy.integrate import trapezoid
 import pytest
 from numpy.testing import assert_allclose,assert_array_equal
 from scipy.special import i0,i1
@@ -13,7 +14,7 @@ def test_options_and_stable_directional_normalization():
     theta=np.linspace(-np.pi,np.pi,101)
     d=np.column_stack((np.exp(np.cos(theta)),np.zeros(len(theta)),np.full(len(theta),1e-320)))
     normalized=m.normspfn(d,theta)
-    assert_allclose(np.trapezoid(normalized,theta,axis=0),1,atol=1e-14)
+    assert_allclose(trapezoid(normalized,theta,axis=0),1,atol=1e-14)
     assert_allclose(normalized[:,1],1/(2*np.pi))
 
 
@@ -27,7 +28,7 @@ def test_cross_spectrum_reconstruction_exact_fourier_moments():
     assert estimates.shape==D.shape
     assert np.argmax(estimates[:,0])==len(theta)//2
     assert info['rank'][0]==2
-    assert_allclose(np.trapezoid(estimates[:,0],theta),1)
+    assert_allclose(trapezoid(estimates[:,0],theta),1)
 
 
 def test_mem_solves_von_mises_moment_constraint():
@@ -52,7 +53,7 @@ def test_imlm_source_iteration_preserves_positive_unit_mass():
     C=np.array([[1,.5],[.5,1]],complex)[:,:,None]
     D,info=m.imlm(C,G,theta,opt={'maxiter':20,'errortol':1e-4},full_output=True)
     assert np.all(D>=0) and np.all(np.isfinite(D))
-    assert_allclose(np.trapezoid(D,theta,axis=0),[1],atol=1e-14)
+    assert_allclose(trapezoid(D,theta,axis=0),[1],atol=1e-14)
     assert 1<=info['iterations']<=20 and np.isfinite(info['last_change'])
 
 
@@ -81,8 +82,8 @@ def test_welch_mlm_recovers_direction_and_variance(plane_measurements):
     peak=np.argmax(W.S)
     assert_allclose(S.w[peak],2*np.pi*.125)
     assert_allclose(np.rad2deg(S.theta[np.argmax(S.S[:,peak])]),30,atol=2)
-    assert_allclose(np.trapezoid(S.S,S.theta,axis=0),W.S,atol=1e-12)
-    assert_allclose(np.trapezoid(W.S,W.w),2,rtol=1e-10)
+    assert_allclose(trapezoid(S.S,S.theta,axis=0),W.S,atol=1e-12)
+    assert_allclose(trapezoid(W.S,W.w),2,rtol=1e-10)
     assert_allclose(F[0],1,atol=1e-12)
     assert G.shape==(3,181,65) and C.shape==(3,3,65)
     assert info['normalization']=='physical Welch density'
@@ -91,7 +92,7 @@ def test_welch_mlm_recovers_direction_and_variance(plane_measurements):
 def test_dat2dspec_frequency_and_angle_unit_conservation(plane_measurements):
     data,positions=plane_measurements
     S=m.dat2dspec(data,positions,nfft=128,nt=91,options={'ftype':'f','thtype':'degrees'})
-    assert_allclose(np.trapezoid(np.trapezoid(S.S,S.theta,axis=0),S.f),2,rtol=1e-10)
+    assert_allclose(trapezoid(trapezoid(S.S,S.theta,axis=0),S.f),2,rtol=1e-10)
     assert S.theta_units=='degrees'
 
 
@@ -101,7 +102,7 @@ def test_dat2dspec_all_implemented_methods(plane_measurements):
         S,D,W,F,G,C,info=m.dat2dspec(data,positions,nfft=128,nt=61,method=method,
             options={'maxiter':20,'errortol':1e-3},full_output=True)
         assert np.all(np.isfinite(S.S)) and np.all(S.S>=0)
-        assert_allclose(np.trapezoid(S.S,S.theta,axis=0),W.S,atol=1e-12)
+        assert_allclose(trapezoid(S.S,S.theta,axis=0),W.S,atol=1e-12)
         assert info['method']==method
     with pytest.raises(NotImplementedError):m.dat2dspec(data,positions,method='BDM')
     malformed=positions.copy();malformed[0,3]=1.5
