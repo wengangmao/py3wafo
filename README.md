@@ -28,6 +28,13 @@ the original native routines are reimplemented with NumPy and SciPy.
 > **not** been certified, because the tests could not be run against MATLAB.
 > Known deviations and limits are listed in [Known limitations](https://github.com/wengangmao/py3wafo#known-limitations).
 
+> **Upgrading from py3wafo 0.4.0?** Version 0.5.0 is a new code base with a
+> different API. 0.4.0 was a class-based port of pywafo (`TimeSeries`,
+> `SpecData`, `CovData`, `CyclePairs`). 0.5.0 follows the MATLAB toolbox's
+> functions and modules (`wafo.spec.jonswap`, `wafo.cycles.tp2rfc`, …), so code
+> written for 0.4.0 needs changes. To keep the old version, install
+> `"py3wafo==0.4.0"`.
+
 ## Installation
 
 Requires Python 3.10 or newer. Full instructions, including virtual

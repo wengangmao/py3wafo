@@ -7,8 +7,14 @@ All notable changes to py3wafo are recorded here. The format follows
 ## [0.5.0] — 2026-11-04
 
 First release from the GitHub repository, published to PyPI through GitHub
-Actions. It supersedes the earlier `0.4.0` build uploaded to PyPI in August
-2026; some items below may already have been present in that build.
+Actions.
+
+**Breaking change.** 0.5.0 replaces the code base of `py3wafo` 0.4.0
+(August 2026). 0.4.0 was a class-based port of pywafo (`TimeSeries`,
+`SpecData`, `CovData`, `CyclePairs`, Numba backends). 0.5.0 is a port of the
+MATLAB WAFO 2.1.1 toolbox that keeps its function names and module layout
+(`wafo.spec.jonswap`, `wafo.cycles.tp2rfc`, …). Code written for 0.4.0 must be
+adapted; `pip install "py3wafo==0.4.0"` keeps the old version.
 
 ### Added
 - Python counterparts for all remaining MATLAB WAFO 2.1.1 functions.
