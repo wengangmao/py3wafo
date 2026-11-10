@@ -32,8 +32,7 @@ the original native routines are reimplemented with NumPy and SciPy.
 > different API. 0.4.0 was a class-based port of pywafo (`TimeSeries`,
 > `SpecData`, `CovData`, `CyclePairs`). 0.5.0 follows the MATLAB toolbox's
 > functions and modules (`wafo.spec.jonswap`, `wafo.cycles.tp2rfc`, …), so code
-> written for 0.4.0 needs changes. To keep the old version, install
-> `"py3wafo==0.4.0"`.
+> written for 0.4.0 needs changes. 0.4.0 is no longer available on PyPI.
 
 ## Installation
 

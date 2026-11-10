@@ -14,7 +14,7 @@ Actions.
 `SpecData`, `CovData`, `CyclePairs`, Numba backends). 0.5.0 is a port of the
 MATLAB WAFO 2.1.1 toolbox that keeps its function names and module layout
 (`wafo.spec.jonswap`, `wafo.cycles.tp2rfc`, …). Code written for 0.4.0 must be
-adapted; `pip install "py3wafo==0.4.0"` keeps the old version.
+adapted. 0.4.0 has since been removed from PyPI.
 
 ### Added
 - Python counterparts for all remaining MATLAB WAFO 2.1.1 functions.
